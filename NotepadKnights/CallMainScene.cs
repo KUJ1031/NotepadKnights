@@ -6,30 +6,32 @@ using System.Threading.Tasks;
 
 namespace NotepadKnights
 {
-    public class CallMainScene
+    public class MainMenuModule
     {
         FixStatus fixStatus;
-        public CallMainScene(FixStatus fixStatus)
+        public MainMenuModule(FixStatus fixStatus)
         {
             this.fixStatus = fixStatus;
         }
-        public void Start()
+        public void Intro()
         {
+            string answer;
             Console.WriteLine("게임을 시작합니다.\n");
             Console.WriteLine("캐릭터를 생성합니다.\n");
             while (true)
             {
                 Console.WriteLine("이름을 입력하세요: ");
                 string name = Console.ReadLine();
-                
+
                 Console.WriteLine("이름: " + name);
                 Console.WriteLine("이름이 맞습니까?");
                 Console.WriteLine("1. 맞습니다 / 2. 다시 입력합니다");
-                
-                string answer = Console.ReadLine();
+
+                answer = Console.ReadLine();
                 if (answer == "1")
                 {
                     Console.WriteLine("\n");
+                    fixStatus.SetName(name);
                     break;
                 }
                 else if (answer == "2")
@@ -41,6 +43,63 @@ namespace NotepadKnights
                     Console.WriteLine("잘못된 입력입니다. 다시 시도하세요.\n");
                 }
             }
+            while (true)
+            {
+                Console.WriteLine("직업을 선택해주세요");
+                Console.WriteLine("1. 전사  /  2: 도적");
+                Console.Write("직업을 선택하세요: ");
+                string job = Console.ReadLine();
+                if (job == "1")
+                {
+                    Console.WriteLine("전사를 선택하셨습니다.\n");
+                    Console.WriteLine("전사로 시작합니다.");
+                    Console.WriteLine("1. Yes / 2. No");
+                    answer = Console.ReadLine();
+                    if (answer == "1")
+                    {
+                        Console.WriteLine("전사로 시작합니다.");
+                        fixStatus.SetJob("전사");
+                        break;
+                    }
+                    else if (answer == "2")
+                    {
+                        Console.WriteLine("직업을 다시 선택하세요.\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다. 다시 시도하세요.");
+                    }
+                }
+                else if (job == "2")
+                {
+                    Console.WriteLine("도적을 선택하셨습니다.\n");
+                    Console.WriteLine("도적으로 시작합니다.");
+                    Console.WriteLine("1. Yes / 2. No");
+                    answer = Console.ReadLine();
+                    if (answer == "1")
+                    {
+                        Console.WriteLine("도적으로 시작합니다.");
+                        fixStatus.SetJob("도적");
+                        break;
+                    }
+                    else if (answer == "2")
+                    {
+                        Console.WriteLine("직업을 다시 선택하세요.\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다. 다시 시도하세요.\n");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("잘못된 입력입니다. 다시 시도하세요.\n");
+                }
+            }
+        }
+        public void Villiage()
+        {
+            Console.WriteLine(
         }
     }
 }
