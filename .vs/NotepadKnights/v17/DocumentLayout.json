@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "NotepadKnights\\Monster.cs",
               "ToolTip": "C:\\Users\\jangh\\Desktop\\UnityStudy\\NotepadKnights\\NotepadKnights\\Monster.cs",
               "RelativeToolTip": "NotepadKnights\\Monster.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAzwBgAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-21T10:41:59.05Z",
               "EditorCaption": ""
@@ -63,8 +63,7 @@
               "RelativeToolTip": "NotepadKnights\\Monsters\\Voiling.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T09:50:35.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T09:50:35.317Z"
             },
             {
               "$type": "Document",
@@ -76,8 +75,7 @@
               "RelativeToolTip": "NotepadKnights\\Monsters\\CannonMinion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T09:49:55.923Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T09:49:55.923Z"
             },
             {
               "$type": "Document",
@@ -89,8 +87,7 @@
               "RelativeToolTip": "NotepadKnights\\Monsters\\Minion.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T09:49:25.391Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T09:49:25.391Z"
             },
             {
               "$type": "Document",
@@ -102,8 +99,7 @@
               "RelativeToolTip": "NotepadKnights\\BattleManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T07:17:03.129Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T07:17:03.129Z"
             },
             {
               "$type": "Document",
@@ -115,8 +111,7 @@
               "RelativeToolTip": "NotepadKnights\\Program.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAkwAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T05:19:52.29Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-21T05:19:52.29Z"
             }
           ]
         }
