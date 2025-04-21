@@ -27,3 +27,11 @@ C:\Users\thsus\OneDrive\문서\GitHub\NotepadKnights\NotepadKnights\obj\Debug\ne
 C:\Users\thsus\OneDrive\문서\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\NotepadKnights.pdb
 C:\Users\thsus\OneDrive\문서\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\NotepadKnights.genruntimeconfig.cache
 C:\Users\thsus\OneDrive\문서\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\ref\NotepadKnights.dll
+C:\Users\sungj\Desktop\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\NotepadKnights.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sungj\Desktop\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\NotepadKnights.AssemblyInfoInputs.cache
+C:\Users\sungj\Desktop\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\NotepadKnights.AssemblyInfo.cs
+C:\Users\sungj\Desktop\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\NotepadKnights.csproj.CoreCompileInputs.cache
+C:\Users\sungj\Desktop\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\NotepadKnights.sourcelink.json
+C:\Users\sungj\Desktop\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\NotepadKnights.dll
+C:\Users\sungj\Desktop\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\refint\NotepadKnights.dll
+C:\Users\sungj\Desktop\GitHub\NotepadKnights\NotepadKnights\obj\Debug\net8.0\NotepadKnights.pdb

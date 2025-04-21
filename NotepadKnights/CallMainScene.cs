@@ -15,13 +15,13 @@ namespace NotepadKnights
         }
         public void Intro()
         {
-            string answer;
+            string? answer;
             Console.WriteLine("게임을 시작합니다.\n");
             Console.WriteLine("캐릭터를 생성합니다.\n");
             while (true)
             {
                 Console.WriteLine("이름을 입력하세요: ");
-                string name = Console.ReadLine();
+                string name = Console.ReadLine() ?? "없음";
 
                 Console.WriteLine("이름: " + name);
                 Console.WriteLine("이름이 맞습니까?");
@@ -48,7 +48,7 @@ namespace NotepadKnights
                 Console.WriteLine("직업을 선택해주세요");
                 Console.WriteLine("1. 전사  /  2: 도적");
                 Console.Write("직업을 선택하세요: ");
-                string job = Console.ReadLine();
+                string? job = Console.ReadLine();
                 if (job == "1")
                 {
                     Console.WriteLine("전사를 선택하셨습니다.\n");
@@ -97,9 +97,13 @@ namespace NotepadKnights
                 }
             }
         }
-        public void Villiage()
+        public int Villiage()
         {
-            Console.WriteLine(
+            Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
+            Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
+            Console.WriteLine("1. 상태 보기 / 2. 인벤토리 / 3. 상점 / 4. 전투하기 / 5. 회복하기\n");
+            Console.WriteLine("원하시는 행동을 입력해주세요.");
+            return answer;
         }
     }
 }
