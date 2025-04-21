@@ -60,7 +60,15 @@
         }
         static void Main(string[] args)
         {
-            InLobby();
+            CriticalAndHide checker = new CriticalAndHide();
+
+            Console.WriteLine("치명타 확률 테스트 (확률: " + checker.criticalProbability + ")");
+            for (int i = 0; i < 10; i++)
+            {
+                checker.CalcCritical();
+                Console.WriteLine($"{i + 1}번째 시도: {(checker.onClitical ? "성공!" : "실패")}");
+            }
+            //InLobby();
         }
     }
 }
