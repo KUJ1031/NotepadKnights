@@ -12,7 +12,6 @@ namespace NotepadKnights.Monsters
         {
             Name = "공허충";
             MaxHp = 10;
-            IsDead = false;
         }
     }
 }
