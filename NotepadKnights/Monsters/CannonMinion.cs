@@ -12,7 +12,6 @@ namespace NotepadKnights.Monsters
         {
             Name = "대포미니언";
             MaxHp = 25;
-            IsDead = false;
         }
     }
 }
