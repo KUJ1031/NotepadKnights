@@ -2,21 +2,36 @@
 {
     internal class Monster
     {
-        public string name { get; set; }
-        public int level { get; set; }
-        public int maxHp { get; set; }
-        public int currentHp { get; set; }
-        public bool isDead { get; set; }
+        public string Name { get; set; }
+        public int Level { get; set; }
+        public int MaxHp { get; set; }
+        public int CurrentHp { get; set; }
+        public int Atk { get; set; }
+        private bool isDead = false;
+        public bool IsDead { get { return isDead; } set { isDead = value; } }
 
 
         public int ApplyDamage(int damage)
         {
-            return damage;
+            CurrentHp -= damage;
+            if (CurrentHp <= 0)
+            {
+                CurrentHp = 0;
+                IsDead = true;
+            }
+            return CurrentHp;
         }
 
         public int DealDamage()
         { 
-            return 0;
+            if (!IsDead)
+            {
+                return Atk;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
