@@ -1,13 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\",
+  "WorkspaceRootPath": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA5BD6C0-E834-44D3-9DB7-356B2EEF6B69}|NotepadKnights\\NotepadKnights.csproj|c:\\users\\thsus\\onedrive\\\uBB38\uC11C\\github\\notepadknights\\notepadknights\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CA5BD6C0-E834-44D3-9DB7-356B2EEF6B69}|NotepadKnights\\NotepadKnights.csproj|c:\\users\\thsus\\onedrive\\\uBB38\uC11C\\github\\notepadknights\\notepadknights\\notepadknights\\criticalandhide.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA5BD6C0-E834-44D3-9DB7-356B2EEF6B69}|NotepadKnights\\NotepadKnights.csproj|solutionrelative:notepadknights\\criticalandhide.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA5BD6C0-E834-44D3-9DB7-356B2EEF6B69}|NotepadKnights\\NotepadKnights.csproj|c:\\users\\thsus\\onedrive\\\uBB38\uC11C\\github\\notepadknights\\notepadknights\\notepadknights\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA5BD6C0-E834-44D3-9DB7-356B2EEF6B69}|NotepadKnights\\NotepadKnights.csproj|solutionrelative:notepadknights\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA5BD6C0-E834-44D3-9DB7-356B2EEF6B69}|NotepadKnights\\NotepadKnights.csproj|c:\\users\\thsus\\onedrive\\\uBB38\uC11C\\github\\notepadknights\\notepadknights\\battlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CA5BD6C0-E834-44D3-9DB7-356B2EEF6B69}|NotepadKnights\\NotepadKnights.csproj|c:\\users\\thsus\\onedrive\\\uBB38\uC11C\\github\\notepadknights\\notepadknights\\notepadknights\\battlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA5BD6C0-E834-44D3-9DB7-356B2EEF6B69}|NotepadKnights\\NotepadKnights.csproj|solutionrelative:notepadknights\\battlemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -21,25 +25,41 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BattleManager.cs",
-              "DocumentMoniker": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\BattleManager.cs",
-              "RelativeDocumentMoniker": "NotepadKnights\\BattleManager.cs",
-              "ToolTip": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\BattleManager.cs",
-              "RelativeToolTip": "NotepadKnights\\BattleManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-21T07:17:03.129Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CriticalAndHide.cs",
+              "DocumentMoniker": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights\\CriticalAndHide.cs",
+              "RelativeDocumentMoniker": "NotepadKnights\\CriticalAndHide.cs",
+              "ToolTip": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights\\CriticalAndHide.cs",
+              "RelativeToolTip": "NotepadKnights\\CriticalAndHide.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAADwvxsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-21T14:05:35.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BattleManager.cs",
+              "DocumentMoniker": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights\\BattleManager.cs",
+              "RelativeDocumentMoniker": "NotepadKnights\\BattleManager.cs",
+              "ToolTip": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights\\BattleManager.cs",
+              "RelativeToolTip": "NotepadKnights\\BattleManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-21T07:17:03.129Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights\\Program.cs",
               "RelativeDocumentMoniker": "NotepadKnights\\Program.cs",
-              "ToolTip": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\Program.cs",
+              "ToolTip": "C:\\Users\\thsus\\OneDrive\\\uBB38\uC11C\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights\\Program.cs",
               "RelativeToolTip": "NotepadKnights\\Program.cs",
               "ViewState": "AQIAABwAAAAAAAAAAAAUwAoAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
