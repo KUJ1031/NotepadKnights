@@ -10,9 +10,9 @@ namespace NotepadKnights.Monsters
     {
         public Voiling()
         {
-            name = "공허충";
-            maxHp = 10;
-            isDead = false;
+            Name = "공허충";
+            MaxHp = 10;
+            IsDead = false;
         }
     }
 }

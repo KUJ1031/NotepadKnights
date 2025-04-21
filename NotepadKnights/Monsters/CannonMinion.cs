@@ -10,9 +10,9 @@ namespace NotepadKnights.Monsters
     {
         public CannonMinion()
         {
-            name = "대포미니언";
-            maxHp = 25;
-            isDead = false;
+            Name = "대포미니언";
+            MaxHp = 25;
+            IsDead = false;
         }
     }
 }
