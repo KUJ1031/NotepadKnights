@@ -12,6 +12,7 @@ namespace NotepadKnights.Monsters
         {
             Name = "미니언";
             MaxHp = 15;
+            CurrentHp = MaxHp;
         }
     }
 }
