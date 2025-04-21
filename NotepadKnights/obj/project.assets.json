@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thsus\\OneDrive\\문서\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights.csproj",
+      "projectUniqueName": "C:\\Users\\thsus\\OneDrive\\문서\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights\\NotepadKnights.csproj",
       "projectName": "NotepadKnights",
-      "projectPath": "C:\\Users\\thsus\\OneDrive\\문서\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights.csproj",
+      "projectPath": "C:\\Users\\thsus\\OneDrive\\문서\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights\\NotepadKnights.csproj",
       "packagesPath": "C:\\Users\\thsus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thsus\\OneDrive\\문서\\GitHub\\NotepadKnights\\NotepadKnights\\obj\\",
+      "outputPath": "C:\\Users\\thsus\\OneDrive\\문서\\GitHub\\NotepadKnights\\NotepadKnights\\NotepadKnights\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\thsus\\AppData\\Roaming\\NuGet\\NuGet.Config",
