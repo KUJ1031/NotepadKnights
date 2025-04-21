@@ -16,7 +16,7 @@ namespace NotepadKnights
         float dodgeProbability = 0.15f;
 
         // 치명타, 회피 발생 여부 확인 변수
-        public bool onClitical = false;
+        public bool onCritical = false;
         public bool onDodge = false;
 
         private Random random = new Random();
@@ -24,7 +24,7 @@ namespace NotepadKnights
         public void CalcCritical()
         {
             float value = (float)random.NextDouble(); // 0.0 ~ 1.0
-            onClitical = value < criticalProbability;
+            onCritical = value < criticalProbability;
         }
 
         public void CalcDodge()
