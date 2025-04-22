@@ -60,13 +60,7 @@
         }
         static void Main(string[] args)
         {
-            //InLobby();
-            // 몬스터들 생성
-            // BattleManager.MonsterFactory monsterFactory = new BattleManager.MonsterFactory();
-            //monsterFactory.SetEnemysInfo();
-            //BattleManager. Player player = new BattleManager.Player();
-
-            //player.BattleUI();
+            InLobby();
         }
     }
 }

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace NotepadKnights
 {
@@ -14,10 +11,12 @@ namespace NotepadKnights
         int GetRandom(int min, int max);
     }
     internal class BattleManager
-    {
-        public class MonsterFactory
-        {
-            public static List<Monster> monsters {get; set;}
+	{
+		private List<Monster> createMonsters = new List<Monster>(); // 랜덤하게 생성한 몬스터를 넣을 List
+		private Random random = new Random();
+		class MonsterFactory
+		{
+            public static List<Monster> monsters { get; set; }
 
             // 적들의 정보를 설정하자
             public void SetEnemysInfo()
@@ -30,8 +29,8 @@ namespace NotepadKnights
                 };
             }
         }
-        public class Player : IRandomProvider
-        {
+		class Player
+		{
             string name = "Chad";
             string job = "전사";
             int level = 1;
@@ -39,8 +38,11 @@ namespace NotepadKnights
             int gold;
             int attack; // 공격력
             int defense; // 방어력
-            bool isDie;           
+            bool isDie;
             string target;
+            string index = "";
+            bool isAttack = false; // 공격할지 선택
+            bool isSelectMonster = false; // 공격할 몬스터를 골랐는지
 
             // 공격 UI
             public void BattleUI()
@@ -49,14 +51,21 @@ namespace NotepadKnights
 
                 foreach (var monster in MonsterFactory.monsters)
                 {
-                    Console.WriteLine($"Lv.{monster.Name} {monster.Level} HP {monster.HP}");
+                    Console.WriteLine($"{index} Lv.{monster.Name} {monster.Level} HP {monster.CurrentHp}");
                 }
                 Console.WriteLine("\n\n[내정보]");
                 Console.Write($"Lv.{level} {name} ({job})\n");
                 Console.WriteLine($"HP 100/{hp}\n");
 
-                // 공격할지 선택
-                SelectAttackUI();
+
+                if (!isAttack)
+                { // 공격할지 선택
+                    SelectAttackUI();
+                }
+                else
+                {
+                    SelectMonsterUI();
+                }
                 Attack();
             }
             // 플레이어 공격 차례일때 
@@ -82,6 +91,7 @@ namespace NotepadKnights
 
                 while (running)
                 {
+                    //
 
                     // 사용자 키 입력 
 
@@ -102,15 +112,17 @@ namespace NotepadKnights
 
                         case ConsoleKey.D0:
                         case ConsoleKey.NumPad0:
-                          ;
-                          //  running = false;
+                            ;
+                            //  running = false;
 
                             break;
                         case ConsoleKey.D1:
                         case ConsoleKey.NumPad1:
-                         
-                           // Console.Clear();
-                            //BattleUI();
+                            Console.Clear();
+                            isAttack = true;
+                            BattleUI();
+                            //
+                            //
                             //SelectMonsterUI();
                             running = false;
                             break;
@@ -137,7 +149,7 @@ namespace NotepadKnights
             {
                 int playerDamage = GetRandom(attack - 10, attack + 10);
                 Console.WriteLine($"{name} 의 공격!\n>>");
-             //   Console.WriteLine($"{} 을(를) 맞췄습니다. [데미지 : {playerDamage}]\n>>");
+                //   Console.WriteLine($"{} 을(를) 맞췄습니다. [데미지 : {playerDamage}]\n>>");
                 return playerDamage;
             }
             // 공격화면 UI
@@ -171,17 +183,37 @@ namespace NotepadKnights
                 return result;
             }
         }
-        public class Monster
-        {
-            public string Name { get; set; }
-            public int Level { get; set; }
-            public int HP { get; set; }
-            public Monster(string name, int level, int hp)
-            {
-                Name = name;
-                Level = level;
-                HP = hp;
-            }
-        }
-    }
+
+		public void InitializeMonsters()
+		{
+			createMonsters.Clear();     // 이전 데이터 삭제
+
+			int monsterCount = random.Next(1, 5);	// 1 ~ 4마리 사이 생성
+
+			for (int i = 0; i < monsterCount; i++)
+			{
+				Monster monster = CreateRandomMonster();
+				createMonsters.Add(monster);
+			}
+		}
+
+		/*
+		 * 세 종류의 몬스터를 랜덤하게 생성시켜줄 메서드
+		 */
+		public Monster CreateRandomMonster()
+		{
+			int type = random.Next(0, 3);	// 0: 미니언, 1 : 공허충, 2 : 대포미니언
+
+			switch(type)
+			{
+				default:
+				case 0:
+					return new Monsters.Minion();   // Monsters 폴더 내부 클래스 호출
+				case 1:
+					return new Monsters.Voiling();
+				case 2:
+					return new Monsters.CannonMinion();
+			}
+		}
+	}
 }
