@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NotepadKnights.Monsters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,17 +19,17 @@ namespace NotepadKnights
 
         private Random random = new Random();
 
-        public int Attack(int playerAttack)
+        public int Attack(int Damage)
         {
             CalcCritical();
             if (onCritical)
             {
                 Console.WriteLine("치명적인 데미지!");
-                playerAttack *= (int)1.6f;
+                Damage *= (int)1.6f;
             }
-            return playerAttack;
+            return Damage;
         }
-        public int Defense(int EnemyAttack, int PlayerDefense)
+        public int PlayerDefense(int EnemyAttack, int PlayerHp, int PlayerDefense)
         {
             CalcDodge();
             if (onDodge)
@@ -37,14 +38,29 @@ namespace NotepadKnights
             }
             else
             {
-                PlayerDefense -= EnemyAttack;
+                int reduceDamage = PlayerDefense - EnemyAttack;
+                PlayerHp -= reduceDamage;
             }
-            return PlayerDefense;
+            return PlayerHp;
+        }
+
+        public int EnemyDefense(int PlayerAttack, int EnemyHp)
+        {
+            CalcDodge();
+            if (onDodge)
+            {
+                Console.WriteLine("그러나 아무 일도 일어나지 않았다.");
+            }
+            else
+            {
+                EnemyHp -= PlayerAttack;
+            }
+            return EnemyHp;
         }
 
         public void CalcCritical()
         {
-            float value = (float)random.NextDouble(); // 0.0 ~ 1.0
+            float value = (float)random.NextDouble();
             onCritical = value < criticalProbability;
         }
 
@@ -53,5 +69,6 @@ namespace NotepadKnights
             float value = (float)random.NextDouble();
             onDodge = value < dodgeProbability;
         }
+
     }
 }
