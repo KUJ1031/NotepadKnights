@@ -18,8 +18,6 @@ namespace NotepadKnights
 	{
         private MonsterFactory monsterFactory = new MonsterFactory();    // 임시 static 오브젝트 생성
 
-        AttackAndDefense attackAndDefense = new AttackAndDefense();
-     
         // 플레이어 차례
         public void ExecutePlayerPhase()
         {
