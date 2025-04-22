@@ -43,11 +43,17 @@ public class Inventory
         int index = 1;
         foreach (Item item in Items)
         {
-            string indexText = selectMod ? $"{index++}. " : "";
-            string selected = item.IsSelected ? "[E] " : "";
-            string typeText = item.Type == ItemType.Attack ? "공격력" : "방어력";
+            string indexText = selectMod ? $"{index++}." : "";
+            string selected = item.IsSelected ? "[E]" : "";
+            string typeText = item.Type switch
+            {
+                ItemType.Attack => "공격력",
+                ItemType.Defense => "방어력",
+                ItemType.Potion => "회복력",
+                _ => "?",
+            };
             string goldText = goldVisible ? $"{item.Price} G" : "";
-            Console.WriteLine($"- {indexText}{selected}{item.Name}\t| {typeText} +{item.Point}\t| {item.State}\t| {goldText}");
+            Console.WriteLine($"- {indexText} {selected, -3}{item.Name} | {typeText} {"+" + item.Point} | {item.State} | {goldText}");
         }
     }
 }
