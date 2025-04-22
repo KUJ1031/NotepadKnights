@@ -3,6 +3,7 @@
 public class Inventory
 {
     public List<Item> Items { get; private set; }
+    public Dictionary<Item, int> NumberOfItems { get; private set; }
 
     public Inventory()
     {
@@ -12,6 +13,10 @@ public class Inventory
     public void AddItem(Item item)
     {
         Items.Add(item);
+        if (!NumberOfItems.TryAdd(item, 1))
+        {
+            NumberOfItems[item]++;
+        }
     }
 
     public void SelectItem(int index)
@@ -32,6 +37,7 @@ public class Inventory
     public Item SellItem(int index)
     {
         Item item = Items[index];
+        NumberOfItems[item]--;
         item.IsSelected = false;
         Items.RemoveAt(index);
         return item;
@@ -47,8 +53,8 @@ public class Inventory
             string selected = item.IsSelected ? "[E]" : "";
             string typeText = item.Type switch
             {
-                ItemType.Attack => "공격력",
-                ItemType.Defense => "방어력",
+                ItemType.Weapon => "공격력",
+                ItemType.Armor => "방어력",
                 ItemType.Potion => "회복력",
                 _ => "?",
             };
