@@ -23,8 +23,14 @@ namespace NotepadKnights
         // 플레이어 차례
         public void ExecutePlayerPhase()
         {
-            // 공격한다
-            Program.Player.Attack();
+            if(Program.Player.Hp > 0 )
+            {  // 공격한다
+                Program.Player.ExecuteAttack();
+            }
+            else
+            {
+                // 게임 패배
+            }
         }
 
         private Player player;     
@@ -36,10 +42,10 @@ namespace NotepadKnights
                 int monsterAtk = monster.DealDamage();
                 Console.Clear();
                 Console.WriteLine($"Lv.{monster.Level} {monster.Name} 의 공격!");
-                Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.   [데미지 : {player.Defense - monster.Atk}]");
+                Console.WriteLine($"{Program.Player.Name} 을(를) 맞췄습니다.   [데미지 : {Program.Player.Defense - monster.Atk}]");
                 Console.WriteLine();
-                Console.WriteLine($"Lv.{player.Level} {player.Name}");
-                Console.WriteLine($"HP {player.Hp} -> {player.Hp - monsterAtk}");
+                Console.WriteLine($"Lv.{Program.Player.Level} {Program.Player.Name}");
+                Console.WriteLine($"HP {Program.Player.Hp} -> {Program.Player.Hp - monsterAtk}");
                 Console.WriteLine();
                 Console.WriteLine("0. 다음");
    
@@ -58,6 +64,9 @@ namespace NotepadKnights
             }
             Console.WriteLine("몬스터들의 공격 차례가 끝났습니다.");
             Thread.Sleep(1000);
+
+            // 플레이어 턴
+            ExecutePlayerPhase();
         }
         public void CheckVictory()
         {

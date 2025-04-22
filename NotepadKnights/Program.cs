@@ -40,6 +40,9 @@
                 case 2:
                     //전투 로직
                     Console.WriteLine("전투 로직");
+                    Console.Clear();
+                    Player.InitializePlayer();
+                    Player.ShowBattleMenu();           
                     break;
 
                 case 3:
@@ -63,16 +66,6 @@
         static void Main(string[] args)
         {
             InLobby();
-
-
-            //Player.Name = "Chad";
-            //Player.Job = "전사";
-            //Player.Level = 1;
-            //Player.Hp = 100;
-            //Player.PlayerDamage = 10;
-            //Player.Defense = 10;
-            //Player.BattleUI();
-           // Player = { }
         }
     }
 }

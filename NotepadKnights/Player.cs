@@ -13,28 +13,40 @@ namespace NotepadKnights
         public int Level { get; private set; }
         public int Hp { get; private set; }
         public  int Gold { get; private set; }
-        public int PlayerDamage { get; private set; } // 공격력
+        public int Attack { get; private set; } // 공격력
         public int Defense { get; private set; } // 방어력
         public bool IsDie { get; private set; }
         public Monster Target = new Monster();// 현재 공격중인 적
-        string index = "";
         public bool isAttack { get; private set; } // 공격할지 선택
         public  bool isSelectMonster { get; private set; } // 공격할 몬스터를 골랐는지
 
+        private string monsterIndexDisplay = "";
         MonsterFactory monsterFactory = new MonsterFactory();
         AttackAndDefense attackAndDefense = new AttackAndDefense(); 
         BattleManager battleManager = new BattleManager();
 
+        public void InitializePlayer()
+        {
+            Name = "Chad";
+            Job = "전사";
+            Level = 1;
+            Hp = 100;
+            Attack = 10;
+            Defense = 10;
+        }
         // 공격하기 전 화면 UI
-        public void BattleUI()
+        public void ShowBattleMenu()
         {
             Console.WriteLine("Battle!!\n");
 
             for (int i = 0; i < monsterFactory.createMonsters.Count; i++)
             {
-                if (isAttack) { index = (i + 1).ToString(); } else { index = ""; }
-                Console.WriteLine($"{index} Lv.{monsterFactory.createMonsters[i].Level} {monsterFactory.createMonsters[i].Name} HP {monsterFactory.createMonsters[i].CurrentHp} ");
+                monsterIndexDisplay = isAttack?  (i + 1).ToString() : ""; 
+
+                var monster = monsterFactory.createMonsters[i];
+                Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} HP {monster.CurrentHp} ");
             }
+
             Console.WriteLine("\n\n[내정보]");
             Console.Write($"Lv.{Level} {Name} ({Job})\n");
             Console.WriteLine($"HP 100/{Hp}\n");
@@ -43,114 +55,94 @@ namespace NotepadKnights
             if (!isAttack)
             { 
                 Console.WriteLine("1. 공격\n");
-                Console.Write("원하시는 행동을 입력해주세요.\n>>");
+                Console.Write("원하시는 행동을 입력해주세요.\n");
             }
             else
             {
                 Console.WriteLine("0. 취소\n");
-                Console.WriteLine("대상을 선택해주세요.\n>>");
+                Console.Write("대상을 선택해주세요.\n");
             }
+            //  키입력에 따른 화면 변화
             ScreenChanges();
         }
 
         //  키입력에 따른 화면 변화
         public void ScreenChanges()
-        {
-            int selectedIndex = 0;
-            bool running = true;
-            string msg = "";
-
-            while (running)
-            {
-                // 사용자 키 입력 
-                var key = Console.ReadKey(true).Key;
-               
-                if (key == ConsoleKey.D1 || key == ConsoleKey.D2|| key == ConsoleKey.D3) // 숫자 '0' 키
-                {
-                    if(!isAttack)
-                    {
-                        isAttack = true;
-                        Console.Clear();
-                        BattleUI();
-                       
-                    }
-                    else
-                    {
-                        Console.Clear();
-                       
-                        // 타겟을 찾은 다음
-                        GetTarget(key);
-
-                        // 적이 죽었다면
-                        if (Target.CurrentHp == 0)
-                        {
-                            Console.WriteLine("잘못된 입력입니다.");
-                            break;
-                        }
-                        // 적이 살아있다면
-                        else
-                        {
-                            // 공격
-                            battleManager.ExecutePlayerPhase();
-                        }
-                        running = false;
-                    }
-                    
-                    break;
-                }
-                // 취소 
-                else if(key == ConsoleKey.D0 && isAttack)
-                {
-                    isAttack = false;
+        {  
+            // 사용자 키 입력 
+            Console.Write(">>");         
+            string input = Console.ReadLine();
+       
+                if (input == "0" && isAttack)
+                {   
                     Console.Clear();
-                    BattleUI();
+                    isAttack = false;
+                    ShowBattleMenu(); 
                 }
-               else
-                {
-                    // msg = "잘못된 입력입니다.";
-                    Console.WriteLine("잘못된 입력입니다.");
+                // 유효 숫자를 입력했다면
+            else if(input =="1" || input == "2" || input == "3")
+            {
+                Console.Clear();
+
+                // 공격 중이지 않다면
+                if (!isAttack)
+                 {
+                    isAttack = true;
+                    ShowBattleMenu();
                 }
-               
+                // 공격 중이라면
+                else
+                {   // 타겟을 찾은 다음
+                    SelectTarget(int.Parse(input));
+
+                    // 플레이어 공격턴 실행
+                    battleManager.ExecutePlayerPhase();
+
+                }
+            }              
+            else
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+                ScreenChanges();
             }
         }
 
-        // 현재 공격중인 적 찾기
-        void GetTarget(ConsoleKey key)
+        // 현재 공격중인 적 찾기   
+        void SelectTarget(int num)
         {
-
-            switch (key)
+            if (num >= 1 && num <= monsterFactory.createMonsters.Count)
             {
-                case ConsoleKey.D1:
-                    Target = monsterFactory.createMonsters[0];
-                    break;
-                case ConsoleKey.D2:
-                    Target = monsterFactory.createMonsters[1];
-                    break;
-                case ConsoleKey.D3:
-                    Target = monsterFactory.createMonsters[2];
-                    break;
-                default:
-
-                    Console.WriteLine("잘못된 입력입니다.");
-
-                    break;
+                Target = monsterFactory.createMonsters[num - 1];
+            }
+            else
+            {
+                Console.WriteLine("잘못된 입력입니다.");
             }
         }
 
         // 공격
-        public void Attack()
+        public void ExecuteAttack()
         {
-            // 공격한다
-            PlayerDamage = attackAndDefense.Attack(PlayerDamage);
-            Target.CurrentHp = attackAndDefense.EnemyDefense(PlayerDamage, Target.CurrentHp);
+            // 적이 죽었다면
+            if (Target.CurrentHp == 0)
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+            }
+            // 적이 살아있다면
+            else
+            {
+                // 공격한다
+                Attack = attackAndDefense.Attack(Attack);   
+                Target.CurrentHp = attackAndDefense.EnemyDefense(Attack, Target.CurrentHp);
 
-            // 공격 UI 표시
-            AttackUI(PlayerDamage);
+                // 공격 이후 UI
+                DisplayAttackResult(Attack);
+            }
         }
 
 
         // 공격 이후 UI
-        void AttackUI(int playerDamage)
+        void DisplayAttackResult(int playerDamage)
         {
             Console.Clear();
 
@@ -164,18 +156,17 @@ namespace NotepadKnights
                 Console.WriteLine($"HP 0 ->Dead\n");
             else
                 Console.WriteLine($"HP {Target.CurrentHp}\n");
+            //  Console.WriteLine(Target.CurrentHp <= 0 || Target.IsDead? $"HP 0 ->Dead\n" : $"HP {Target.CurrentHp}\n");
+            Console.WriteLine("0. 다음\n>>");
 
-            Console.WriteLine("0. 다음\n");
-            Console.WriteLine(">>");
+           string  input =  Console.ReadLine();
+            while (input != "0")
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+                input = Console.ReadLine();
+            }
+            // 이 이후 적 공격 턴 실행
+            battleManager.ExecuteEnemyPhase();
         }
-
-        // 난수 생성
-        public int GetRandom(int min, int max)
-        {
-            Random rand = new Random();
-            int result = rand.Next(min, max);
-            return result;
-
-        } 
     }
 }
