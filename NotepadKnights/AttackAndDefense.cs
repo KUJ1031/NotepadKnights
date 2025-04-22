@@ -38,8 +38,9 @@ namespace NotepadKnights
             }
             else
             {
-                int reduceDamage = PlayerDefense - EnemyAttack;
-                PlayerHp -= reduceDamage;
+                int finalDamage = EnemyAttack - PlayerDefense;
+                if (finalDamage < 0) finalDamage = 0;
+                PlayerHp -= finalDamage;
             }
             return PlayerHp;
         }
