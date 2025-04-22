@@ -2,7 +2,7 @@
 
 public enum ItemType
 {
-    Attack,
-    Defense,
+    Weapon,
+    Armor,
     Potion,
 }
