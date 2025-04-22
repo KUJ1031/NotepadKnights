@@ -6,7 +6,6 @@ public class Item
     public ItemType Type { get; private set; }
     public int Point { get; private set; }
     public bool IsSelected  { get; set; } = false;
-    public bool IsPurchased  { get; set; } = false;
     public string State  { get; private set; }
     public int Price  { get; private set; }
 
