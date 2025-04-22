@@ -13,6 +13,7 @@ namespace NotepadKnights.Monsters
             Name = "대포미니언";
             MaxHp = 25;
             CurrentHp = MaxHp;
+            Console.WriteLine("테스트용");
         }
     }
 }
