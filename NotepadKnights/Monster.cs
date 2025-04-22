@@ -10,7 +10,22 @@
         private bool isDead = false;
         public bool IsDead { get { return isDead; } set { isDead = value; } }
 
-
+        //  생성자 추가
+        public Monster()
+        {
+            Name = "";
+            MaxHp = 10;
+            CurrentHp = MaxHp;
+        }
+        //  생성자 추가
+        public Monster(string name, int level, int maxHp)
+        {
+            Name = name;
+            Level = level;
+            MaxHp = maxHp;
+            CurrentHp = maxHp; // 기본값 세팅
+            Atk = level * 3;   // 예시 공격력 로직
+        }
         public int ApplyDamage(int damage)
         {
             CurrentHp -= damage;
