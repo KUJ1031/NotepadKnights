@@ -1,4 +1,6 @@
-﻿namespace NotepadKnights
+﻿using static NotepadKnights.BattleManager;
+
+namespace NotepadKnights
 {
     //18조 TextRPG [Notepad Knights] 협업 공간입니다.
     internal class Program
@@ -60,7 +62,14 @@
         }
         static void Main(string[] args)
         {
-            InLobby();
+            // InLobby();
+
+            // 몬스터 생성
+            MonsterFactory monsterFactory = new MonsterFactory();
+            monsterFactory.SetEnemysInfo();
+
+            Player player = new Player();
+            player.BattleUI();
         }
     }
 }
