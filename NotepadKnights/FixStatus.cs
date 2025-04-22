@@ -23,33 +23,41 @@ namespace NotepadKnights
         }
         public void AddLevel(int level)
         {
-            Status.level = level;
+            Status.level += level;
         }
         public void AddHP(int hp)
         {
-            Status.hp = hp;
+            Status.hp += hp;
         }
         public void AddAttack(int attack)
         {
-            Status.attack = attack;
+            Status.attack += attack;
         }
         public void AddDefense(int defense)
         {
-            Status.defense = defense;
+            Status.defense += defense;
         }
         public void AddEquipATK(int equipATK)
         {
-            Status.equipATK = equipATK;
+            Status.equipATK += equipATK;
         }
         public void AddEquipDEF(int equipDEF)
         {
-            Status.equipDEF = equipDEF;
+            Status.equipDEF += equipDEF;
         }
         public void AddGold(int gold)
         {
-            Status.gold = gold;
+            Status.gold += gold;
         }
-
-
+        //public void showStatus()
+        //{
+        //    Console.WriteLine("레벨: " + Status.level);
+        //    Console.WriteLine($"{Status.name} {Status.job}");
+        //    Console.WriteLine("체력: " + Status.hp);
+        //    Console.WriteLine($"공격력: {Status.attack} + {Status.equipATK}");
+        //    Console.WriteLine($"방어력: {Status.defense} + {Status.equipDEF}");
+        //    Console.WriteLine("체력: " + Status.hp);
+        //    Console.WriteLine("소지금: " + Status.gold);
+        //}
     }
 }
