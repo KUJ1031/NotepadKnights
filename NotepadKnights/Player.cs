@@ -8,18 +8,18 @@ namespace NotepadKnights
 {
     public class Player
     {
-        string name = "Chad";
-        string job = "전사";
-        int level = 1;
-        int hp = 100;
-        int gold;
-        int attack; // 공격력
-        int defense; // 방어력
-        bool isDie;
-        string target;
+        public string name { get; set; }
+        public string job { get; set; }
+        public int level { get; set; }
+        public int hp { get; set; }
+        public  int gold { get; set; }
+        public int attack { get; set; } // 공격력
+        public int defense { get; set; } // 방어력
+        public bool isDie { get; set; }
+        public string target { get; set; } // 현재 공격중인 적
         string index = "";
-        bool isAttack = false; // 공격할지 선택
-        bool isSelectMonster = false; // 공격할 몬스터를 골랐는지
+        public bool isAttack { get; set; } // 공격할지 선택
+        public  bool isSelectMonster { get; set; } // 공격할 몬스터를 골랐는지
 
         // 공격 UI
         public void BattleUI()
