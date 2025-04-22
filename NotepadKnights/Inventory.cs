@@ -8,6 +8,7 @@ public class Inventory
     public Inventory()
     {
         Items = new List<Item>();
+        InitialItems();
     }
 
     public void AddItem(Item item)
@@ -38,8 +39,12 @@ public class Inventory
     {
         Item item = Items[index];
         NumberOfItems[item]--;
-        item.IsSelected = false;
-        Items.RemoveAt(index);
+        if (NumberOfItems[item] == 0)
+        {
+            item.IsSelected = false;
+            NumberOfItems.Remove(item);
+            Items.RemoveAt(index);
+        }
         return item;
     }
 
@@ -60,6 +65,16 @@ public class Inventory
             };
             string goldText = goldVisible ? $"{item.Price} G" : "";
             Console.WriteLine($"- {indexText} {selected, -3}{item.Name} | {typeText} {"+" + item.Point} | {item.State} | {goldText}");
+        }
+    }
+    
+    private void InitialItems()
+    {
+        Items.Add(new Item($"{ "회복 포션", -10 }", ItemType.Potion, 30, $"{ "체력을 +30만큼 회복시켜주는 포션이다.", -30 }", 1000));
+
+        foreach (var item in Items)
+        {
+            NumberOfItems.TryAdd(item, 1);
         }
     }
 }
