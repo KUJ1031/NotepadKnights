@@ -10,6 +10,7 @@ namespace NotepadKnights.Monsters
     {
         public Voiling()
         {
+            Level = 3;
             Name = "공허충";
             MaxHp = 10;
             CurrentHp = MaxHp;
