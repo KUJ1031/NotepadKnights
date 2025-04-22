@@ -1,5 +1,0 @@
-D:\Git\NotepadKnights-main\NotepadKnights-main\NotepadKnights\obj\Debug\net8.0\NotepadKnights.GeneratedMSBuildEditorConfig.editorconfig
-D:\Git\NotepadKnights-main\NotepadKnights-main\NotepadKnights\obj\Debug\net8.0\NotepadKnights.AssemblyInfoInputs.cache
-D:\Git\NotepadKnights-main\NotepadKnights-main\NotepadKnights\obj\Debug\net8.0\NotepadKnights.AssemblyInfo.cs
-D:\Git\NotepadKnights-main\NotepadKnights-main\NotepadKnights\obj\Debug\net8.0\NotepadKnights.csproj.CoreCompileInputs.cache
-D:\Git\NotepadKnights-main\NotepadKnights-main\NotepadKnights\obj\Debug\net8.0\NotepadKnights.sourcelink.json

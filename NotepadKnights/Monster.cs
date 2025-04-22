@@ -1,4 +1,10 @@
-﻿namespace NotepadKnights
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NotepadKnights
 {
     internal class Monster
     {
@@ -9,15 +15,8 @@
         public int Atk { get; set; }
         private bool isDead = false;
         public bool IsDead { get { return isDead; } set { isDead = value; } }
-        
-        // 생성자 추가
-        public Monster()
-        {
-            Name = "";
-            MaxHp = 10;
-            CurrentHp = MaxHp;
-        }
-        // 생성자 추가
+
+        //  생성자 추가
         public Monster(string name, int level, int maxHp)
         {
             Name = name;
@@ -38,7 +37,7 @@
         }
 
         public int DealDamage()
-        { 
+        {
             if (!IsDead)
             {
                 return Atk;
