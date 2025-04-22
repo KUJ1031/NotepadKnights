@@ -6,19 +6,16 @@ using System.Threading.Tasks;
 
 namespace NotepadKnights
 {
-	internal class BattleManager
+    interface IRandomProvider
+    {
+        int GetRandom(int min, int max);
+    }
+    internal class BattleManager
 	{
 		private List<Monster> createMonsters = new List<Monster>(); // 랜덤하게 생성한 몬스터를 넣을 List
 		private Random random = new Random();
-		class MonsterFactory
-		{
-
-		}
-		class Player
-		{
-
-		}
-
+      
+       
 		public void InitializeMonsters()
 		{
 			createMonsters.Clear();     // 이전 데이터 삭제
