@@ -17,4 +17,9 @@ public class Item
         State = state;
         Price = price;
     }
+    
+    public bool IsEquippable()
+    {
+        return Type == ItemType.Weapon || Type == ItemType.Armor;
+    }
 }

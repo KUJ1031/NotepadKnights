@@ -17,6 +17,7 @@ namespace NotepadKnights
     internal class BattleManager
 	{
         private MonsterFactory monsterFactory = new MonsterFactory();    // 임시 static 오브젝트 생성
+
         AttackAndDefense attackAndDefense = new AttackAndDefense();
      
         // 플레이어 차례
@@ -25,12 +26,38 @@ namespace NotepadKnights
             // 공격한다
             Program.Player.Attack();
         }
+
+        private Player player;     
+
         public void ExecuteEnemyPhase()
         {
             foreach(Monster monster in monsterFactory.createMonsters)
             {
-                monster.DealDamage();
+                int monsterAtk = monster.DealDamage();
+                Console.Clear();
+                Console.WriteLine($"Lv.{monster.Level} {monster.Name} 의 공격!");
+                Console.WriteLine($"{player.Name} 을(를) 맞췄습니다.   [데미지 : {player.Defense - monster.Atk}]");
+                Console.WriteLine();
+                Console.WriteLine($"Lv.{player.Level} {player.Name}");
+                Console.WriteLine($"HP {player.Hp} -> {player.Hp - monsterAtk}");
+                Console.WriteLine();
+                Console.WriteLine("0. 다음");
+   
+                while (true)
+                {
+                    int select = int.Parse(Console.ReadLine());
+                    if (select != 0)
+                    {
+                        Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
             }
+            Console.WriteLine("몬스터들의 공격 차례가 끝났습니다.");
+            Thread.Sleep(1000);
         }
         public void CheckVictory()
         {
