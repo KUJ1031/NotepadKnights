@@ -16,6 +16,6 @@ namespace NotepadKnights
         public int defense = 5;
         public int equipATK = 0;
         public int equipDEF = 0;
-        public int gold = 1500;
+        public int gold = 2500;
     }
 }
