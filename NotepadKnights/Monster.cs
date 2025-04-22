@@ -13,22 +13,6 @@
 
         public bool IsSelected { get { return isSelected; } set { isSelected = value; } }   // 배틀시 플레이어의 공격 대상이 됐는지를 체크
 
-        //  생성자 추가
-        public Monster()
-        {
-            Name = "";
-            MaxHp = 10;
-            CurrentHp = MaxHp;
-        }
-        //  생성자 추가
-        public Monster(string name, int level, int maxHp)
-        {
-            Name = name;
-            Level = level;
-            MaxHp = maxHp;
-            CurrentHp = maxHp; // 기본값 세팅
-            Atk = level * 3;   // 예시 공격력 로직
-        }
         public int ApplyDamage(int damage)
         {
             CurrentHp -= damage;

@@ -10,6 +10,7 @@ namespace NotepadKnights.Monsters
     {
         public Minion()
         {
+            Level = 2;
             Name = "미니언";
             MaxHp = 15;
             CurrentHp = MaxHp;
