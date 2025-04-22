@@ -1,6 +1,6 @@
 ﻿namespace NotepadKnights
 {
-    internal class Monster
+    public class Monster
     {
         public string Name { get; set; }
         public int Level { get; set; }

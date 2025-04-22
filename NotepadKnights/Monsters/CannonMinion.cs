@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NotepadKnights.Monsters
 {
-    internal class CannonMinion : Monster
+    public class CannonMinion : Monster
     {
         public CannonMinion()
         {
