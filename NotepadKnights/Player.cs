@@ -26,11 +26,11 @@ namespace NotepadKnights
         {
             Console.WriteLine("Battle!!\n");
 
-            //foreach (var monster in MonsterFactory.monsters)
-            //{
-            //    Console.WriteLine($"{index} Lv.{monster.Name} {monster.Level} HP {monster.CurrentHp}");
-            //}
-            Console.WriteLine("\n\n[내정보]");
+            //for (int i = 0; i < MonsterFactory.monsters.Length; i++)
+                //    {
+                //
+                //    }
+             Console.WriteLine("\n\n[내정보]");
             Console.Write($"Lv.{level} {name} ({job})\n");
             Console.WriteLine($"HP 100/{hp}\n");
 
@@ -68,51 +68,59 @@ namespace NotepadKnights
 
             while (running)
             {
-                //
-
                 // 사용자 키 입력 
 
                 var Key = Console.ReadKey(true).Key;
-
-                switch (Key)
+                if (Key == ConsoleKey.D1 || Key == ConsoleKey.D2|| Key == ConsoleKey.D3) // 숫자 '0' 키
                 {
-                    // 
-                    case ConsoleKey.UpArrow:
-                        msg = "";
-
-                        break;
-
-                    case ConsoleKey.DownArrow:
-                        msg = "";
-
-                        break;
-
-                    case ConsoleKey.D0:
-                    case ConsoleKey.NumPad0:
-                        ;
-                        //  running = false;
-
-                        break;
-                    case ConsoleKey.D1:
-                    case ConsoleKey.NumPad1:
+                    if(!isAttack)
+                    {
                         Console.Clear();
                         isAttack = true;
-                        BattleUI();
-                        //
-                        //
-                        //SelectMonsterUI();
-                        running = false;
-                        break;
-                    default:
-                        msg = "잘못된 입력입니다.";
-                        break;
-                }
-            }
+                        
+                    }
+                    else
+                    {
+                        // 공격한다
+                        DealDamage();
+                    }
+                    BattleUI();
+                    //if (GetTarget().CurrentHp == 0)
+                    //{ msg = "잘못된 입력입니다."; break; }
 
+                    // Console.ReadKey();
+                    running = false;
+                    break;
+                }
+               else
+                {
+                    msg = "잘못된 입력입니다.";
+                   
+                }
+               
+            }
+         
 
         }
 
 
+        // 현재 공격중인 적 반환
+        Monster GetTarget()
+        {
+            Monster monster = new Monster();
+            
+            //if (target != null) {
+            //    for (int i = 0; i < MonsterFactory.monsters.Length; i++)
+            //    {
+            //        if (target == MonsterFactory.monsters[i].Name)
+            //        {
+            //            monster = MonsterFactory.monsters[i];
+            //        }
+
+            //    }
+            //}      
+            return monster;
+        }
         // 데미지 입음
         public void ApplyDamage(int damage)
         {

@@ -60,7 +60,14 @@
         }
         static void Main(string[] args)
         {
-            InLobby();
+           // InLobby();
+            Player player = new Player();
+          
+            player.name = "Chad";
+            player.job = "전사";
+            player.level = 1;
+            player.hp = 100;
+            player.BattleUI();
         }
     }
 }
