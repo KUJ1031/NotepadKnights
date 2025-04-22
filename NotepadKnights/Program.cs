@@ -3,6 +3,8 @@
     //18조 TextRPG [Notepad Knights] 협업 공간입니다.
     internal class Program
     {
+        public static Player Player = new Player();
+
         public interface IModule
         {
 
@@ -60,14 +62,17 @@
         }
         static void Main(string[] args)
         {
-           // InLobby();
-            Player player = new Player();
-          
-            player.name = "Chad";
-            player.job = "전사";
-            player.level = 1;
-            player.hp = 100;
-            player.BattleUI();
+            InLobby();
+
+
+            //Player.Name = "Chad";
+            //Player.Job = "전사";
+            //Player.Level = 1;
+            //Player.Hp = 100;
+            //Player.PlayerDamage = 10;
+            //Player.Defense = 10;
+            //Player.BattleUI();
+           // Player = { }
         }
     }
 }
