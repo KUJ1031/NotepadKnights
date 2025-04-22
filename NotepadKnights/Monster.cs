@@ -7,11 +7,8 @@
         public int MaxHp { get; set; }
         public int CurrentHp { get; set; }
         public int Atk { get; set; }
-        private bool isDead = false;
-        private bool isSelected = false;
-        public bool IsDead { get { return isDead; } set { isDead = value; } }
-
-        public bool IsSelected { get { return isSelected; } set { isSelected = value; } }   // 배틀시 플레이어의 공격 대상이 됐는지를 체크
+        public bool IsDead { get; private set; } = false;
+        public bool IsSelected { get; private set; } = false; // 배틀시 플레이어의 공격 대상이 됐는지를 체크
 
         public int ApplyDamage(int damage)
         {

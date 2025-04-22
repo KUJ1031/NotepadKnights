@@ -13,13 +13,12 @@ namespace NotepadKnights
     internal class BattleManager
 	{
         private MonsterFactory monsterFactory = new MonsterFactory();    // 임시 static 오브젝트 생성
-        private Player player;
         
         public void ExecuteEnemyPhase()
         {
             foreach(Monster monster in monsterFactory.createMonsters)
             {
-                player.hp -= monster.DealDamage();
+                monster.DealDamage();
             }
         }
 	}

@@ -10,6 +10,13 @@ namespace NotepadKnights
     {
         public List<Monster> createMonsters = new List<Monster>(); // 랜덤하게 생성한 몬스터를 넣을 List
         Random random = new Random();
+
+        // MonsterFactory 객체 생성 시 몬스터도 생성
+        public MonsterFactory()
+        {
+            InitializeMonsters();
+        }
+
         public void InitializeMonsters()
         {
             createMonsters.Clear();     // 이전 데이터 삭제
