@@ -37,6 +37,7 @@ namespace NotepadKnights
                 Console.WriteLine(" 2. 다시 입력합니다");
                 Console.ResetColor();
 
+
                 answer = Console.ReadLine();
                 if (answer == "1")
                 {
@@ -53,12 +54,14 @@ namespace NotepadKnights
                     Console.WriteLine("잘못된 입력입니다. 다시 시도하세요.\n");
                 }
             }
+
             while (true)
             {
                 Console.WriteLine("직업을 선택해주세요");
                 Console.WriteLine("1. 전사  /  2: 도적");
                 Console.Write("직업을 선택하세요: ");
                 string? job = Console.ReadLine();
+
                 if (job == "1")
                 {
                     Console.WriteLine("전사를 선택하셨습니다.\n");
@@ -71,6 +74,7 @@ namespace NotepadKnights
                     Console.WriteLine(" 2. No");
                     Console.ResetColor();
                     answer = Console.ReadLine();
+
                     if (answer == "1")
                     {
                         Console.WriteLine("전사로 시작합니다.");
@@ -97,6 +101,7 @@ namespace NotepadKnights
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(" 2. No");
                     Console.ResetColor(); answer = Console.ReadLine();
+
                     if (answer == "1")
                     {
                         Console.WriteLine("도적으로 시작합니다.");
