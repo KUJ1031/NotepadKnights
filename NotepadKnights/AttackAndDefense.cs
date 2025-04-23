@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NotepadKnights
 {
-    internal class AttackAndDefense
+    public class AttackAndDefense
     {
         // 치명타, 회피 확률 변수
         float criticalProbability = 0.15f;
