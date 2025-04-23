@@ -13,41 +13,60 @@ namespace NotepadKnights
         private string monsterIndexDisplay = "";
 
         PlayerInput playerInput = new PlayerInput();
-      //  MonsterFactory monsterFactory = new MonsterFactory();
         BattleManager battleManager = new BattleManager();
-
 
         // 공격하기 전 화면 UI
         public void ShowBattleMenu()
         {
             Console.Clear();
-            Console.WriteLine("Battle!!\n");
-
-            for (int i = 0; i < Program.monsterFactory.createMonsters.Count; i++)
+          
+            if (Program.playerStatus.Hp > 0)
             {
-                monsterIndexDisplay = Program.playerStatus.isAttack ? (i + 1).ToString() : "";
+                // 모든 적들이 죽었다면
+                if (Program.playerStatus.KilledMonsterCount >= Program.monsterFactory.createMonsters.Count)
+                {
+                    // 승리 화면 띄우기
+                    battleManager.CheckVictory();
 
-                var monster = Program.monsterFactory.createMonsters[i];
-                Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} HP {monster.CurrentHp} ");
-            }
+                }
+                // 적들이 죽지 않았다면 전투하기
+                else
+                {
+                    Console.WriteLine("Battle!!\n");
 
-            Console.WriteLine("\n\n[내정보]");
-            Console.Write($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name} ({Program.playerStatus.Job})\n");
-            Console.WriteLine($"HP 100/{Program.playerStatus.Hp}\n");
+                    for (int i = 0; i < Program.monsterFactory.createMonsters.Count; i++)
+                    {
+                        monsterIndexDisplay = Program.playerStatus.IsAttack ? (i + 1).ToString() : "";
 
-            // 아직 공격하지 않았다면
-            if (!Program.playerStatus.isAttack)
-            {
-                Console.WriteLine("1. 공격\n");
-                Console.Write("원하시는 행동을 입력해주세요.\n");
+                        var monster = Program.monsterFactory.createMonsters[i];
+                        Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} HP {monster.CurrentHp} ");
+                    }
+
+                    Console.WriteLine("\n\n[내정보]");
+                    Console.Write($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name} ({Program.playerStatus.Job})\n");
+                    Console.WriteLine($"HP {Program.playerStatus.Hp}/{Program.playerStatus.MaxHp}\n");
+
+                    // 아직 공격하지 않았다면
+                    if (!Program.playerStatus.IsAttack)
+                    {
+                        Console.WriteLine("1. 공격\n");
+                        Console.Write("원하시는 행동을 입력해주세요.\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("0. 취소\n");
+                        Console.Write("대상을 선택해주세요.\n");
+                        Console.WriteLine(Program.player.msg + "\n");
+                    }
+                }               
             }
             else
             {
-                Console.WriteLine("0. 취소\n");
-                Console.Write("대상을 선택해주세요.\n");
+                // 패배 
+                battleManager.CheckDefeat();
             }
-            //  키입력에 따른 화면 변화
-            playerInput.ScreenChanges();
+                //  키입력에 따른 화면 변화
+                playerInput.ScreenChanges();
         }
         // 공격 이후 UI
         public void DisplayAttackResult(int playerDamage, string msg)
@@ -62,14 +81,21 @@ namespace NotepadKnights
             Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name} 을(를) 맞췄습니다. [데미지 : {playerDamage}]\n");
             Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name}");
 
-            //if (playerTarget.CurrentHp <= 0 || playerTarget.IsDead)
-            //    Console.WriteLine($"HP 0 ->Dead\n");
-            //else
-            //    Console.WriteLine($"HP {playerTarget.CurrentHp}\n");
-            Console.WriteLine(playerTarget.CurrentHp <= 0 || playerTarget.IsDead? $"HP 0 ->Dead\n" : $"HP {playerTarget.CurrentHp}\n");
-            Console.WriteLine(msg+"\n");
+            //  적이 죽었으면
+            if( playerTarget.CurrentHp <= 0 || playerTarget.IsDead )
+            {
+                playerTarget.CurrentHp = 0;
+                playerTarget = null;
+                Console.WriteLine( $"HP 0 ->Dead\n");
+                Program.playerStatus.SetKilledMonsterCount(Program.playerStatus.KilledMonsterCount+1);
+            }
+            else
+            {
+                Console.WriteLine($"HP {playerTarget.CurrentHp}\n");
+            }
 
-            Console.WriteLine("0. 다음\n>>");
+            Console.WriteLine(msg + "\n");
+            Console.Write("0. 다음\n>>");
 
             string input = Console.ReadLine();
             while (input != "0")

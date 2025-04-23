@@ -17,10 +17,11 @@ namespace NotepadKnights
             Console.Write(">>");
             string input = Console.ReadLine();
 
-            if (input == "0" && Program.playerStatus.isAttack)
+
+            if (input == "0" && Program.playerStatus.IsAttack)
             {
                 Console.Clear();
-                Program.playerStatus.ChangeIsAttack();
+                Program.playerStatus.SetIsAttack(false);
                Program.playerUI.ShowBattleMenu();
             }
             // 유효 숫자를 입력했다면
@@ -29,9 +30,9 @@ namespace NotepadKnights
                 Console.Clear();
 
                 // 공격 중이지 않다면
-                if (!Program.playerStatus.isAttack)
+                if (!Program.playerStatus.IsAttack)
                 {
-                    Program.playerStatus.ChangeIsAttack();
+                    Program.playerStatus.SetIsAttack(true);
                     Program.playerUI.ShowBattleMenu();
                 }
                 // 공격 중이라면
@@ -39,11 +40,19 @@ namespace NotepadKnights
                 {   // 타겟을 찾은 다음
                     Program.player.SelectTarget(int.Parse(input));
 
-                    // 플레이어 공격턴 실행
-                    battleManager.ExecutePlayerPhase();
+                    if (Program.playerStatus.Target.CurrentHp > 0)
+                    {// 플레이어 공격턴 실행
+                        battleManager.ExecutePlayerPhase();
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다.");
+                    }                       
 
                 }
             }
+           
             else
             {
                 Console.WriteLine("잘못된 입력입니다.");

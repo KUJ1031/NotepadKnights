@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace NotepadKnights
 {
@@ -42,7 +43,9 @@ namespace NotepadKnights
                 if (answer == "1")
                 {
                     Console.WriteLine("\n");
-                    player.Name = name;
+                    // 잠깐 테스트를 위해 변경했어요. 
+                    // Program.player.Name = name;
+                    Program.playerStatus.SetName(name);
                     break;
                 }
                 else if (answer == "2")
@@ -78,7 +81,9 @@ namespace NotepadKnights
                     if (answer == "1")
                     {
                         Console.WriteLine("전사로 시작합니다.");
-                        player.Job = "전사";
+                        // 잠깐 테스트를 위해 변경했어요.
+                       // Program.player.Job = "전사";
+                        Program.playerStatus.SetJob("전사");
                         break;
                     }
                     else if (answer == "2")
@@ -105,7 +110,9 @@ namespace NotepadKnights
                     if (answer == "1")
                     {
                         Console.WriteLine("도적으로 시작합니다.");
-                        player.Job = "도적";
+                        // 잠깐 테스트를 위해 변경했어요.
+                        // player.Job = "도적";
+                        Program.playerStatus.SetJob("도적");
                         break;
                     }
                     else if (answer == "2")

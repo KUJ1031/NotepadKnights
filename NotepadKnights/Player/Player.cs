@@ -18,12 +18,21 @@ namespace NotepadKnights
         {
             if (num >= 1 && num <= Program.monsterFactory.createMonsters.Count)
             {
-                Program.playerStatus.Target = Program.monsterFactory.createMonsters[num - 1];                 
+                var selectedMonster = Program.monsterFactory.createMonsters[num - 1];
+                // 몬스터가 살아있다면
+                if (selectedMonster.CurrentHp > 0)
+                {
+                    Program.player.msg = "";
+                   Program.playerStatus.Target = selectedMonster;
+                }
+                else // 몬스터가 이미 죽었으면
+                {
+                    // 다른 몬스터 선택하기
+                    Program.player.msg = "잘못된 입력입니다.";
+                    Program.playerUI.ShowBattleMenu();
+                }
             }
-            else
-            {
-                Console.WriteLine("잘못된 입력입니다." + Program.monsterFactory.createMonsters.Count);
-            }
+         
         }
 
         // 공격
@@ -39,13 +48,9 @@ namespace NotepadKnights
             // 적이 살아있다면
             else
             {
-                int attackPower = Program.playerStatus.GetAttack();
+                int attackPower = Program.playerStatus.Attack;
 
                 // 공격력의 범위를 조정하고, 랜덤 범위 내에서 공격력을 설정
-                //float error = MathF.Ceiling(attackPower * 0.1f);
-                //int minAttack = (int)(attackPower - error);
-                //int maxAttack = (int)(attackPower + error);
-
                 attackPower = GenerateRandomAttackPower(attackPower);
 
                 // 공격한다

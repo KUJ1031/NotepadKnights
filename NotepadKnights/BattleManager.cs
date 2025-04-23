@@ -21,12 +21,23 @@ namespace NotepadKnights
         public void ExecutePlayerPhase()
         {
             if(Program.playerStatus.Hp > 0 )
-            {  // 공격한다
-                Program.player.ExecuteAttack();
+            {
+                // 모든 적들이 죽었다면
+                if (Program.playerStatus.KilledMonsterCount >= Program.monsterFactory.createMonsters.Count)
+                {
+                    // 승리 화면 띄우기
+                    CheckVictory();
+                }
+                else
+                {
+                    // 공격한다
+                    Program.player.ExecuteAttack();
+                }
             }
             else
             {
                 // 게임 패배
+              
             }
         }
 
@@ -42,7 +53,7 @@ namespace NotepadKnights
                 Console.WriteLine($"{Program.playerStatus.Name} 을(를) 맞췄습니다.   [데미지 : {Program.playerStatus.Defense - monster.Atk}]");
                 Console.WriteLine();
                 Console.WriteLine($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name}");
-                Console.WriteLine($"HP {Program.playerStatus.Hp} -> {Program.playerStatus.Hp - monsterAtk}");
+                Console.WriteLine($"HP {Program.playerStatus.Hp} -> {Program.playerStatus.Hp - 100}");
                 Console.WriteLine();
                 Console.WriteLine("0. 다음");
    
@@ -63,11 +74,20 @@ namespace NotepadKnights
             Thread.Sleep(1000);
 
             // 플레이어 턴
-            ExecutePlayerPhase();
+            Program.playerUI.ShowBattleMenu();
         }
+        // 플레이어의 승리 
         public void CheckVictory()
-        {
+        {              
+            Console.Clear();
 
+            Console.WriteLine("\nBattle!! - Result\n");
+            Console.WriteLine("Victory\n");
+            Console.WriteLine($"던전에서 몬스터 {Program.playerStatus.KilledMonsterCount}마리를 잡았습니다.\n");
+            Console.WriteLine($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name}");
+            Console.WriteLine($"HP 100 -> {Program.playerStatus.Hp}\n");
+            Console.WriteLine("0. 다음\n");
+            
         }
         public void CheckDefeat()
         {
