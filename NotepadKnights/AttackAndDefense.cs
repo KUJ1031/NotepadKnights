@@ -26,7 +26,7 @@ namespace NotepadKnights
             {
                 // 여기 이렇게 수정해도 될까요? Player에게 메세지를 전달해주는 식으로 수정하지 않으면 보이지 않더라구요...
                 Program.player.msg = "치명적인 데미지!\n";
-                Console.WriteLine("치명적인 데미지!");
+                //Console.WriteLine("치명적인 데미지!");
                 Damage *= (int)1.6f;
             }
             return Damage;
@@ -36,8 +36,8 @@ namespace NotepadKnights
             CalcDodge();
             if (onDodge)
             {
-                Program.player.msg = ("그러나 아무 일도 일어나지 않았다\n");
-                Console.WriteLine("그러나 아무 일도 일어나지 않았다.");
+                Program.player.msg = ("그러나 아무 일도 일어나지 않았다.\n");
+               // Console.WriteLine("그러나 아무 일도 일어나지 않았다.");
             }
             else
             {
@@ -54,8 +54,8 @@ namespace NotepadKnights
             CalcDodge();
             if (onDodge)
             {
-                Program.player.msg = ("그러나 아무 일도 일어나지 않았다\n");
-                Console.WriteLine("그러나 아무 일도 일어나지 않았다.");
+                Program.player.msg = ("그러나 아무 일도 일어나지 않았다.\n");
+              //  Console.WriteLine("그러나 아무 일도 일어나지 않았다.");
             }
             else
             {
