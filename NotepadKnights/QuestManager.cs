@@ -8,9 +8,9 @@ namespace NotepadKnights
 {
     public class QuestManager
     {
-        List<QuestFrame> allQuestList = new List<QuestFrame>();
-        List<QuestFrame> ableQuestList = new List<QuestFrame>();
-        List<QuestFrame> activeQuestList = new List<QuestFrame>();
+        List<Quest> allQuestList = new List<Quest>();
+        List<Quest> ableQuestList = new List<Quest>();
+        List<Quest> activeQuestList = new List<Quest>();
 
         public QuestManager()
         {
@@ -93,8 +93,8 @@ namespace NotepadKnights
         }
         public void CompleteQuest(int k)
         {
-            ableQuestList[k].IsActive = false;
-            ableQuestList[k].IsCompleted = true;
+            //퀘스트의 active = false, completed = true로 변경
+            ableQuestList[k].CompleteQuest();
             Console.WriteLine($"퀘스트 '{ableQuestList[k].QuestName}'이(가) 완료되었습니다!");
         }
 
