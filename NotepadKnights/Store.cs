@@ -46,7 +46,7 @@ public class Store
                 };
                 string goldText = $"{item.Price + "G", -7}";
                 string countText = NumberOfItems[item] == 0 ? "Sold Out" : $"수량: {NumberOfItems[item]}"; 
-                Console.WriteLine($"- {indexText} {item.Name} | {typeText} {"+" + item.Point, -3} | {item.State} | {goldText} | {countText}");
+                Console.WriteLine($"- {indexText} {item.Name} | {typeText} {"+" + item.Point, -3} | {item.State} | {countText} | {goldText}");
             }
         }
 
