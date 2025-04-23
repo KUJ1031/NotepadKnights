@@ -11,6 +11,7 @@ namespace NotepadKnights
         public List<Quest> allQuestList = new List<Quest>();
         public List<Quest> ableQuestList = new List<Quest>();
         public List<Quest> activeQuestList = new List<Quest>();
+        public List<Quest> completedQuestList = new List<Quest>();
 
         public QuestManager()
         {
@@ -29,7 +30,8 @@ namespace NotepadKnights
                 //레벨업시 실행시키면서 퀘스트를 갱신
                 foreach (var quest in allQuestList)
                 {
-                    if (quest.QuestLevel <= characterLevel)
+                    //플레이어 레벨이 퀘스트 레벨보다 높아지고, 수주 퀘스트 리스트에 없고, 클리어하지 않은 퀘스트 추가
+                    if (quest.QuestLevel <= characterLevel && !ableQuestList.Any(q => q.QuestName == quest.QuestName && quest.IsCompleted == false))
                     {
                         ableQuestList.Add(quest);
                     }
@@ -39,7 +41,7 @@ namespace NotepadKnights
        
         public void CompleteQuest(int k)
         {
-            //퀘스트의 active = false, completed = true로 변경
+            //퀘스트의 completed = true로 변경
             ableQuestList[k].CompleteQuest();
             Console.WriteLine($"퀘스트 '{ableQuestList[k].QuestName}'이(가) 완료되었습니다!");
         }

@@ -42,7 +42,7 @@ namespace NotepadKnights
         }
 
         // 공격
-        public void ExecuteAttack()
+        public void ExecuteAttack(float attackPower)
         {
             Monster playerTarget = Program.playerStatus.Target;
 
@@ -54,7 +54,7 @@ namespace NotepadKnights
             // 적이 살아있다면
             else
             {
-                float attackPower = Program.playerStatus.Attack;
+                 attackPower = Program.playerStatus.Attack;
 
                 // 공격력의 범위를 조정하고, 랜덤 범위 내에서 공격력을 설정
                 attackPower = GenerateRandomAttackPower(attackPower);

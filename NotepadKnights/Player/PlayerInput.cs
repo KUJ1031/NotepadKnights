@@ -41,9 +41,10 @@ namespace NotepadKnights
                     Program.player.SelectTarget(int.Parse(input));
 
                     if (Program.playerStatus.Target.CurrentHp > 0)
-                    {// 플레이어 공격턴 실행
+                    {
+                        // 플레이어 공격턴 실행
                         battleManager.ExecutePlayerPhase();
-
+                      
                     }
                     else
                     {
