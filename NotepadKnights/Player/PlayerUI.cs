@@ -54,7 +54,6 @@ namespace NotepadKnights
                     }
                     else
                     {
-
                         Console.WriteLine("0. 취소\n");
                         Console.Write("대상을 선택해주세요.\n");
                         Console.WriteLine(Program.player.msg + "\n");
@@ -85,10 +84,7 @@ namespace NotepadKnights
             //  적이 죽었으면
             if( playerTarget.CurrentHp <= 0 || playerTarget.IsDead )
             {
-                playerTarget.CurrentHp = 0;
-                playerTarget = null;
-                Console.WriteLine( $"HP 0 ->Dead\n");
-                Program.playerStatus.SetKilledMonsterCount(Program.playerStatus.KilledMonsterCount+1);
+                Program.player.DieTarget();
             }
             else
             {

@@ -10,9 +10,9 @@ namespace NotepadKnights
     public class Player
     {
         public Inventory Inventory { get; private set; }
-
         AttackAndDefense attackAndDefense = new AttackAndDefense();
         public string msg;
+  
 
         public Player()
         {
@@ -28,7 +28,7 @@ namespace NotepadKnights
                 // 몬스터가 살아있다면
                 if (selectedMonster.CurrentHp > 0)
                 {
-                    Program.player.msg = "";
+                   Program.player.msg = "";
                    Program.playerStatus.Target = selectedMonster;
                 }
                 else // 몬스터가 이미 죽었으면
@@ -37,8 +37,7 @@ namespace NotepadKnights
                     Program.player.msg = "잘못된 입력입니다.";
                     Program.playerUI.ShowBattleMenu();
                 }
-            }
-         
+            }         
         }
 
         // 공격
@@ -56,28 +55,14 @@ namespace NotepadKnights
             {
                  attackPower = Program.playerStatus.Attack;
 
-                // 공격력의 범위를 조정하고, 랜덤 범위 내에서 공격력을 설정
-                attackPower = GenerateRandomAttackPower(attackPower);
-
                 // 공격한다
-                attackPower = attackAndDefense.Attack(attackPower);
                 playerTarget.CurrentHp = attackAndDefense.EnemyDefense(attackPower, playerTarget.CurrentHp);
 
                 // 공격 이후 UI
                 Program.playerUI.DisplayAttackResult(attackPower, msg);
             }
         }
-        public float GenerateRandomAttackPower(float attackPower)
-        {
-            // 공격력의 범위를 조정하고, 랜덤 범위 내에서 공격력을 설정
-            float error = MathF.Ceiling(attackPower * 0.1f);
-            Random random = new Random();
-            int min = Math.Max(0, (int)(attackPower - error));
-            int max = Math.Max(min + 1, (int)(attackPower + error));
-            attackPower = random.Next(min, max);
 
-            return attackPower;
-        }
         // 레벨업
         public void LevelUp()
         {
@@ -96,6 +81,23 @@ namespace NotepadKnights
         {
             Inventory.AddItem(item);
         }
+        // 타겟인 적이 죽었다면
+        public void DieTarget()
+        {
+            Program.playerStatus.Target.CurrentHp = 0;
+            Program.playerStatus.Target = null;
 
+            Program.playerStatus.SetKilledMonsterCount(Program.playerStatus.KilledMonsterCount + 1);
+            Console.WriteLine($"HP 0 ->Dead\n");
+
+            // 경헙치 업
+            ExpUp();
+        }
+        // 경험치 업
+        void ExpUp()
+        {
+            LevelManager levelManager = new LevelManager();
+            levelManager.AddExp(5);
+        }
     }
 }
