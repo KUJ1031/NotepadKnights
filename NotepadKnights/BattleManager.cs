@@ -23,9 +23,9 @@ namespace NotepadKnights
         // 플레이어 차례
         public void ExecutePlayerPhase()
         {
-            if(Program.Player.Hp > 0 )
+            if(Program.playerStatus.Hp > 0 )
             {  // 공격한다
-                Program.Player.ExecuteAttack();
+                Program.player.ExecuteAttack();
             }
             else
             {
@@ -42,10 +42,10 @@ namespace NotepadKnights
                 int monsterAtk = monster.DealDamage();
                 Console.Clear();
                 Console.WriteLine($"Lv.{monster.Level} {monster.Name} 의 공격!");
-                Console.WriteLine($"{Program.Player.Name} 을(를) 맞췄습니다.   [데미지 : {Program.Player.Defense - monster.Atk}]");
+                Console.WriteLine($"{Program.playerStatus.Name} 을(를) 맞췄습니다.   [데미지 : {Program.playerStatus.Defense - monster.Atk}]");
                 Console.WriteLine();
-                Console.WriteLine($"Lv.{Program.Player.Level} {Program.Player.Name}");
-                Console.WriteLine($"HP {Program.Player.Hp} -> {Program.Player.Hp - monsterAtk}");
+                Console.WriteLine($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name}");
+                Console.WriteLine($"HP {Program.playerStatus.Hp} -> {Program.playerStatus.Hp - monsterAtk}");
                 Console.WriteLine();
                 Console.WriteLine("0. 다음");
    
@@ -78,8 +78,8 @@ namespace NotepadKnights
 
             Console.WriteLine("Battle!! - Result\n");
             Console.WriteLine("You Lose\n");
-            Console.Write($"Lv.{Program.Player.Level} {Program.Player.Name}");
-            Console.Write($"HP 100 -> {Program.Player.Hp}\n");
+            Console.Write($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name}");
+            Console.Write($"HP 100 -> {Program.playerStatus.Hp}\n");
             Console.WriteLine("0. 다음\n");
             Console.WriteLine(">>");
         }

@@ -3,8 +3,9 @@
     //18조 TextRPG [Notepad Knights] 협업 공간입니다.
     internal class Program
     {
-        public static Player Player = new Player();
-
+        public static PlayerUI playerUI;
+        public static Player player;
+        public static PlayerStatus playerStatus;
         public interface IModule
         {
 
@@ -40,9 +41,10 @@
                 case 2:
                     //전투 로직
                     Console.WriteLine("전투 로직");
-                    Console.Clear();
-                    Player.InitializePlayer();
-                    Player.ShowBattleMenu();           
+                    // Console.Clear();
+
+                    playerStatus.InitializePlayer(); 
+                    playerUI.ShowBattleMenu();           
                     break;
 
                 case 3:
@@ -65,6 +67,10 @@
         }
         static void Main(string[] args)
         {
+            player = new Player();
+            playerStatus = new PlayerStatus();
+            playerUI = new PlayerUI();
+
             InLobby();
         }
     }
