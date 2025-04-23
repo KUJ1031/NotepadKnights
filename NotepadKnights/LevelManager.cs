@@ -16,12 +16,12 @@ public class LevelManager
     {
         PlayerExp += expGained;
 
-        while (CanLevelUp(Program.Player.Level, PlayerExp))
+        while (CanLevelUp(Program.playerStatus.Level, PlayerExp))
         {
             // Player.cs에 LevelUp() 함수 구현 필요
             // Level += 1, 공격력 += 0.5, 방어력 += 1
             // Program.Player.LevelUp();
-            PlayerExp -= requireExp[Program.Player.Level];
+            PlayerExp -= requireExp[Program.playerStatus.Level];
         }
     }
     
