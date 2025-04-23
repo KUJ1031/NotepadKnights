@@ -8,10 +8,10 @@ namespace NotepadKnights
 {
     public class MainMenuModule
     {
-        FixStatus fixStatus;
-        public MainMenuModule(FixStatus fixStatus)
+        Player player;
+        public MainMenuModule(Player playerInstance)
         {
-            this.fixStatus = fixStatus;
+            player = playerInstance;
         }
         public void Intro()
         {
@@ -42,7 +42,7 @@ namespace NotepadKnights
                 if (answer == "1")
                 {
                     Console.WriteLine("\n");
-                    fixStatus.SetName(name);
+                    player.Name = name;
                     break;
                 }
                 else if (answer == "2")
@@ -78,7 +78,7 @@ namespace NotepadKnights
                     if (answer == "1")
                     {
                         Console.WriteLine("전사로 시작합니다.");
-                        fixStatus.SetJob("전사");
+                        player.Job = "전사";
                         break;
                     }
                     else if (answer == "2")
@@ -105,7 +105,7 @@ namespace NotepadKnights
                     if (answer == "1")
                     {
                         Console.WriteLine("도적으로 시작합니다.");
-                        fixStatus.SetJob("도적");
+                        player.Job = "도적";
                         break;
                     }
                     else if (answer == "2")
