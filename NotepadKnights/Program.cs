@@ -3,7 +3,15 @@
     //18조 TextRPG [Notepad Knights] 협업 공간입니다.
     internal class Program
     {
-        public static Player Player = new Player();
+
+        public static PlayerUI playerUI;
+       // public static Player player;
+        public static PlayerStatus playerStatus;
+        public static MonsterFactory monsterFactory;
+
+        public static Player player = new Player();
+        public static MainMenuModule mainMenu = new MainMenuModule(player);
+
 
         public interface IModule
         {
@@ -19,6 +27,7 @@
         {
 
         }
+
 
         public static void InLobby()
         {
@@ -40,9 +49,10 @@
                 case 2:
                     //전투 로직
                     Console.WriteLine("전투 로직");
-                    Console.Clear();
-                    Player.InitializePlayer();
-                    Player.ShowBattleMenu();           
+                    // Console.Clear();
+
+                    playerStatus.InitializePlayer(); 
+                    playerUI.ShowBattleMenu();           
                     break;
 
                 case 3:
@@ -63,9 +73,45 @@
                     break;
             }
         }
+  
         static void Main(string[] args)
         {
-            InLobby();
+                player = new Player();
+                playerStatus = new PlayerStatus();
+                playerUI = new PlayerUI();
+                monsterFactory = new MonsterFactory();
+
+
+                mainMenu.Intro();
+            while (true)
+            {
+                switch(mainMenu.Village())
+                {
+                    case 1:
+                        //상태보기
+                        break;
+                    case 2:
+                        //인벤토리
+                        break;
+                    case 3:
+                        //상점
+                        break;
+                    case 4:
+                        //전투
+                        playerStatus.InitializePlayer();
+                        playerUI.ShowBattleMenu();
+                        break;
+                    case 5:
+                        //회복하기
+                        break;
+                    case 6:
+                        //추가사항
+                    default:
+                        Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요.");
+                        break;
+                }
+            }
+
         }
     }
 }
