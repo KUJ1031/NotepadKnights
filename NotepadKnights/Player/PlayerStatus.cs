@@ -14,8 +14,10 @@ namespace NotepadKnights
         public int Hp { get; private set; }
         public int MaxHp { get; private set; }
         public int Mp { get; private set; }
+        public int Exp { get; private set; } // 현재 경험치
+        public int MaxExp { get; private set; } // 최대 경험치
         public int Gold { get; private set; }
-        public int Attack { get; private set; } // 공격력
+        public float Attack { get; private set; } // 공격력
         public int Defense { get; private set; } // 방어력
         public bool IsDie { get; private set; }
         public Monster Target = new Monster();// 현재 공격중인 적
@@ -44,8 +46,24 @@ namespace NotepadKnights
         {
             Job = job;
         }
+        // 레벨 변경
+        public void SetLevel(int level)
+        {
+            Level = level;
+        }
+
+        // 현재 경험치 변경
+        public void SetExp(int exp)
+        {
+            Exp = exp;
+        }
+        // 최대 경험치 변경
+        public void SeMaxExp(int maxExp)
+        {
+            MaxExp = maxExp;
+        }
         // 데미지 변경
-        public void SetAttack(int attack)
+        public void SetAttack(float attack)
         {
             Attack = attack;
         }

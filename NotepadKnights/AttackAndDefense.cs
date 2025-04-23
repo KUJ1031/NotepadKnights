@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace NotepadKnights
 
         private Random random = new Random();
 
-        public int Attack(int Damage)
+        public float Attack(float Damage)
         {
             CalcCritical();
             if (onCritical)
@@ -49,7 +50,7 @@ namespace NotepadKnights
             return PlayerHp;
         }
 
-        public int EnemyDefense(int PlayerAttack, int EnemyHp)
+        public float EnemyDefense(float PlayerAttack, float EnemyHp)
         {
             CalcDodge();
             if (onDodge)
