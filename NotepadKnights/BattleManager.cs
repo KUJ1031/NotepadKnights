@@ -16,10 +16,7 @@ namespace NotepadKnights
     }
     internal class BattleManager
 	{
-        private MonsterFactory monsterFactory = new MonsterFactory();    // 임시 static 오브젝트 생성
-
-        AttackAndDefense attackAndDefense = new AttackAndDefense();
-     
+          
         // 플레이어 차례
         public void ExecutePlayerPhase()
         {
@@ -37,7 +34,7 @@ namespace NotepadKnights
 
         public void ExecuteEnemyPhase()
         {
-            foreach(Monster monster in monsterFactory.createMonsters)
+            foreach(Monster monster in Program.monsterFactory.createMonsters)
             {
                 int monsterAtk = monster.DealDamage();
                 Console.Clear();

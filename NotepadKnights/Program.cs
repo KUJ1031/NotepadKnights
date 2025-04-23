@@ -6,6 +6,7 @@
         public static PlayerUI playerUI;
         public static Player player;
         public static PlayerStatus playerStatus;
+        public static MonsterFactory monsterFactory;
         public interface IModule
         {
 
@@ -70,6 +71,7 @@
             player = new Player();
             playerStatus = new PlayerStatus();
             playerUI = new PlayerUI();
+            monsterFactory = new MonsterFactory();
 
             InLobby();
         }

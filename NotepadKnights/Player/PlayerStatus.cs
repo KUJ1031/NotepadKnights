@@ -8,11 +8,11 @@ namespace NotepadKnights
 {
     public class PlayerStatus
     {
-
         public string Name { get; private set; }
         public string Job { get; private set; }
         public int Level { get; private set; }
         public int Hp { get; private set; }
+        public int Mp { get; private set; }
         public int Gold { get; private set; }
         public int Attack { get; private set; } // 공격력
         public int Defense { get; private set; } // 방어력
@@ -28,10 +28,16 @@ namespace NotepadKnights
             Job = "전사";
             Level = 1;
             Hp = 100;
+            Mp = 100;
             Attack = 10;
             Defense = 10;
         }
-        public void IsAttackChange()
+        // 혹시 몰라서 넣음
+        public void ChangeName(string name)
+        {
+            Name = name;
+        }
+        public void ChangeIsAttack()
         {
             isAttack = !isAttack;
         }

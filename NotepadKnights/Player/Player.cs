@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NotepadKnights
 {
     public class Player
     {
-        MonsterFactory monsterFactory = new MonsterFactory();
+     
         AttackAndDefense attackAndDefense = new AttackAndDefense();
+        public string msg;
 
         // 현재 공격중인 적 찾기   
         public void SelectTarget(int num)
         {
-            if (num >= 1 && num <= monsterFactory.createMonsters.Count)
+            if (num >= 1 && num <= Program.monsterFactory.createMonsters.Count)
             {
-                Program.playerStatus.Target = monsterFactory.createMonsters[num - 1];
+                Program.playerStatus.Target = Program.monsterFactory.createMonsters[num - 1];                 
             }
             else
             {
-                Console.WriteLine("잘못된 입력입니다.");
+                Console.WriteLine("잘못된 입력입니다." + Program.monsterFactory.createMonsters.Count);
             }
         }
 
@@ -39,13 +41,31 @@ namespace NotepadKnights
             {
                 int attackPower = Program.playerStatus.GetAttack();
 
+                // 공격력의 범위를 조정하고, 랜덤 범위 내에서 공격력을 설정
+                //float error = MathF.Ceiling(attackPower * 0.1f);
+                //int minAttack = (int)(attackPower - error);
+                //int maxAttack = (int)(attackPower + error);
+
+                attackPower = GenerateRandomAttackPower(attackPower);
+
                 // 공격한다
                 attackPower = attackAndDefense.Attack(attackPower);
                 playerTarget.CurrentHp = attackAndDefense.EnemyDefense(attackPower, playerTarget.CurrentHp);
 
                 // 공격 이후 UI
-                Program.playerUI.DisplayAttackResult(attackPower);
+                Program.playerUI.DisplayAttackResult(attackPower, msg);
             }
-        } 
+        }
+        public int GenerateRandomAttackPower(int attackPower)
+        {
+            // 공격력의 범위를 조정하고, 랜덤 범위 내에서 공격력을 설정
+            float error = MathF.Ceiling(attackPower * 0.1f);
+            Random random = new Random();
+            int min = Math.Max(0, (int)(attackPower - error));
+            int max = Math.Max(min + 1, (int)(attackPower + error));
+            attackPower = random.Next(min, max);
+
+            return attackPower;
+        }
     }
 }

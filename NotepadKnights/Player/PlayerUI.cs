@@ -13,7 +13,7 @@ namespace NotepadKnights
         private string monsterIndexDisplay = "";
 
         PlayerInput playerInput = new PlayerInput();
-        MonsterFactory monsterFactory = new MonsterFactory();
+      //  MonsterFactory monsterFactory = new MonsterFactory();
         BattleManager battleManager = new BattleManager();
 
 
@@ -23,11 +23,11 @@ namespace NotepadKnights
             Console.Clear();
             Console.WriteLine("Battle!!\n");
 
-            for (int i = 0; i < monsterFactory.createMonsters.Count; i++)
+            for (int i = 0; i < Program.monsterFactory.createMonsters.Count; i++)
             {
                 monsterIndexDisplay = Program.playerStatus.isAttack ? (i + 1).ToString() : "";
 
-                var monster = monsterFactory.createMonsters[i];
+                var monster = Program.monsterFactory.createMonsters[i];
                 Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} HP {monster.CurrentHp} ");
             }
 
@@ -50,7 +50,7 @@ namespace NotepadKnights
             playerInput.ScreenChanges();
         }
         // 공격 이후 UI
-        public void DisplayAttackResult(int playerDamage)
+        public void DisplayAttackResult(int playerDamage, string msg)
         {
             Console.Clear();
 
@@ -62,11 +62,13 @@ namespace NotepadKnights
             Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name} 을(를) 맞췄습니다. [데미지 : {playerDamage}]\n");
             Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name}");
 
-            if (playerTarget.CurrentHp <= 0 || playerTarget.IsDead)
-                Console.WriteLine($"HP 0 ->Dead\n");
-            else
-                Console.WriteLine($"HP {playerTarget.CurrentHp}\n");
-            //  Console.WriteLine(Target.CurrentHp <= 0 || Target.IsDead? $"HP 0 ->Dead\n" : $"HP {Target.CurrentHp}\n");
+            //if (playerTarget.CurrentHp <= 0 || playerTarget.IsDead)
+            //    Console.WriteLine($"HP 0 ->Dead\n");
+            //else
+            //    Console.WriteLine($"HP {playerTarget.CurrentHp}\n");
+            Console.WriteLine(playerTarget.CurrentHp <= 0 || playerTarget.IsDead? $"HP 0 ->Dead\n" : $"HP {playerTarget.CurrentHp}\n");
+            Console.WriteLine(msg+"\n");
+
             Console.WriteLine("0. 다음\n>>");
 
             string input = Console.ReadLine();

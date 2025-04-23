@@ -10,7 +10,6 @@ namespace NotepadKnights
     {
         BattleManager battleManager = new BattleManager();
 
-
         //  키입력에 따른 화면 변화
         public void ScreenChanges()
         {
@@ -21,7 +20,7 @@ namespace NotepadKnights
             if (input == "0" && Program.playerStatus.isAttack)
             {
                 Console.Clear();
-                Program.playerStatus.IsAttackChange();
+                Program.playerStatus.ChangeIsAttack();
                Program.playerUI.ShowBattleMenu();
             }
             // 유효 숫자를 입력했다면
@@ -32,7 +31,7 @@ namespace NotepadKnights
                 // 공격 중이지 않다면
                 if (!Program.playerStatus.isAttack)
                 {
-                    Program.playerStatus.IsAttackChange();
+                    Program.playerStatus.ChangeIsAttack();
                     Program.playerUI.ShowBattleMenu();
                 }
                 // 공격 중이라면
