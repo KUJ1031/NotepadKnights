@@ -10,7 +10,7 @@ namespace NotepadKnights
     public class Skill
     {
         public string SkillName { get; private set; }
-        public int SkillPower { get; private set; }
+        public float SkillPower { get; private set; }
         public int SkillMP { get; private set; }
         public string Description { get; private set; }
 
@@ -44,7 +44,7 @@ namespace NotepadKnights
 
         };
 
-        public static int SkillUse(int Mp)
+        public static float SkillUse(int Mp)
         {
             while (true)
             {
@@ -78,7 +78,16 @@ namespace NotepadKnights
                 Mp -= selectedSkill.SkillMP;
 
                 Console.WriteLine($"MP를 {selectedSkill.SkillMP}만큼 소모하여 [{selectedSkill.SkillName}] 스킬을 사용하였습니다.\n"); Thread.Sleep(1000);
+
+                // 공격 오차 범위 계산
+                selectedSkill.SkillPower =  GenerateRandomAttackPower(selectedSkill.SkillPower);
+             
+                // 치명타 피해 추가
+                AttackAndDefense attackAndDefense = new AttackAndDefense();
+                selectedSkill.SkillPower = attackAndDefense.Attack(selectedSkill.SkillPower);
+
                 Console.WriteLine($"공격력 {selectedSkill.SkillPower}로 공격합니다.\n"); Thread.Sleep(1000);
+
                 if (selectedSkill.SkillName == "대검 휘두르기")
                 {
                     Console.WriteLine($"[{selectedSkill.SkillName}]의 효과 발동! 공격력 {selectedSkill.SkillPower}로 적을 한 번 더 공격합니다.\n"); Thread.Sleep(1000);
@@ -96,6 +105,18 @@ namespace NotepadKnights
                 Console.WriteLine( $"설명: {skill.Description}\n");
                 i++;
             }
+        }
+        // 공격력의 범위를 조정하고, 랜덤 범위 내에서 공격력을 설정
+        public static float GenerateRandomAttackPower(float attackPower)
+        {
+
+            float error = MathF.Ceiling(attackPower * 0.1f);
+            Random random = new Random();
+            int min = Math.Max(0, (int)(attackPower - error));
+            int max = Math.Max(min + 1, (int)(attackPower + error));
+            attackPower = random.Next(min, max);
+
+            return attackPower;
         }
     }
 }

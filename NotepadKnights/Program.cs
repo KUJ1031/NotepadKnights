@@ -73,14 +73,13 @@
                     break;
             }
         }
-  
+        
         static void Main(string[] args)
         {
                 player = new Player();
                 playerStatus = new PlayerStatus();
                 playerUI = new PlayerUI();
                 monsterFactory = new MonsterFactory();
-
 
                 mainMenu.Intro();
             while (true)

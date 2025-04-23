@@ -43,8 +43,6 @@ namespace NotepadKnights
                 if (answer == "1")
                 {
                     Console.WriteLine("\n");
-                    // 잠깐 테스트를 위해 변경했어요. 
-                    // Program.player.Name = name;
                     Program.playerStatus.SetName(name);
                     break;
                 }

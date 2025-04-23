@@ -17,11 +17,18 @@ namespace NotepadKnights
     internal class BattleManager
     {
 
-        // 플레이어 차례
+        // 플레이어 공격턴
         public void ExecutePlayerPhase()
         {
-            // 공격력을 변경한 뒤
+            // 스킬 공격력을 가져온 뒤
             float playerDamager = Skill.SkillUse(Program.playerStatus.Mp);
+
+            // 치명타 피해량을 계산한다.
+            // 공격력의 범위를 조정하고, 랜덤 범위 내에서 공격력을 설정
+           // playerDamager = GenerateRandomAttackPower(playerDamager);
+          //  playerDamager = attackAndDefense.Attack(playerDamager);
+
+            // 변경된 값을 적용하고,
             Program.playerStatus.SetAttack(playerDamager);
 
             // 스킬을 사용하여 공격한다
@@ -35,7 +42,7 @@ namespace NotepadKnights
             }
 
         }
-
+  
         public void ExecuteEnemyPhase()
         {
             foreach (Monster monster in Program.monsterFactory.createMonsters)
@@ -67,7 +74,7 @@ namespace NotepadKnights
             Console.WriteLine("몬스터들의 공격 차례가 끝났습니다.");
             Thread.Sleep(1000);
 
-            // 플레이어 턴
+            // 플레이어 공격턴
             Program.playerUI.ShowBattleMenu();
         }
         // 플레이어의 승리 
@@ -82,8 +89,12 @@ namespace NotepadKnights
             Console.WriteLine($"HP 100 -> {Program.playerStatus.Hp}\n");
             Console.WriteLine("0. 다음\n");
 
+            // 보상받기
+            BattleRewardManager battleRewardManager = new BattleRewardManager();
+            battleRewardManager.GetRewards(Program.playerStatus.KilledMonsterCount);
             EndGame();
         }
+        // 플레이어 패배
         public void CheckDefeat()
         {
             Console.Clear();
@@ -100,17 +111,42 @@ namespace NotepadKnights
         // 게임 종료시
         void EndGame()
         {
-            string input = Console.ReadLine();
+            // 죽인 적의 수 0으로 초기화
+            Program.playerStatus.SetKilledMonsterCount(0);
 
-            if (input == "0")
+            // 다시 마을로 돌아간다.
+            string input = Console.ReadLine();
+            while (true)
             {
-                // 마을로 돌아가기
-                Program.mainMenu.Village();
-            }
-            else { }
-            {
-                Console.WriteLine("잘못된 입력입니다.");
+                switch (Program.mainMenu.Village())
+                {
+                    case 1:
+                        //상태보기
+                        break;
+                    case 2:
+                        //인벤토리
+                        break;
+                    case 3:
+                        //상점
+                        break;
+                    case 4:
+                        //전투
+                        Program.playerStatus.InitializePlayer();
+                        Program.playerUI.ShowBattleMenu();
+                        break;
+                    case 5:
+                        //회복하기
+                        break;
+                    case 6:
+                    //추가사항
+                    default:
+                        Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요.");
+                        break;
+                }
             }
         }
+
+
+        
     }
 }
