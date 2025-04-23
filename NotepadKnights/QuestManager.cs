@@ -8,9 +8,9 @@ namespace NotepadKnights
 {
     public class QuestManager
     {
-        List<Quest> allQuestList = new List<Quest>();
-        List<Quest> ableQuestList = new List<Quest>();
-        List<Quest> activeQuestList = new List<Quest>();
+        public List<Quest> allQuestList = new List<Quest>();
+        public List<Quest> ableQuestList = new List<Quest>();
+        public List<Quest> activeQuestList = new List<Quest>();
 
         public QuestManager()
         {
@@ -36,61 +36,7 @@ namespace NotepadKnights
                 }
             }
         }
-
-        public void ShowActiveQuest()
-        {
-            //진행중인 퀘스트만 출력
-            Console.WriteLine("진행중인 퀘스트 목록:");
-            for (int i = 0; i < activeQuestList.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {activeQuestList[i].QuestName}");
-            }
-        }
-
-        public void ShowAbleQuest()
-        {
-            //레벨에 따른 가능한 퀘스트만 출력
-            int k = 0;
-            Console.WriteLine("퀘스트 목록:");
-            for (int i = 0; i < ableQuestList.Count; i++)
-            {
-                if (ableQuestList[i].IsCompleted == false)
-                {
-                    Console.WriteLine($"{k + 1}. {ableQuestList[i].QuestName}");
-                    k++;
-                }
-            }
-        }
-
-
-        public void ShowCompletedQuest()
-        {
-            //완료된 퀘스트만 출력
-            int k = 0;
-            Console.WriteLine("완료된 퀘스트 목록:");
-            for (int i = 0; i < ableQuestList.Count; i++)
-            {
-                
-                if (ableQuestList[i].IsCompleted == true)
-                {
-                    Console.WriteLine($"{k + 1}. {ableQuestList[i].QuestName}");
-                    k++;
-                }
-            }
-        }
-
-
-        //            Console.ForegroundColor = ConsoleColor.Gray;
-        //            Console.WriteLine($"{i + 1}. {ableQuestList[i].QuestName} (완료)");
-        //            Console.ResetColor();
-        public void ShowQuestDetail(int i)
-        {
-            Console.WriteLine($"퀘스트 이름: {allQuestList[i].QuestName}");
-            Console.WriteLine($"퀘스트 설명: {allQuestList[i].QuestDescription}");
-            Console.WriteLine($"퀘스트 레벨: {allQuestList[i].QuestLevel}");
-            Console.WriteLine($"퀘스트 보상: {allQuestList[i].QuestReward}");
-            Console.WriteLine($"퀘스트 완료 여부: {(allQuestList[i].IsCompleted ? "완료" : "미완료")}");
-        }
+       
         public void CompleteQuest(int k)
         {
             //퀘스트의 active = false, completed = true로 변경
