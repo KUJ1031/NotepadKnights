@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace NotepadKnights
 {
-    public class FixStatus
+c class FixStatus
     {
         TempStatus Status;
         public FixStatus(TempStatus sharedStatus)
         {
             Status = sharedStatus;
         }
+
         public void SetName(string name)
         {
             Status.name = name;

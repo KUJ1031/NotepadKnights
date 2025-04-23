@@ -5,12 +5,12 @@
     {
 
         public static PlayerUI playerUI;
-        public static Player player;
+       // public static Player player;
         public static PlayerStatus playerStatus;
         public static MonsterFactory monsterFactory;
 
-        public static Player Player = new Player();
-        public static MainMenuModule mainMenu = new MainMenuModule(Player);
+        public static Player player = new Player();
+        public static MainMenuModule mainMenu = new MainMenuModule(player);
 
 
         public interface IModule
@@ -98,6 +98,8 @@
                         break;
                     case 4:
                         //전투
+                        playerStatus.InitializePlayer();
+                        playerUI.ShowBattleMenu();
                         break;
                     case 5:
                         //회복하기
