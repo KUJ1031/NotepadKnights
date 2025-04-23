@@ -164,9 +164,8 @@ namespace NotepadKnights
             }
             else
             {
-                Dictionary<int, int> HighLevel = weightByDifficulty(difficultyLevel);
+                Dictionary<int, int> HighLevel = weightByDifficulty(difficultyLevel);       // 2: 칼날부리, 3: 대포미니언, 4: 어스름늑대
                 int typeOfDifficulty = CreatMonsterOnDifficulty(HighLevel);
-                int type = random.Next(2, 5);   // 2: 칼날부리, 3: 대포미니언, 4: 어스름늑대
 
                 switch (typeOfDifficulty)
                 {
