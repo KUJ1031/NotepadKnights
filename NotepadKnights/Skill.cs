@@ -49,16 +49,17 @@ namespace NotepadKnights
             while (true)
             {
                 Console.Clear();
-                Program.player.msg = "사용할 스킬을 선택해주세요.\n";
+
+                Console.WriteLine("사용할 스킬을 선택해주세요.\n");
                 for (int i = 0; i < Skill.WarriorSkills.Count; i++)
                 {
                     var skill = Skill.WarriorSkills[i];
-                    Program.player.msg = $"{i + 1}. {skill.SkillName} (Power: {skill.SkillPower}, MP: {skill.SkillMP})\n";
+                    Console.WriteLine( $"{i + 1}. {skill.SkillName} (Power: {skill.SkillPower}, MP: {skill.SkillMP})\n");
                 }
-                Program.player.msg = ">> \n";
+                Console.Write(">>");
                 if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > Skill.WarriorSkills.Count)
                 {
-                    Program.player.msg = "잘못된 선택입니다.\n"; Thread.Sleep(1000);
+                    Console.WriteLine("잘못된 선택입니다.\n"); Thread.Sleep(1000);
                     continue;
                 }
 
@@ -66,21 +67,21 @@ namespace NotepadKnights
 
                 if (Mp < selectedSkill.SkillMP)
                 {
-                    Program.player.msg = $"MP가 부족하여 사용할 수 없습니다. 현재 MP : {Mp}\n"; Thread.Sleep(1000);
+                    Console.WriteLine($"MP가 부족하여 사용할 수 없습니다. 현재 MP : {Mp}\n"); Thread.Sleep(1000);
                     continue;
                 }
                 if (selectedSkill.SkillName == "갈(喝)")
                 {
-                    Program.player.msg = "바람이 울부짖고 있습니다...\n"; Thread.Sleep(1500);
+                    Console.WriteLine("바람이 울부짖고 있습니다...\n"); Thread.Sleep(1500);
                 }
 
                 Mp -= selectedSkill.SkillMP;
 
-                Program.player.msg = $"MP를 {selectedSkill.SkillMP}만큼 소모하여 [{selectedSkill.SkillName}] 스킬을 사용하였습니다.\n"; Thread.Sleep(1000);
-                Program.player.msg = $"공격력 {selectedSkill.SkillPower}로 공격합니다.\n"; Thread.Sleep(1000);
+                Console.WriteLine($"MP를 {selectedSkill.SkillMP}만큼 소모하여 [{selectedSkill.SkillName}] 스킬을 사용하였습니다.\n"); Thread.Sleep(1000);
+                Console.WriteLine($"공격력 {selectedSkill.SkillPower}로 공격합니다.\n"); Thread.Sleep(1000);
                 if (selectedSkill.SkillName == "대검 휘두르기")
                 {
-                    Program.player.msg = $"[{selectedSkill.SkillName}]의 효과 발동! 공격력 {selectedSkill.SkillPower}로 적을 한 번 더 공격합니다.\n"; Thread.Sleep(1000);
+                    Console.WriteLine($"[{selectedSkill.SkillName}]의 효과 발동! 공격력 {selectedSkill.SkillPower}로 적을 한 번 더 공격합니다.\n"); Thread.Sleep(1000);
                 }
                 return selectedSkill.SkillPower;
             }
@@ -91,8 +92,8 @@ namespace NotepadKnights
             int i = 1;
             foreach (Skill skill in Skill.WarriorSkills)
             {
-                Program.player.msg = $"({i}) {skill.SkillName} (Power: {skill.SkillPower}, MP: {skill.SkillMP})\n";
-                Program.player.msg = $"설명: {skill.Description}\n";
+                Console.WriteLine($"({i}) {skill.SkillName} (Power: {skill.SkillPower}, MP: {skill.SkillMP})\n");
+                Console.WriteLine( $"설명: {skill.Description}\n");
                 i++;
             }
         }
