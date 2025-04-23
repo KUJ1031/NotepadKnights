@@ -69,7 +69,7 @@ namespace NotepadKnights
                 playerInput.ScreenChanges();
         }
         // 공격 이후 UI
-        public void DisplayAttackResult(int playerDamage, string msg)
+        public void DisplayAttackResult(float playerDamage, string msg)
         {
             Console.Clear();
 

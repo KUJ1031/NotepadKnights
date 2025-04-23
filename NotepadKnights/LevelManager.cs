@@ -9,7 +9,7 @@ public class LevelManager
         { 3, 65 },
         { 4, 100 },
     };
-    // Console ì¶œë ¥ì— í•„ìš”í•˜ë‹¤ë©´ ë§ì”€í•´ì£¼ì„¸ìš”.
+    // Console Ãâ·Â¿¡ ÇÊ¿äÇÏ´Ù¸é ¸»¾¸ÇØÁÖ¼¼¿ä.
     public int PlayerExp { get; private set; } = 0;
 
     public void AddExp(int expGained)
@@ -18,8 +18,8 @@ public class LevelManager
 
         while (CanLevelUp(Program.playerStatus.Level, PlayerExp))
         {
-            // Player.csì— LevelUp() í•¨ìˆ˜ êµ¬í˜„ í•„ìš”
-            // Level += 1, ê³µê²©ë ¥ += 0.5, ë°©ì–´ë ¥ += 1
+            // Player.cs¿¡ LevelUp() ÇÔ¼ö ±¸Çö ÇÊ¿ä
+            // Level += 1, °ø°İ·Â += 0.5, ¹æ¾î·Â += 1
             // Program.Player.LevelUp();
             PlayerExp -= requireExp[Program.playerStatus.Level];
         }

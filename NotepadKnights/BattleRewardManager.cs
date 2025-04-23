@@ -8,13 +8,13 @@ public class BattleRewardManager
     private readonly float _rareWeaponProbability = 0.05f;
 
     private readonly Item _potion =
-        new Item($"{"íšŒë³µ í¬ì…˜",-10}", ItemType.Potion, 30, $"{"ì²´ë ¥ì„ +30ë§Œí¼ íšŒë³µì‹œì¼œì£¼ëŠ” í¬ì…˜ì…ë‹ˆë‹¤.",-30}", 1000);
+        new Item($"{"?Œë³µ ?¬ì…˜",-10}", ItemType.Potion, 30, $"{"ì²´ë ¥??+30ë§Œí¼ ?Œë³µ?œì¼œì£¼ëŠ” ?¬ì…˜?…ë‹ˆ??",-30}", 1000);
 
     private readonly Item _normalWeapon =
-        new Item($"{"ë‹¨ê²€",-10}", ItemType.Weapon, 3, $"{"ì‘ì€ ë‹¨ê²€ì…ë‹ˆë‹¤.",-30}", 300);
+        new Item($"{"?¨ê?",-10}", ItemType.Weapon, 3, $"{"?‘ì? ?¨ê??…ë‹ˆ??",-30}", 300);
 
     private readonly Item _rareWeapon =
-        new Item($"{ "ë¡± ì†Œë“œ", -10 }", ItemType.Weapon, 22, $"{ "ì•„ì£¼ ê°•ë ¥í•œ ë¡± ì†Œë“œì…ë‹ˆë‹¤.", -30 }", 3300);
+        new Item($"{ "ë¡??Œë“œ", -10 }", ItemType.Weapon, 22, $"{ "?„ì£¼ ê°•ë ¥??ë¡??Œë“œ?…ë‹ˆ??", -30 }", 3300);
     public int RewardGold { get; private set; }
     public int PotionCount { get; private set; }
     public int NormalWeaponCount { get; private set; }
@@ -32,7 +32,7 @@ public class BattleRewardManager
             TryDropWeapon();
         }
 
-        // Playerì˜ ê³¨ë“œë¥¼ ì¶”ê°€í•  ìˆ˜ ìˆëŠ” ë©”ì†Œë“œë¥¼ ì¶”ê°€í•´ì£¼ì„¸ìš”
+        // PlayerÀÇ °ñµå¸¦ Ãß°¡ÇÒ ¼ö ÀÖ´Â ¸Ş¼Òµå¸¦ Ãß°¡ÇØÁÖ¼¼¿ä
         // Program.Player.AddGold(RewardGold);
         AddItemMultipleTimes(_potion, PotionCount);
         AddItemMultipleTimes(_normalWeapon, NormalWeaponCount);
@@ -43,7 +43,7 @@ public class BattleRewardManager
     {
         for (int i = 0; i < count; i++)
         {
-            // Player.csì— ì¸ë²¤í† ë¦¬ í”„ë¡œí¼í‹°ë¥¼ ìƒì„±í•´ì£¼ì„¸ìš”
+            // Player.cs¿¡ ÀÎº¥Åä¸® ÇÁ·ÎÆÛÆ¼¸¦ »ı¼ºÇØÁÖ¼¼¿ä
             // Program.Player.Inventory.AddItem(item);
         }
     }
