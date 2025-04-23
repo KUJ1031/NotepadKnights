@@ -8,6 +8,7 @@ public class Store
         public Store()
         {
             Items = new List<Item>();
+            NumberOfItems = new Dictionary<Item, int>();
             InitialItems();
         }
 

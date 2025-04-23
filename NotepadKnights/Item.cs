@@ -18,6 +18,16 @@ public class Item
         Price = price;
     }
     
+    public override bool Equals(object? obj)
+    {
+        return obj is Item other && Name == other.Name;
+    }
+
+    public override int GetHashCode()
+    {
+        return Name.GetHashCode();
+    }
+    
     public bool IsEquippable()
     {
         return Type == ItemType.Weapon || Type == ItemType.Armor;

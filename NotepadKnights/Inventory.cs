@@ -8,6 +8,7 @@ public class Inventory
     public Inventory()
     {
         Items = new List<Item>();
+        NumberOfItems = new Dictionary<Item, int>();
         InitialItems();
     }
 
@@ -70,7 +71,7 @@ public class Inventory
     
     private void InitialItems()
     {
-        Items.Add(new Item($"{ "회복 포션", -10 }", ItemType.Potion, 30, $"{ "체력을 +30만큼 회복시켜주는 포션이다.", -30 }", 1000));
+        Items.Add(new Item($"{ "회복 포션", -10 }", ItemType.Potion, 30, $"{ "체력을 +30만큼 회복시켜주는 포션입니다.", -30 }", 1000));
 
         foreach (var item in Items)
         {
