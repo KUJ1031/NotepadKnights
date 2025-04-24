@@ -16,6 +16,7 @@ namespace NotepadKnights
     }
     internal class BattleManager
     {
+        private string monsterIndexDisplay = "";
         AttackAndDefense atkAndDef = new AttackAndDefense();
         // 플레이어 차례
         public void ExecutePlayerPhase()
@@ -24,10 +25,10 @@ namespace NotepadKnights
             float playerDamager = Skill.SkillUse(Program.playerStatus.Mp);
 
             // 변경된 값을 적용하고,
-            Program.playerStatus.SetAttack(playerDamager);
+           // Program.playerStatus.SetAttack(playerDamager);
 
             // 스킬을 사용하여 공격한다
-            Program.player.ExecuteAttack(playerDamager);
+            ExecuteAttack(playerDamager);
 
             // 플레이어 승리 확인
             CheckVictory();
@@ -99,7 +100,7 @@ namespace NotepadKnights
         {
             if (Program.playerStatus.Hp > 0)
             { // 플레이어 공격턴
-                Program.playerUI.ShowBattleMenu();
+                ShowBattleMenu();
             }
             else
             {
@@ -120,7 +121,7 @@ namespace NotepadKnights
         void EndGame()
         {
             // 죽인 적의 수 0으로 초기화
-            Program.playerStatus.SetKilledMonsterCount(0);
+          //  Program.playerStatus.SetKilledMonsterCount(0);
 
             // 다시 마을로 돌아간다.
             string input = Console.ReadLine();
@@ -140,7 +141,7 @@ namespace NotepadKnights
                     case 4:
                         //전투
                         Program.playerStatus.InitializePlayer();
-                        Program.playerUI.ShowBattleMenu();
+                        ShowBattleMenu();
                         break;
                     case 5:
                         //회복하기
@@ -154,7 +155,206 @@ namespace NotepadKnights
             }
         }
 
+        public void ShowBattleMenu()
+        {
+            Console.Clear();
+
+            if (Program.playerStatus.Hp > 0)
+            {
+                // 모든 적들이 죽었다면
+                if (Program.playerStatus.KilledMonsterCount >= Program.monsterFactory.createMonsters.Count)
+                {
+                    // 승리 화면 띄우기
+                    CheckVictory();
+
+                }
+                // 적들이 죽지 않았다면 전투하기
+                else
+                {
+                    Console.WriteLine("Battle!!\n");
+
+                    for (int i = 0; i < Program.monsterFactory.createMonsters.Count; i++)
+                    {
+                        monsterIndexDisplay = Program.playerStatus.IsAttack ? (i + 1).ToString() : "";
+
+                        var monster = Program.monsterFactory.createMonsters[i];
+                        string monsterHpTxt = monster.IsDead ? $"Dead" : $"HP {monster.CurrentHp}";
+                        Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} {monsterHpTxt}");
+                    }
+
+                    Console.WriteLine("\n\n[내정보]");
+                    Console.Write($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name} ({Program.playerStatus.Job})\n");
+                    Console.WriteLine($"HP {Program.playerStatus.Hp}/{Program.playerStatus.MaxHp}\n");
+
+                    // 아직 공격하지 않았다면
+                    if (!Program.playerStatus.IsAttack)
+                    {
+                        Console.WriteLine("1. 공격\n");
+                        Console.Write("원하시는 행동을 입력해주세요.\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("0. 취소\n");
+                        Console.Write("대상을 선택해주세요.\n");
+                        Console.WriteLine(Program.player.msg + "\n");
+                    }
+                }
+            }
+            else
+            {
+                // 패배 
+               CheckDefeat();
+            }
+            //  키입력에 따른 화면 변화
+            ScreenChanges();
+        }
 
 
+        public void ScreenChanges()
+        {
+            // 사용자 키 입력 
+            Console.Write(">>");
+            string input = Console.ReadLine();
+
+            // 공격 중이 아닐때
+            if (!Program.playerStatus.IsAttack)
+            {
+                if (input == "1")
+                {
+                    // 공격 모드 진입
+                    Console.Clear();
+                  //  Program.playerStatus.SetIsAttack(true);
+                    ShowBattleMenu();
+                }
+                else
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                    ScreenChanges();
+                }
+            }
+            else // 공격 중인 상태
+            {
+                if (input == "0")
+                {
+                    Console.Clear();
+                 //   Program.playerStatus.SetIsAttack(false);
+                    ShowBattleMenu();
+                }
+                else if (input == "1" || input == "2" || input == "3")
+                {
+                    Console.Clear();
+                    SelectTarget(int.Parse(input));
+
+                    if (Program.playerStatus.Target != null && Program.playerStatus.Target.CurrentHp > 0)
+                    {
+                        // 플레이어 공격턴 시작
+                        ExecutePlayerPhase();
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다.");
+                        ScreenChanges();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                    ScreenChanges();
+                }
+            }
+        }
+
+        // 현재 공격중인 적 찾기   
+        public void SelectTarget(int num)
+        {
+            if (num >= 1 && num <= Program.monsterFactory.createMonsters.Count)
+            {
+                var selectedMonster = Program.monsterFactory.createMonsters[num - 1];
+                // 몬스터가 살아있다면
+                if (selectedMonster.CurrentHp > 0)
+                {
+                    Program.player.msg = "";
+                    Program.playerStatus.Target = selectedMonster;
+                }
+                else // 몬스터가 이미 죽었으면
+                {
+                    // 다른 몬스터 선택하기
+                    Program.player.msg = "잘못된 입력입니다.";
+                    ShowBattleMenu();
+                }
+            }
+        }
+
+        // 공격
+        public void ExecuteAttack(float attackPower)
+        {
+            Monster playerTarget = Program.playerStatus.Target;
+
+            // 적이 죽었다면
+            if (playerTarget.CurrentHp == 0)
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+            }
+            // 적이 살아있다면
+            else
+            {
+                attackPower = Program.playerStatus.Attack;
+
+                // 공격한다
+                playerTarget.CurrentHp = atkAndDef.EnemyDefense(attackPower, playerTarget.CurrentHp);
+
+                // 공격 이후 UI
+                DisplayAttackResult(attackPower, Program.player.msg);
+            }
+        }
+
+        public void DisplayAttackResult(float playerDamage, string msg)
+        {
+            Console.Clear();
+
+            Console.WriteLine("Battle!!\n");
+            Console.WriteLine($"{Program.playerStatus.Name} 의 공격!");
+
+            Monster playerTarget = Program.playerStatus.Target;
+
+            Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name} 을(를) 맞췄습니다. [데미지 : {playerDamage}]\n");
+            Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name}");
+            playerTarget.ApplyDamage(playerDamage);
+
+            //  적이 죽었으면
+            if (playerTarget.IsDead)
+            {
+                playerTarget = null;
+                Console.WriteLine($"HP 0 ->Dead\n");
+             //   Program.playerStatus.SetKilledMonsterCount(Program.playerStatus.KilledMonsterCount + 1);
+            }
+            else
+            {
+                Console.WriteLine($"HP {playerTarget.CurrentHp}\n");
+            }
+
+            Console.WriteLine(msg + "\n");
+            Console.Write("0. 다음\n>>");
+
+            string input = Console.ReadLine();
+            while (input != "0")
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+                input = Console.ReadLine();
+            }
+            // 이 이후 적 공격 턴 실행
+            ExecuteEnemyPhase();
+        }
+        public void DieTarget()
+        {
+            Program.playerStatus.Target.CurrentHp = 0;
+            Program.playerStatus.Target = null;
+
+         //   Program.playerStatus.SetKilledMonsterCount(Program.playerStatus.KilledMonsterCount + 1);
+            Console.WriteLine($"HP 0 ->Dead\n");
+
+            // 경헙치 업
+            Program.player.ExpUp();
+        }
     }
 }
