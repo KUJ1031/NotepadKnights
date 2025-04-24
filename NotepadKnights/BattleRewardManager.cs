@@ -8,7 +8,7 @@ public class BattleRewardManager
     private readonly float _rareWeaponProbability = 0.05f;
 
     private readonly Item _potion =
-        new Item("회복 포션", ItemType.Potion, 30, "체력을 +30만큼 회복시켜주는 포션입니다.", 1000);
+        new Item($"{"회복 포션", -10}", ItemType.Potion, 30, $"{"체력을 +30만큼 회복시켜주는 포션입니다.", -30}", 1000);
 
     private readonly Item _normalWeapon =
         new Item($"{"단검",-10}", ItemType.Weapon, 3, $"{"작은 단검입니다.",-30}", 300);
