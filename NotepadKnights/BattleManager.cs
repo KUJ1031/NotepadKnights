@@ -50,7 +50,6 @@ namespace NotepadKnights
                 Console.WriteLine($"HP {Program.playerStatus.Hp} -> {playerHpAfterDamaged}");
 
                 // 위의 공격 주고 받는 부분 출력 이후 계산
-   
                 Program.playerStatus.SetHp(playerHpAfterDamaged);
                 Console.WriteLine("0. 다음");
 
