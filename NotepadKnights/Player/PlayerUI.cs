@@ -13,7 +13,6 @@ namespace NotepadKnights
         private string monsterIndexDisplay = "";
 
         PlayerInput playerInput = new PlayerInput();
-        BattleManager battleManager = new BattleManager();
 
         // 공격하기 전 화면 UI
         public void ShowBattleMenu()
@@ -23,10 +22,10 @@ namespace NotepadKnights
             if (Program.playerStatus.Hp > 0)
             {
                 // 모든 적들이 죽었다면
-                if (Program.playerStatus.KilledMonsterCount >= Program.monsterFactory.createMonsters.Count)
+                if (Program.playerStatus.KilledMonsterCount >= Program.battleManager.monsterFactory.createMonsters.Count)
                 {
                     // 승리 화면 띄우기
-                    battleManager.CheckVictory();
+                    Program.battleManager.CheckVictory();
 
                 }
                 // 적들이 죽지 않았다면 전투하기
@@ -34,11 +33,11 @@ namespace NotepadKnights
                 {
                     Console.WriteLine("Battle!!\n");
 
-                    for (int i = 0; i < Program.monsterFactory.createMonsters.Count; i++)
+                    for (int i = 0; i < Program.battleManager.monsterFactory.createMonsters.Count; i++)
                     {
                         monsterIndexDisplay = Program.playerStatus.IsAttack ? (i + 1).ToString() : "";
 
-                        var monster = Program.monsterFactory.createMonsters[i];
+                        var monster = Program.battleManager.monsterFactory.createMonsters[i];
                         string monsterHpTxt = monster.IsDead ? $"Dead" : $"HP {monster.CurrentHp}";
                         Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} {monsterHpTxt}");
                     }
@@ -64,7 +63,7 @@ namespace NotepadKnights
             else
             {
                 // 패배 
-                battleManager.CheckDefeat();
+                Program.battleManager.CheckDefeat();
             }
                 //  키입력에 따른 화면 변화
                 playerInput.ScreenChanges();
@@ -105,7 +104,7 @@ namespace NotepadKnights
                 input = Console.ReadLine();
             }
             // 이 이후 적 공격 턴 실행
-            battleManager.ExecuteEnemyPhase();
+            Program.battleManager.ExecuteEnemyPhase();
         }
     }
 }

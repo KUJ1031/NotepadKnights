@@ -7,7 +7,9 @@
         public static PlayerUI playerUI;
        // public static Player player;
         public static PlayerStatus playerStatus;
-        public static MonsterFactory monsterFactory;
+        //public static MonsterFactory monsterFactory;
+        public static BattleManager battleManager;
+
 
         public static Player player = new Player();
         public static MainMenuModule mainMenu = new MainMenuModule(player);
@@ -19,7 +21,7 @@
                 player = new Player();
                 playerStatus = new PlayerStatus();
                 playerUI = new PlayerUI();
-                monsterFactory = new MonsterFactory();
+                battleManager = new BattleManager();
                 quest = new QuestUI(playerStatus);
                 mainMenu.Intro();
             while (true)
