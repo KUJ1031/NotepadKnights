@@ -36,7 +36,6 @@
                         break;
                     case 4:
                         //전투
-                        playerStatus.InitializePlayer();
                         playerUI.ShowBattleMenu();
                         break;
                     case 5:
