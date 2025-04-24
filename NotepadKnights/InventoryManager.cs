@@ -2,6 +2,7 @@ namespace NotepadKnights;
 
 public class InventoryManager
 {
+    private Inventory _inventory = Program.player.Inventory;
     public void Run()
     {
         while (true)
@@ -18,7 +19,7 @@ public class InventoryManager
                 while (true)
                 {
                     Console.Clear();
-                    Program.player.Inventory.DisplayInventory(true, false);
+                    _inventory.DisplayInventory(true, false);
                     Console.WriteLine("\n0. 나가기\n1. 장착 관리");
 
                     if (InputManager.ReadInt(0, 1) == 0) break;
@@ -31,7 +32,7 @@ public class InventoryManager
                 while (true)
                 {
                     Console.Clear();
-                    Program.player.Inventory.DisplayInventory(false, false);
+                    _inventory.DisplayInventory(false, false);
                     Console.WriteLine("\n0. 나가기\n1. 아이템 사용");
 
                     if (InputManager.ReadInt(0, 1) == 0) break;
@@ -47,13 +48,13 @@ public class InventoryManager
         while (true)
         {
             Console.Clear();
-            Program.player.Inventory.DisplayInventory(true, false);
+            _inventory.DisplayInventory(true, false);
             Console.WriteLine("\n0. 나가기");
 
-            int select = InputManager.ReadInt(0, Program.player.Inventory.EquippableItems.Count);
+            int select = InputManager.ReadInt(0, _inventory.EquippableItems.Count);
             if (select == 0) break;
                 
-            Program.player.Inventory.SelectItem(select - 1);
+            _inventory.SelectItem(select - 1);
         }
     }
 
@@ -62,13 +63,13 @@ public class InventoryManager
         while (true)
         {
             Console.Clear();
-            Program.player.Inventory.DisplayInventory(false, false);
+            _inventory.DisplayInventory(false, false);
             Console.WriteLine("\n0. 나가기");
 
-            int select = InputManager.ReadInt(0, Program.player.Inventory.ConsumableItems.Count);
+            int select = InputManager.ReadInt(0, _inventory.ConsumableItems.Count);
             if (select == 0) break;
                 
-            Program.player.Inventory.SellOrRemoveItem(select - 1, false);
+            _inventory.SellOrRemoveItem(select - 1, false);
         }
     }
 }
