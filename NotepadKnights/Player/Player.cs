@@ -22,9 +22,9 @@ namespace NotepadKnights
         // 현재 공격중인 적 찾기   
         public void SelectTarget(int num)
         {
-            if (num >= 1 && num <= Program.monsterFactory.createMonsters.Count)
+            if (num >= 1 && num <= Program.battleManager.monsterFactory.createMonsters.Count)
             {
-                var selectedMonster = Program.monsterFactory.createMonsters[num - 1];
+                var selectedMonster = Program.battleManager.monsterFactory.createMonsters[num - 1];
                 // 몬스터가 살아있다면
                 if (selectedMonster.CurrentHp > 0)
                 {

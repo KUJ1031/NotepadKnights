@@ -7,7 +7,7 @@
         public static PlayerUI playerUI;
        // public static Player player;
         public static PlayerStatus playerStatus;
-        public static MonsterFactory monsterFactory;
+        public static BattleManager battleManager = new BattleManager();
 
         public static Player player = new Player();
         public static MainMenuModule mainMenu = new MainMenuModule(player);
@@ -76,12 +76,11 @@
         
         static void Main(string[] args)
         {
-                player = new Player();
-                playerStatus = new PlayerStatus();
-                playerUI = new PlayerUI();
-                monsterFactory = new MonsterFactory();
-
-                mainMenu.Intro();
+            player = new Player();
+            playerStatus = new PlayerStatus();
+            playerUI = new PlayerUI();
+            
+            mainMenu.Intro();
             while (true)
             {
                 switch(mainMenu.Village())
@@ -97,6 +96,7 @@
                         break;
                     case 4:
                         //전투
+                        battleManager.EnterBattle();
                         playerStatus.InitializePlayer();
                         playerUI.ShowBattleMenu();
                         break;
@@ -110,7 +110,6 @@
                         break;
                 }
             }
-
         }
     }
 }

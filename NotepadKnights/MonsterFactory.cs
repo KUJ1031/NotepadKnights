@@ -49,12 +49,6 @@ namespace NotepadKnights
             }
         }
 
-        // MonsterFactory 객체 생성 시 몬스터도 생성
-        public MonsterFactory()
-        {
-            InitializeMonsters();
-        }
-
         public void InitializeMonsters()
         {
             createMonsters.Clear();     // 이전 데이터 삭제
