@@ -62,7 +62,6 @@ namespace NotepadKnights
             }
             else
             {
-                Program.player.msg = "";
                 EnemyHp -= PlayerAttack;
             }
             return EnemyHp;
