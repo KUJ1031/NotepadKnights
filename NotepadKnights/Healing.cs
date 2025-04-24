@@ -58,6 +58,7 @@ namespace NotepadKnights
 
                 int actualHealed = Program.playerStatus.Hp - beforeHeal;
 
+                Console.Clear();
                 Console.WriteLine($"체력을 회복중입니다..."); Thread.Sleep(1000);
                 Console.WriteLine($"..."); Thread.Sleep(1000);
                 Console.WriteLine($"..."); Thread.Sleep(1000);
