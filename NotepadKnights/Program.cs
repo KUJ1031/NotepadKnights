@@ -15,6 +15,9 @@
         public static MainMenuModule mainMenu = new MainMenuModule(player);
         public static Healing healing = new Healing();
         public static QuestUI quest;
+
+        public static InventoryManager InventoryManager = new InventoryManager();
+        public static StoreManager StoreManager = new StoreManager();
         
         static void Main(string[] args)
         {
@@ -32,10 +35,12 @@
                         //상태보기
                         break;
                     case 2:
+                        InventoryManager.Run();
                         //인벤토리
                         break;
                     case 3:
                         //상점
+                        StoreManager.Run();
                         break;
                     case 4:
                         //전투
