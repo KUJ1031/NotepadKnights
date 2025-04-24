@@ -2,7 +2,7 @@ namespace NotepadKnights;
 
 public class StoreManager
 {
-    private Store _store = Program.player.Store;
+    private Store _store = Program.player.store;
     private Inventory _inventory = Program.player.Inventory;
     private void DisplayPurchaseOptions()
     {

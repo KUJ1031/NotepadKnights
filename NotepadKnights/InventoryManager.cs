@@ -8,6 +8,7 @@ public class InventoryManager
         while (true)
         {
             Console.Clear();
+            Console.WriteLine("[인벤토리]");
             Console.WriteLine("\n0. 나가기\n1. 무기/방어구\n2. 아이템");
             int input = InputManager.ReadInt(0, 2);
             if (input == 0)
