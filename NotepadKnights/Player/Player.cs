@@ -10,6 +10,8 @@ namespace NotepadKnights
     public class Player
     {
         public Inventory Inventory { get; private set; }
+        public Store store { get; private set; }
+
         AttackAndDefense attackAndDefense = new AttackAndDefense();
         public string msg;
   
@@ -17,6 +19,7 @@ namespace NotepadKnights
         public Player()
         {
             Inventory = new Inventory();
+            store = new Store();
         }
 
         // 현재 공격중인 적 찾기   

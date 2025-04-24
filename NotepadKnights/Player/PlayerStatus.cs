@@ -35,6 +35,11 @@ namespace NotepadKnights
             Mp = 100;
             Attack = 10;
             Defense = 10;
+        }     
+        // PlayerStatus의 정보를 한꺼번에 넘겨주는 메서드
+        public (string Name, string Job, int Level, int Hp, int MaxHp, int Mp, int Exp, int MaxExp, int Gold, float Attack, int Defense) GetPlayerInfo()
+        {
+            return (Name, Job, Level, Hp, MaxHp, Mp, Exp, MaxExp, Gold, Attack, Defense);
         }
         // 혹시 몰라서 넣음 , 이름 변경
         public void SetName(string name)
@@ -45,6 +50,11 @@ namespace NotepadKnights
         public void SetJob(string job)
         {
             Job = job;
+        }
+        // 체력 변경
+        public void SetHp(int hp)
+        {
+            Hp = hp;
         }
         // 레벨 변경
         public void SetLevel(int level)
