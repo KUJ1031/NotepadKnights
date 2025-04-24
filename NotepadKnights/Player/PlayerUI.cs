@@ -39,7 +39,8 @@ namespace NotepadKnights
                         monsterIndexDisplay = Program.playerStatus.IsAttack ? (i + 1).ToString() : "";
 
                         var monster = Program.monsterFactory.createMonsters[i];
-                        Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} HP {monster.CurrentHp} ");
+                        string monsterHpTxt = monster.IsDead ? $"Dead" : $"HP {monster.CurrentHp}";
+                        Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} {monsterHpTxt}");
                     }
 
                     Console.WriteLine("\n\n[내정보]");
@@ -80,11 +81,14 @@ namespace NotepadKnights
 
             Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name} 을(를) 맞췄습니다. [데미지 : {playerDamage}]\n");
             Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name}");
+            playerTarget.ApplyDamage(playerDamage);
 
             //  적이 죽었으면
-            if( playerTarget.CurrentHp <= 0 || playerTarget.IsDead )
+            if (playerTarget.IsDead)
             {
-                Program.player.DieTarget();
+                playerTarget = null;
+                Console.WriteLine( $"HP 0 ->Dead\n");
+                Program.playerStatus.SetKilledMonsterCount(Program.playerStatus.KilledMonsterCount+1);
             }
             else
             {

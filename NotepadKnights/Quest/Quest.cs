@@ -11,7 +11,7 @@ namespace NotepadKnights
         public string QuestName { get; protected set; }
         public string QuestDescription {  get; protected set; }
         public int QuestLevel { get; protected set; }
-        public int QuestReward { get; protected set; }
+        public string QuestReward { get; protected set; }
         public bool IsActive { get; protected set; }
         public bool IsCompleted { get; protected set; }
 
@@ -24,7 +24,6 @@ namespace NotepadKnights
 
         public void CompleteQuest()
         {
-            IsActive = false;
             IsCompleted = true;
         }
 
@@ -35,7 +34,6 @@ namespace NotepadKnights
             Console.WriteLine($"퀘스트 설명: {QuestDescription}");
             Console.WriteLine($"퀘스트 레벨: {QuestLevel}");
             Console.WriteLine($"퀘스트 보상: {QuestReward}");
-            Console.WriteLine($"퀘스트 완료 여부: {(IsCompleted ? "완료" : "미완료")}");
         }      
     }
 
@@ -48,7 +46,7 @@ namespace NotepadKnights
             QuestName = "첫 번째 퀘스트";
             QuestDescription = "첫 번째 퀘스트를 완료하세요.";
             QuestLevel = 1;
-            QuestReward = 100;
+            QuestReward = "100";
             IsCompleted = false;
             IsActive = false;
         }
