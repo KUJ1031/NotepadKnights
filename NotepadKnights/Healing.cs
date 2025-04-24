@@ -27,7 +27,7 @@ namespace NotepadKnights
                     Heal();
                     break;
                 case 0:
-                    mainMenuModule.Village();
+                    Program.mainMenu.Village();
                     break;
                 default:
                     Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요."); Console.ReadLine();
@@ -80,7 +80,7 @@ namespace NotepadKnights
                     Heal();
                     break;
                 case 0:
-                    mainMenuModule.Village();
+                    Program.mainMenu.Village();
                     break;
                 default:
                     Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요."); Console.ReadLine();
