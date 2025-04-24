@@ -58,7 +58,7 @@ namespace NotepadKnights
             //현재 수주중인 퀘스트만 출력
             Console.Clear();
 
-            while (true)
+            while(true)
             {
                 Console.WriteLine("진행중인 퀘스트 목록:");
                 if (questManager.activeQuestList.Count == 0)
@@ -186,13 +186,10 @@ namespace NotepadKnights
                 string answer = Console.ReadLine();
                 if (answer == "0")
                 {
-                    return;
+                    break;
                 }
-                else
-                {
-                    Console.WriteLine("잘못된 입력입니다.");
-                    ShowCompletedQuest();
-                }
+                Console.WriteLine("잘못된 입력입니다.");
+                ShowCompletedQuest();
             }
         }
 
