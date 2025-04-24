@@ -5,14 +5,15 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace NotepadKnights
 {
     public class AttackAndDefense
     {
         // 치명타, 회피 확률 변수
-        float criticalProbability = 0.15f;
-        float dodgeProbability = 0.1f;
+        float criticalProbability = 1f;
+        float dodgeProbability = 1f;
 
         // 치명타, 회피 발생 여부 확인 변수
         public bool onCritical = false;
@@ -20,25 +21,27 @@ namespace NotepadKnights
 
         private Random random = new Random();
 
-        public float Attack(float Damage)
+        public float Attack(float baseDamage)
         {
+            float finalDamage = baseDamage;
+
             CalcCritical();
             if (onCritical)
             {
-                // 여기 이렇게 수정해도 될까요? Player에게 메세지를 전달해주는 식으로 수정하지 않으면 보이지 않더라구요...
-                Program.player.msg = "치명적인 데미지!\n";
-                //Console.WriteLine("치명적인 데미지!");
-                Damage *= (int)1.6f;
+                finalDamage *= 1.6f;
+                finalDamage = MathF.Ceiling(finalDamage);
+                Console.WriteLine("Critical!\n"); Thread.Sleep(1000);
+                onCritical = false;
             }
-            return Damage;
+            return finalDamage;
         }
         public int PlayerDefense(int EnemyAttack, int PlayerHp, int PlayerDefense)
         {
             CalcDodge();
             if (onDodge)
             {
-                Program.player.msg = ("그러나 아무 일도 일어나지 않았다.\n");
-               // Console.WriteLine("그러나 아무 일도 일어나지 않았다.");
+                Program.player.msg = ($"그러나 {Program.playerStatus.Name}이(가) 공격을 회피하였다!\n");
+                onDodge = false;
             }
             else
             {
@@ -55,8 +58,7 @@ namespace NotepadKnights
             CalcDodge();
             if (onDodge)
             {
-                Program.player.msg = ("그러나 아무 일도 일어나지 않았다.\n");
-              //  Console.WriteLine("그러나 아무 일도 일어나지 않았다.");
+                Program.player.msg = ("그러나 적이 공격을 회피하였다!\n");
             }
             else
             {

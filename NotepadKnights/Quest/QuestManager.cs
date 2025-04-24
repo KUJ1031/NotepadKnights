@@ -30,12 +30,14 @@ namespace NotepadKnights
                 //레벨업시 실행시키면서 퀘스트를 갱신
                 foreach (var quest in allQuestList)
                 {
-                    //플레이어 레벨이 퀘스트 레벨보다 높아지고, 수주 퀘스트 리스트에 없고, 클리어하지 않은 퀘스트 추가
-                    if (quest.QuestLevel <= characterLevel && !ableQuestList.Any(q => q.QuestName == quest.QuestName && quest.IsCompleted == false))
+                    //플레이어 레벨이 퀘스트 레벨보다 높아지고, 수주 퀘스트 리스트에 없고, 클리어하지 않고, 진행중이 아닌퀘스트 추가
+                    if (quest.QuestLevel <= characterLevel && !ableQuestList.Any(q => q.QuestName == quest.QuestName && quest.IsCompleted == false && quest.IsActive == false))
                     {
                         ableQuestList.Add(quest);
                     }
                 }
+                //퀘스트를 레벨순으로 정렬
+                SortList();
             }
         }
        
@@ -44,11 +46,43 @@ namespace NotepadKnights
             //퀘스트의 completed = true로 변경
             ableQuestList[k].CompleteQuest();
             Console.WriteLine($"퀘스트 '{ableQuestList[k].QuestName}'이(가) 완료되었습니다!");
+            //완료된 퀘스트를 completedQuestList에 추가, 활성화된 퀘스트 리스트에서 삭제
+            completedQuestList.Add(activeQuestList[k]);
+            activeQuestList[k].ToggleActive();
+            activeQuestList.RemoveAt(k);
+            SortList();
+        }
+
+        public void CancelQuest(int k)
+        {
+            //퀘스트의 completed = false로 변경
+            ableQuestList[k].CompleteQuest();
+            Console.WriteLine($"퀘스트 '{ableQuestList[k].QuestName}'이(가) 취소되었습니다!");
+            //완료된 퀘스트를 completedQuestList에 추가, 활성화된 퀘스트 리스트에서 삭제
+            ableQuestList.Add(activeQuestList[k]);
+            activeQuestList.RemoveAt(k);
+            SortList();
+        }
+
+        public void ActiveQuest(int k)
+        {
+            activeQuestList.Add(ableQuestList[k]);
+            ableQuestList.RemoveAt(k);
+            Console.WriteLine($"퀘스트 '{activeQuestList[activeQuestList.Count - 1].QuestName}'이(가) 수주되었습니다!");
+            SortList();
         }
 
         public void QuestCount()
         {
             //퀘스트 진행사항 어케하죠?
+        }
+
+        public void SortList()
+        {
+            //퀘스트 리스트를 레벨순으로 정렬
+            ableQuestList = ableQuestList.OrderBy(q => q.QuestLevel).ToList();
+            activeQuestList = activeQuestList.OrderBy(q => q.QuestLevel).ToList();
+            completedQuestList = completedQuestList.OrderBy(q => q.QuestLevel).ToList();
         }
     }
 }

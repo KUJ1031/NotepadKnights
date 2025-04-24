@@ -17,48 +17,52 @@ namespace NotepadKnights
             Console.Write(">>");
             string input = Console.ReadLine();
 
-
-            if (input == "0" && Program.playerStatus.IsAttack)
+            // 공격 중이 아닐때
+            if (!Program.playerStatus.IsAttack)
             {
-                Console.Clear();
-                Program.playerStatus.SetIsAttack(false);
-               Program.playerUI.ShowBattleMenu();
-            }
-            // 유효 숫자를 입력했다면
-            else if (input == "1" || input == "2" || input == "3")
-            {
-                Console.Clear();
-
-                // 공격 중이지 않다면
-                if (!Program.playerStatus.IsAttack)
+                if (input == "1")
                 {
+                    // 공격 모드 진입
+                    Console.Clear();
                     Program.playerStatus.SetIsAttack(true);
                     Program.playerUI.ShowBattleMenu();
                 }
-                // 공격 중이라면
                 else
-                {   // 타겟을 찾은 다음
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                    ScreenChanges();
+                }
+            }
+            else // 공격 중인 상태
+            {
+                if (input == "0")
+                {
+                    Console.Clear();
+                    Program.playerStatus.SetIsAttack(false);
+                    Program.playerUI.ShowBattleMenu();
+                }
+                else if (input == "1" || input == "2" || input == "3")
+                {
+                    Console.Clear();
                     Program.player.SelectTarget(int.Parse(input));
 
-                    if (Program.playerStatus.Target.CurrentHp > 0)
+                    if (Program.playerStatus.Target != null && Program.playerStatus.Target.CurrentHp > 0)
                     {
-                        // 플레이어 공격턴 실행
+                        // 플레이어 공격턴 시작
                         battleManager.ExecutePlayerPhase();
-                      
                     }
                     else
                     {
                         Console.WriteLine("잘못된 입력입니다.");
-                    }                       
-
+                        ScreenChanges();
+                    }
                 }
-            }
-           
-            else
-            {
-                Console.WriteLine("잘못된 입력입니다.");
-                ScreenChanges();
-            }
+                else
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                    ScreenChanges();
+                }
+            }         
         }
 
     }
