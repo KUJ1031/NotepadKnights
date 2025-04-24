@@ -11,13 +11,8 @@ namespace NotepadKnights
     {
         public Inventory Inventory { get; private set; }
         public Store store { get; private set; }
-
-
-        AttackAndDefense attackAndDefense = new AttackAndDefense();
-
         public string msg;
   
-
         public Player()
         {
             Inventory = new Inventory();

@@ -48,7 +48,16 @@ namespace NotepadKnights
                     };
             }
         }
+        // 몬스터 팩토리의 생성자를 만들드니까 적들의 수를 제대로 받아오네요. 이거 이렇게 수정해도 될까요??
+        public MonsterFactory()
+        {
+            InitializeMonsters();
+        }
 
+        public int GetMonsterCount()
+        {
+            return createMonsters.Count;
+        }
         public void InitializeMonsters()
         {
             createMonsters.Clear();     // 이전 데이터 삭제

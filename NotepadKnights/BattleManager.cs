@@ -87,7 +87,6 @@ namespace NotepadKnights
             if (Program.playerStatus.KilledMonsterCount >= Program.monsterFactory.createMonsters.Count)
             {
                 Console.Clear();
-                Console.WriteLine(Program.monsterFactory.createMonsters);
 
                 Console.WriteLine("\nBattle!! - Result\n");
                 Console.WriteLine("Victory\n");
@@ -140,21 +139,24 @@ namespace NotepadKnights
                         //상태보기
                         break;
                     case 2:
+                        Program.InventoryManager.Run();
                         //인벤토리
                         break;
                     case 3:
-                        //상점
+                        Program. //상점
+                        StoreManager.Run();
                         break;
                     case 4:
                         //전투
-                        Program.playerStatus.InitializePlayer();
-                        ShowBattleMenu();
+                        Program.battleManager.ShowBattleMenu();
                         break;
                     case 5:
+                        Program.healing.IntoHealing();
                         //회복하기
                         break;
                     case 6:
-                    //추가사항
+                        Program.quest.QuestWindow();
+                        break;
                     default:
                         Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요.");
                         break;
@@ -242,17 +244,19 @@ namespace NotepadKnights
             }
             else // 공격 중인 상태
             {
-                if (input == "0")
+                int monsterCount = Program.monsterFactory.createMonsters.Count;
+                int choice = InputManager.ReadInt(0, monsterCount); // 0~monsterCount 사이의 입력만 허용
+
+                if (choice == 0)
                 {
                     Console.Clear();
                     Program.playerStatus.IsAttack = false;
-
                     ShowBattleMenu();
                 }
-                else if (input == "1" || input == "2" || input == "3")
+                else
                 {
                     Console.Clear();
-                    SelectTarget(int.Parse(input));
+                    Program.playerStatus.Target = Program.monsterFactory.createMonsters[choice - 1]; // 유저는 1부터 보니까 -1 처리
 
                     if (Program.playerStatus.Target != null && Program.playerStatus.Target.CurrentHp > 0)
                     {
@@ -264,11 +268,6 @@ namespace NotepadKnights
                         Console.WriteLine("잘못된 입력입니다.");
                         ScreenChanges();
                     }
-                }
-                else
-                {
-                    Console.WriteLine("잘못된 입력입니다.");
-                    ScreenChanges();
                 }
             }
         }
