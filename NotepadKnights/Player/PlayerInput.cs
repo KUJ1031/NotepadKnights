@@ -8,7 +8,7 @@ namespace NotepadKnights
 {
     internal class PlayerInput
     {
-        BattleManager battleManager = new BattleManager();
+        BattleManager battleManager = Program.battleManager;
 
         //  키입력에 따른 화면 변화
         public void ScreenChanges()
@@ -41,7 +41,7 @@ namespace NotepadKnights
                     Program.playerStatus.SetIsAttack(false);
                     Program.playerUI.ShowBattleMenu();
                 }
-                else if (input == "1" || input == "2" || input == "3")
+                else if (input == "1" || input == "2" || input == "3" || input == "4")
                 {
                     Console.Clear();
                     Program.player.SelectTarget(int.Parse(input));

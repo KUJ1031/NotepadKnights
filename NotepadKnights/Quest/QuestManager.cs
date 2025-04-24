@@ -60,7 +60,7 @@ namespace NotepadKnights
         public void CancelQuest(int k)
         {
             //퀘스트의 completed = false로 변경
-            Console.WriteLine($"퀘스트 '{ableQuestList[k].QuestName}'이(가) 취소되었습니다!");
+            Console.WriteLine($"퀘스트 '{activeQuestList[k].QuestName}'이(가) 취소되었습니다!");
             //완료된 퀘스트를 completedQuestList에 추가, 활성화된 퀘스트 리스트에서 삭제
             ableQuestList.Add(activeQuestList[k]);
             activeQuestList[k].ToggleActive();
