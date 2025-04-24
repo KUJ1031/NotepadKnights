@@ -102,7 +102,7 @@ public class Inventory
     
     private void InitialItems()
     {
-        var potion = new Item("회복 포션", ItemType.Potion, 30, "체력을 +30만큼 회복시켜주는 포션입니다.", 1000);
+        var potion = new Item($"{"회복 포션", -10}\t", ItemType.Potion, 30, $"{ "체력을 +30만큼 회복시켜주는 포션입니다.", -32 }\t", 300);
         AddItem(potion);
     }
 }
