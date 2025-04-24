@@ -58,10 +58,12 @@ public class Store
             Items.Add(new Item($"{ "낡은 검", -10 }", ItemType.Weapon, 2, $"{ "쉽게 볼 수 있는 낡은 검 입니다.", -30 }", 600));
             Items.Add(new Item($"{ "청동 도끼", -10 }", ItemType.Weapon, 5, $"{ "어디선가 사용됐던거 같은 도끼입니다.", -30 }", 1500));
             Items.Add(new Item($"{ "스파르타의 창", -10 }", ItemType.Weapon, 7, $"{ "스파르타의 전사들이 사용했다는 전설의 창입니다.", -30 }", 3200));
+            Items.Add(new Item("회복 포션", ItemType.Potion, 30, "체력을 +30만큼 회복시켜주는 포션입니다.", 300));
 
             foreach (var item in Items)
             {
-                NumberOfItems.TryAdd(item, 1);
+                if (item.Type == ItemType.Potion) NumberOfItems.TryAdd(item, 5);
+                else NumberOfItems.TryAdd(item, 1);
             }
         }
     }
