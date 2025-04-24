@@ -11,7 +11,7 @@ namespace NotepadKnights
         public string Name { get; private set; }
         public string Job { get; private set; }
         public int Level { get; private set; }
-        public int Hp { get; private set; }
+        public int Hp { get; set; }
         public int MaxHp { get; private set; }
         public int Mp { get; private set; }
         public int Exp { get; private set; } // 현재 경험치
@@ -34,7 +34,7 @@ namespace NotepadKnights
             MaxHp = 100;
             Mp = 100;
             Attack = 10;
-            Defense = 10;
+            Defense = 5;
         }
         // 혹시 몰라서 넣음 , 이름 변경
         public void SetName(string name)
