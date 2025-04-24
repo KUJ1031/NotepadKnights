@@ -12,6 +12,7 @@
         public static Player player = new Player();
         public static MainMenuModule mainMenu = new MainMenuModule(player);
         public static Healing healing = new Healing();
+        public static QuestUI quest;
         
         static void Main(string[] args)
         {
@@ -19,7 +20,7 @@
                 playerStatus = new PlayerStatus();
                 playerUI = new PlayerUI();
                 monsterFactory = new MonsterFactory();
-
+                quest = new QuestUI(playerStatus);
                 mainMenu.Intro();
             while (true)
             {
@@ -43,7 +44,8 @@
                         //회복하기
                         break;
                     case 6:
-                        //추가사항
+                        quest.QuestWindow();
+                        break;
                     default:
                         Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요.");
                         break;

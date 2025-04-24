@@ -51,4 +51,29 @@ namespace NotepadKnights
             IsActive = false;
         }
     }
+
+    public class Quest2 : Quest
+    {
+        public Quest2()
+        {
+            QuestName = "두 번째 퀘스트";
+            QuestDescription = "두 번째 퀘스트를 완료하세요.";
+            QuestLevel = 2;
+            QuestReward = "200";
+            IsCompleted = false;
+            IsActive = false;
+        }
+    }
+    public class Quest3 : Quest
+    {
+        public Quest3()
+        {
+            QuestName = "세 번째 퀘스트";
+            QuestDescription = "세 번째 퀘스트를 완료하세요.";
+            QuestLevel = 3;
+            QuestReward = "300";
+            IsCompleted = false;
+            IsActive = false;
+        }
+    }
 }
