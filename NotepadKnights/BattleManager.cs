@@ -27,6 +27,7 @@ namespace NotepadKnights
             // 변경된 값을 적용하고,
             Program.playerStatus.Attack = playerDamager;
 
+
             // 스킬을 사용하여 공격한다
             ExecuteAttack(playerDamager);
 
@@ -87,6 +88,7 @@ namespace NotepadKnights
             {
                 Console.Clear();
                 Console.WriteLine(Program.monsterFactory.createMonsters);
+
                 Console.WriteLine("\nBattle!! - Result\n");
                 Console.WriteLine("Victory\n");
                 Console.WriteLine($"던전에서 몬스터 {Program.playerStatus.KilledMonsterCount}마리를 잡았습니다.\n");
@@ -127,6 +129,7 @@ namespace NotepadKnights
         {
             // 죽인 적의 수 0으로 초기화
             Program.playerStatus.KilledMonsterCount = 0;
+
             // 다시 마을로 돌아간다.
             string input = Console.ReadLine();
             while (true)
@@ -229,6 +232,7 @@ namespace NotepadKnights
                     Console.Clear();
                     Program.playerStatus.IsAttack = true;
                      ShowBattleMenu();
+
                 }
                 else
                 {
@@ -242,6 +246,7 @@ namespace NotepadKnights
                 {
                     Console.Clear();
                     Program.playerStatus.IsAttack = false;
+
                     ShowBattleMenu();
                 }
                 else if (input == "1" || input == "2" || input == "3")
@@ -330,8 +335,8 @@ namespace NotepadKnights
             {
                 playerTarget = null;
                 Console.WriteLine($"HP 0 ->Dead\n");
-
                 Program.playerStatus.KilledMonsterCount++;
+
             }
             else
             {
@@ -356,6 +361,7 @@ namespace NotepadKnights
             Program.playerStatus.Target = null;
 
             Program.playerStatus.KilledMonsterCount++;
+
             Console.WriteLine($"HP 0 ->Dead\n");
 
             // 경헙치 업

@@ -12,6 +12,9 @@ namespace NotepadKnights
         public Inventory Inventory { get; private set; }
         public Store store { get; private set; }
 
+
+        AttackAndDefense attackAndDefense = new AttackAndDefense();
+
         public string msg;
   
 
@@ -24,20 +27,25 @@ namespace NotepadKnights
         public void LevelUp()
         {
             // Level += 1, 공격력 += 0.5, 방어력 += 1
+
             Program.playerStatus.Level++;
             Program.playerStatus.Attack += 0.5f;
             Program.playerStatus.Defense += 1;
+
         }
         // 골드 추가
         public void AddGold(int RewardGold)
         {
             Program.playerStatus.Gold += RewardGold;
+         
         }
         // 인벤토리 아이템 추가
         public void Additem(Item item)
         {
             Inventory.AddItem(item);
         }
+
+
         // 경험치 업
         public void ExpUp()
         {

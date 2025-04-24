@@ -8,8 +8,8 @@ public class InventoryManager
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("[ì¸ë²¤í† ë¦¬]");
-            Console.WriteLine("\n0. ë‚˜ê°€ê¸°\n1. ë¬´ê¸°/ë°©ì–´êµ¬\n2. ì•„ì´í…œ");
+            Console.WriteLine("[ÀÎº¥Åä¸®]");
+            Console.WriteLine("\n0. ³ª°¡±â\n1. ¹«±â/¹æ¾î±¸\n2. ¾ÆÀÌÅÛ");
             int input = InputManager.ReadInt(0, 2);
             if (input == 0)
             {
@@ -21,12 +21,12 @@ public class InventoryManager
                 {
                     Console.Clear();
                     _inventory.DisplayInventory(true, false);
-                    Console.WriteLine("\n0. ë‚˜ê°€ê¸°\n1. ì¥ì°© ê´€ë¦¬");
+                    Console.WriteLine("\n0. ³ª°¡±â\n1. ÀåÂø °ü¸®");
 
                     if (InputManager.ReadInt(0, 1) == 0) break;
                     ManageEquip();
                 }
-                
+
             }
             else if (input == 2)
             {
@@ -34,13 +34,13 @@ public class InventoryManager
                 {
                     Console.Clear();
                     _inventory.DisplayInventory(false, false);
-                    Console.WriteLine("\n0. ë‚˜ê°€ê¸°\n1. ì•„ì´í…œ ì‚¬ìš©");
+                    Console.WriteLine("\n0. ³ª°¡±â\n1. ¾ÆÀÌÅÛ »ç¿ë");
 
                     if (InputManager.ReadInt(0, 1) == 0) break;
                     ManageUseItem();
                 }
             }
-            
+
         }
     }
 
@@ -50,11 +50,11 @@ public class InventoryManager
         {
             Console.Clear();
             _inventory.DisplayInventory(true, false);
-            Console.WriteLine("\n0. ë‚˜ê°€ê¸°");
+            Console.WriteLine("\n0. ³ª°¡±â");
 
             int select = InputManager.ReadInt(0, _inventory.EquippableItems.Count);
             if (select == 0) break;
-                
+
             _inventory.SelectItem(select - 1);
         }
     }
@@ -65,11 +65,11 @@ public class InventoryManager
         {
             Console.Clear();
             _inventory.DisplayInventory(false, false);
-            Console.WriteLine("\n0. ë‚˜ê°€ê¸°");
+            Console.WriteLine("\n0. ³ª°¡±â");
 
             int select = InputManager.ReadInt(0, _inventory.ConsumableItems.Count);
             if (select == 0) break;
-                
+
             _inventory.SellOrRemoveItem(select - 1, false);
         }
     }

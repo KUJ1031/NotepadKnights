@@ -64,7 +64,6 @@ namespace NotepadKnights
             { 
 
                 EnemyHp -= PlayerAttack;
-
             }
             return EnemyHp;
         }

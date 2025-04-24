@@ -7,17 +7,17 @@ public class StoreManager
     private void DisplayPurchaseOptions()
     {
         Console.Clear();
-        Console.WriteLine($"[ë³´ìœ  ê³¨ë“œ] {Program.playerStatus.Gold} G");
+        Console.WriteLine($"[º¸À¯ °ñµå] {Program.playerStatus.Gold} G");
         _store.DisplayStore();
-        Console.WriteLine("\n0. ë‚˜ê°€ê¸°");
+        Console.WriteLine("\n0. ³ª°¡±â");
     }
-    
+
     private void DisplaySellOptions(bool equipMode)
     {
         Console.Clear();
-        Console.WriteLine($"[ë³´ìœ  ê³¨ë“œ] {Program.playerStatus.Gold} G");
+        Console.WriteLine($"[º¸À¯ °ñµå] {Program.playerStatus.Gold} G");
         _inventory.DisplayInventory(equipMode, true);
-        Console.WriteLine("\n0. ë‚˜ê°€ê¸°");
+        Console.WriteLine("\n0. ³ª°¡±â");
     }
 
     public void Run()
@@ -25,10 +25,10 @@ public class StoreManager
         while (true)
         {
             Console.Clear();
-            Console.WriteLine($"[ë³´ìœ  ê³¨ë“œ] {Program.playerStatus.Gold} G");
+            Console.WriteLine($"[º¸À¯ °ñµå] {Program.playerStatus.Gold} G");
             _store.DisplayStore();
-            Console.WriteLine("\n0. ë‚˜ê°€ê¸°\n1. ì•„ì´í…œ êµ¬ë§¤\n2. ë¬´ê¸° / ë°©ì–´êµ¬ íŒë§¤\n3. ì•„ì´í…œ íŒë§¤");
-            
+            Console.WriteLine("\n0. ³ª°¡±â\n1. ¾ÆÀÌÅÛ ±¸¸Å\n2. ¹«±â / ¹æ¾î±¸ ÆÇ¸Å\n3. ¾ÆÀÌÅÛ ÆÇ¸Å");
+
             int input = InputManager.ReadInt(0, 3);
             switch (input)
             {
@@ -46,7 +46,7 @@ public class StoreManager
             }
         }
     }
-    
+
     private void Purchase()
     {
         DisplayPurchaseOptions();
@@ -57,7 +57,7 @@ public class StoreManager
 
             if (_store.NumberOfItems[_store.Items[select - 1]] == 0)
             {
-                Console.WriteLine("ì¬ê³ ê°€ ì—†ìŠµë‹ˆë‹¤.");
+                Console.WriteLine("Àç°í°¡ ¾ø½À´Ï´Ù.");
                 continue;
             }
 
@@ -65,14 +65,14 @@ public class StoreManager
 
             if (Program.playerStatus.Gold < selectedItem.Price)
             {
-                Console.WriteLine("Goldê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
+                Console.WriteLine("Gold°¡ ºÎÁ·ÇÕ´Ï´Ù.");
                 continue;
             }
-            
+
             _inventory.AddItem(selectedItem);
             _store.SellItem(select - 1);
             DisplayPurchaseOptions();
-            Console.WriteLine("êµ¬ë§¤ë¥¼ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤!");
+            Console.WriteLine("±¸¸Å¸¦ ¿Ï·áÇß½À´Ï´Ù!");
         }
     }
 
@@ -81,7 +81,7 @@ public class StoreManager
         DisplaySellOptions(equipMode);
         var itemList = equipMode ? _inventory.EquippableItems : _inventory.ConsumableItems;
         //var itemDict = equipMode ? _inventory.EquippableItemCounts : _inventory.ConsumableItemCounts;
-            
+
         while (true)
         {
             int select = InputManager.ReadInt(0, itemList.Count);
@@ -91,7 +91,7 @@ public class StoreManager
             Item item = _inventory.SellOrRemoveItem(select - 1, equipMode);
             _store.PurchaseItem(item.Name);
             DisplaySellOptions(equipMode);
-            Console.WriteLine("íŒë§¤ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+            Console.WriteLine("ÆÇ¸Å°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
         }
     }
 }
