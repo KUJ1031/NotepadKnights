@@ -6,9 +6,6 @@
        // public static Player player;
         public static PlayerStatus playerStatus;
         //public static MonsterFactory monsterFactory;
-        public static BattleManager battleManager;
-
-
         public static BattleManager battleManager = new BattleManager();
         public static Player player = new Player();
         public static MainMenuModule mainMenu = new MainMenuModule(player);
@@ -17,13 +14,12 @@
 
         public static InventoryManager InventoryManager = new InventoryManager();
         public static StoreManager StoreManager = new StoreManager();
+        public static MonsterFactory monsterFactory = new MonsterFactory();
         
         static void Main(string[] args)
         {
                 player = new Player();
                 playerStatus = new PlayerStatus();
-                playerUI = new PlayerUI();
-                battleManager = new BattleManager();
 
                 quest = new QuestUI(playerStatus);
                 mainMenu.Intro();
