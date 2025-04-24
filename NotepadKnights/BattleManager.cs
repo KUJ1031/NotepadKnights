@@ -17,7 +17,7 @@ namespace NotepadKnights
     internal class BattleManager
     {
         AttackAndDefense atkAndDef = new AttackAndDefense();
-        // 플레이어 공격턴
+        // 플레이어 차례
         public void ExecutePlayerPhase()
         {
             // 스킬 공격력을 가져온 뒤

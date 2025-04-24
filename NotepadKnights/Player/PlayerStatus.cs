@@ -34,7 +34,7 @@ namespace NotepadKnights
             MaxHp = 100;
             Mp = 100;
             Attack = 10;
-            Defense = 10;
+            Defense = 5;
         }     
         // PlayerStatus의 정보를 한꺼번에 넘겨주는 메서드
         public (string Name, string Job, int Level, int Hp, int MaxHp, int Mp, int Exp, int MaxExp, int Gold, float Attack, int Defense) GetPlayerInfo()
