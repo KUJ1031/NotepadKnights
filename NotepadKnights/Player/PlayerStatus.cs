@@ -86,9 +86,5 @@ namespace NotepadKnights
         {
             KilledMonsterCount = killedMonsterCount;
         }
-        //public int GetAttack()
-        //{
-        //    return Attack; 
-        //}
     }
 }

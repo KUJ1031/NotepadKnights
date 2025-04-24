@@ -55,7 +55,6 @@ namespace NotepadKnights
                     }
                     else
                     {
-
                         Console.WriteLine("0. 취소\n");
                         Console.Write("대상을 선택해주세요.\n");
                         Console.WriteLine(Program.player.msg + "\n");
