@@ -33,6 +33,11 @@ namespace NotepadKnights
             CheckVictory();
         }
 
+        public void IntoBattle()
+        {
+
+        }
+
         public void ExecuteEnemyPhase()
         {
             foreach (Monster monster in Program.monsterFactory.createMonsters)
