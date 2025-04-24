@@ -8,23 +8,23 @@ namespace NotepadKnights
 {
     public class PlayerStatus
     {
-        public string Name { get; private set; }
-        public string Job { get; private set; }
-        public int Level { get; private set; }
+        public string Name { get; set; }
+        public string Job { get; set; }
+        public int Level { get; set; }
         public int Hp { get; set; }
-        public int MaxHp { get; private set; }
-        public int Mp { get; private set; }
-        public int Exp { get; private set; } // 현재 경험치
-        public int MaxExp { get; private set; } // 최대 경험치
-        public int Gold { get; private set; }
-        public float Attack { get; private set; } // 공격력
-        public int Defense { get; private set; } // 방어력
-        public bool IsDie { get; private set; }
-        public Monster Target = new Monster();// 현재 공격중인 적
-        public bool IsAttack { get; private set; } // 공격할지 선택
-        public bool IsSelectMonster { get; private set; } // 공격할 몬스터를 골랐는지
-        public int KilledMonsterCount { get; private set; } // 죽인 몬스터 수
+        public int MaxHp { get; set; }
+        public int Mp { get; set; }
+        public int Exp { get; set; } // 현재 경험치
+        public int MaxExp { get; set; } // 최대 경험치
+        public int Gold { get; set; }
+        public float Attack { get; set; } // 공격력
+        public int Defense { get; set; } // 방어력
+        public bool IsDie { get; set; }
 
+        public Monster Target = new Monster();// 현재 공격중인 적
+        public bool IsAttack { get; set; } // 공격할지 선택
+        public bool IsSelectMonster { get; set; } // 공격할 몬스터를 골랐는지
+        public int KilledMonsterCount { get; set; } // 죽인 몬스터 수
         public void InitializePlayer()
         {
             Name = "Chad";
@@ -35,6 +35,11 @@ namespace NotepadKnights
             Mp = 100;
             Attack = 10;
             Defense = 5;
+        }     
+        // PlayerStatus의 정보를 한꺼번에 넘겨주는 메서드
+        public (string Name, string Job, int Level, int Hp, int MaxHp, int Mp, int Exp, int MaxExp, int Gold, float Attack, int Defense) GetPlayerInfo()
+        {
+            return (Name, Job, Level, Hp, MaxHp, Mp, Exp, MaxExp, Gold, Attack, Defense);
         }
         // 혹시 몰라서 넣음 , 이름 변경
         public void SetName(string name)
@@ -45,6 +50,11 @@ namespace NotepadKnights
         public void SetJob(string job)
         {
             Job = job;
+        }
+        // 체력 변경
+        public void SetHp(int hp)
+        {
+            Hp = hp;
         }
         // 레벨 변경
         public void SetLevel(int level)
