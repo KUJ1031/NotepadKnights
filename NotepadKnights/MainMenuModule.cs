@@ -24,7 +24,7 @@ namespace NotepadKnights
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write(">>");
                 Console.ResetColor();
-                string name = Console.ReadLine() ?? "없음";
+                string name = Console.ReadLine();
 
 
                 Console.WriteLine("이름: " + name);

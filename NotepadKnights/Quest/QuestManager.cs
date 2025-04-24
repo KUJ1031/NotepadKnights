@@ -17,8 +17,8 @@ namespace NotepadKnights
         {
             // 모든 퀘스트를 가진 리스트 초기화
             allQuestList.Add(new Quest1());
-            //allQuestList.Add(new Quest2()); 
-            //allQuestList.Add(new Quest3());
+            allQuestList.Add(new Quest2()); 
+            allQuestList.Add(new Quest3());
             //allQuestList.Add(new Quest4());
             //allQuestList.Add(new Quest5());
         }
@@ -31,7 +31,10 @@ namespace NotepadKnights
                 foreach (var quest in allQuestList)
                 {
                     //플레이어 레벨이 퀘스트 레벨보다 높아지고, 수주 퀘스트 리스트에 없고, 클리어하지 않고, 진행중이 아닌퀘스트 추가
-                    if (quest.QuestLevel <= characterLevel && !ableQuestList.Any(q => q.QuestName == quest.QuestName && quest.IsCompleted == false && quest.IsActive == false))
+                    if (quest.QuestLevel <= characterLevel 
+                        && !ableQuestList.Any(q => q.QuestName == quest.QuestName) 
+                        && quest.IsCompleted == false 
+                        && quest.IsActive == false)
                     {
                         ableQuestList.Add(quest);
                     }
@@ -44,32 +47,39 @@ namespace NotepadKnights
         public void CompleteQuest(int k)
         {
             //퀘스트의 completed = true로 변경
-            ableQuestList[k].CompleteQuest();
-            Console.WriteLine($"퀘스트 '{ableQuestList[k].QuestName}'이(가) 완료되었습니다!");
+            activeQuestList[k].CompleteQuest();
+            Console.WriteLine($"퀘스트 '{activeQuestList[k].QuestName}'이(가) 완료되었습니다!");
             //완료된 퀘스트를 completedQuestList에 추가, 활성화된 퀘스트 리스트에서 삭제
             completedQuestList.Add(activeQuestList[k]);
             activeQuestList[k].ToggleActive();
             activeQuestList.RemoveAt(k);
             SortList();
+            Console.ReadLine();
         }
 
         public void CancelQuest(int k)
         {
             //퀘스트의 completed = false로 변경
-            ableQuestList[k].CompleteQuest();
             Console.WriteLine($"퀘스트 '{ableQuestList[k].QuestName}'이(가) 취소되었습니다!");
             //완료된 퀘스트를 completedQuestList에 추가, 활성화된 퀘스트 리스트에서 삭제
             ableQuestList.Add(activeQuestList[k]);
+            activeQuestList[k].ToggleActive();
             activeQuestList.RemoveAt(k);
             SortList();
+            Console.ReadLine();
+
         }
 
         public void ActiveQuest(int k)
         {
             activeQuestList.Add(ableQuestList[k]);
+            ableQuestList[k].ToggleActive();
             ableQuestList.RemoveAt(k);
+            
             Console.WriteLine($"퀘스트 '{activeQuestList[activeQuestList.Count - 1].QuestName}'이(가) 수주되었습니다!");
             SortList();
+            Console.ReadLine();
+
         }
 
         public void QuestCount()
