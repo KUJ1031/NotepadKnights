@@ -20,6 +20,7 @@ namespace NotepadKnights
         public float Attack { get; set; } // 공격력
         public int Defense { get; set; } // 방어력
         public bool IsDie { get; set; }
+
         public Monster Target = new Monster();// 현재 공격중인 적
         public bool IsAttack { get; set; } // 공격할지 선택
         public bool IsSelectMonster { get; set; } // 공격할 몬스터를 골랐는지
@@ -34,7 +35,7 @@ namespace NotepadKnights
             MaxHp = 100;
             Mp = 100;
             Attack = 10;
-            Defense = 10;
+            Defense = 5;
         }
         // 혹시 몰라서 넣음 , 이름 변경
         public void SetName(string name)
