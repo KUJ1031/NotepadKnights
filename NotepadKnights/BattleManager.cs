@@ -16,7 +16,7 @@ namespace NotepadKnights
     }
     internal class BattleManager
     {
-
+        AttackAndDefense atkAndDef = new AttackAndDefense();
         // 플레이어 차례
         public void ExecutePlayerPhase()
         {
@@ -42,13 +42,18 @@ namespace NotepadKnights
             {
                 if (monster.CurrentHp <= 0) { continue; }
                 int monsterAtk = monster.DealDamage();
+                int playerHpAfterDamaged = atkAndDef.PlayerDefense(monsterAtk, Program.playerStatus.Hp, Program.playerStatus.Defense);
+                
                 Console.Clear();
                 Console.WriteLine($"Lv.{monster.Level} {monster.Name} 의 공격!");
-                Console.WriteLine($"{Program.playerStatus.Name} 을(를) 맞췄습니다.   [데미지 : {Program.playerStatus.Defense - monster.Atk}]");
+                Thread.Sleep(1000);
+                Console.WriteLine($"{Program.playerStatus.Name} 을(를) 맞췄습니다.   [데미지 : {monster.Atk - Program.playerStatus.Defense}]");
                 Console.WriteLine();
                 Console.WriteLine($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name}");
-                Console.WriteLine($"HP {Program.playerStatus.Hp} -> {Program.playerStatus.Hp - monster.Atk}");
-                Console.WriteLine();
+                Console.WriteLine($"HP {Program.playerStatus.Hp} -> {playerHpAfterDamaged}");
+
+                // 위의 공격 주고 받는 부분 출력 이후 계산
+                Program.playerStatus.Hp = playerHpAfterDamaged;
                 Console.WriteLine("0. 다음");
 
                 while (true)
@@ -64,6 +69,7 @@ namespace NotepadKnights
                     }
                 }
             }
+            Console.Clear();
             Console.WriteLine("몬스터들의 공격 차례가 끝났습니다.");
             Thread.Sleep(1000);
 
