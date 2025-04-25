@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,8 @@ namespace NotepadKnights
         public int QuestCount { get; protected set; } //퀘스트 카운트
         public int CurrentCount { get; protected set; } //몬스터 카운트
         public bool QuestClearAble { get; protected set; }
+        public int GoldReward { get; protected set; }
+        public int ExpReward { get; protected set; }
 
 
         public void QuestCheck()
@@ -61,8 +64,22 @@ namespace NotepadKnights
             {
                 Console.Write("★");
             }
-            Console.WriteLine($"\n퀘스트 보상: {QuestReward}");
-            if(IsActive)
+
+            if (GoldReward == 0)
+            {
+                Console.WriteLine($"퀘스트 보상: {ExpReward}EXP");
+            }
+            else if (ExpReward == 0)
+            {
+                Console.WriteLine($"퀘스트 보상: {GoldReward}G");
+            }
+            else
+            {
+                Console.WriteLine($"퀘스트 보상: {GoldReward}G, {ExpReward}EXP");
+            }
+
+
+            if (IsActive)
             {
                 Console.WriteLine($"진행도:{CurrentCount} / {QuestCount}");
             }
@@ -70,11 +87,28 @@ namespace NotepadKnights
             {
                 Console.WriteLine($"퀘스트 완료 가능!");
             }
-        }      
+        }
     }
 
 
     //퀘스트를 더 추가할 수 있습니다
+    //QuestName = "전투를 해보자";
+    //QuestLevel = 1;
+    //QuestReward = "100";
+    //QuestTarget = "미니언";
+    //QuestCount = 3;
+    //CurrentCount = 0;
+    //QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
+    //GoldReward = 0;
+    //ExpReward = 100;
+    //QuestClearAble = false; 
+    //IsCompleted = false;
+    //IsActive = false;
+
+
+
+
+
     public class Quest1 : Quest
     {
         public Quest1()
@@ -86,6 +120,8 @@ namespace NotepadKnights
             QuestCount = 3;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
+            GoldReward = 0;
+            ExpReward = 100;
             QuestClearAble = false; 
             IsCompleted = false;
             IsActive = false;

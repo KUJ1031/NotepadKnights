@@ -60,6 +60,27 @@ namespace NotepadKnights
             //완료된 퀘스트를 completedQuestList에 추가, 활성화된 퀘스트 리스트에서 삭제
             completedQuestList.Add(activeQuestList[k]);
             activeQuestList[k].ToggleActive();
+            //보상 로직
+            if (activeQuestList[k].GoldReward == 0)
+            {
+                Console.WriteLine($"퀘스트 보상: {activeQuestList[k].ExpReward}EXP");
+                Program.player.ExpUp(activeQuestList[k].ExpReward);
+
+            }
+            else if (activeQuestList[k].ExpReward == 0)
+            {
+                Console.WriteLine($"퀘스트 보상: {activeQuestList[k].GoldReward}G");
+                Program.player.ExpUp(activeQuestList[k].GoldReward);
+            }
+            else
+            {
+                Console.WriteLine($"퀘스트 보상: {activeQuestList[k].GoldReward}G, {activeQuestList[k].ExpReward}EXP");
+                Program.player.ExpUp(activeQuestList[k].ExpReward);
+                Program.player.AddGold(activeQuestList[k].GoldReward);
+            }
+            Program.player.AddGold(1000);
+            Program.player.ExpUp(1000);
+
             activeQuestList.RemoveAt(k);
             SortList();
             Console.ReadLine();

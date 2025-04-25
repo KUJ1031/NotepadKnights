@@ -42,10 +42,10 @@ namespace NotepadKnights
         // 타겟인 적이 죽었다면
 
         // 경험치 업
-        public void ExpUp()
+        public void ExpUp(int k)
         {
             LevelManager levelManager = new LevelManager();
-            levelManager.AddExp(5);
+            levelManager.AddExp(k);
         }
     }
 }
