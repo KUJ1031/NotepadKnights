@@ -26,16 +26,16 @@ namespace NotepadKnights
 
         // 정적 스킬 목록
         public static readonly Skill skillWarrior01 = new Skill("대검 베기", 15, 10, "대검으로 하나의 적에게 피해를 입힙니다.");
-        public static readonly Skill skillWarrior02 = new Skill("대검 휘두르기", 8, 15, "대검을 크게 휘둘러 랜덤으로 2명의 적을 공격합니다.");
+        public static readonly Skill skillWarrior02 = new Skill("대검 휘두르기", 8, 15, "대검을 크게 휘둘러 2번 연속으로 적을 공격합니다.");
         public static readonly Skill skillWarrior03 = new Skill("바람의 상처", 22, 20, "하나의 적에게 큰 피해를 입힙니다.");
         public static readonly Skill skillWarrior04 = new Skill("갈(喝)", 32, 35, "MP를 크게 소모해 하나의 적에게 엄청난 피해를 입힙니다.");
 
-        
+
         public static readonly Skill skillThief01 = new Skill("간결한 베기", 11, 5, "바람처럼 적을 그어 피해를 입힙니다..");
-        public static readonly Skill skillThief02 = new Skill("수리검 투척", 6, 11, "단도를 두 번 던져 랜덤으로 2명의 적을 공격합니다.");
+        public static readonly Skill skillThief02 = new Skill("수리검 투척", 6, 11, "단도를 두 번 던져 2번 연속으로 공격합니다.");
         public static readonly Skill skillThief03 = new Skill("목 긋기", 26, 25, "상대의 급소를 노려 큰 피해를 입힙니다.");
         public static readonly Skill skillThief04 = new Skill("그림자 습격", 42, 50, "음속의 속도로 돌진하여 하나의 적에게 막대한 피해를 입힙니다.");
-        
+
 
         // 외부에서 접근 가능한 전사 스킬 리스트
         public static readonly List<Skill> WarriorSkills = new List<Skill> { skillWarrior01, skillWarrior02, skillWarrior03, skillWarrior04 };
@@ -95,7 +95,12 @@ namespace NotepadKnights
 
                     if (selectedSkill.SkillName == "대검 휘두르기")
                     {
-                        Console.WriteLine($"[{selectedSkill.SkillName}]의 효과 발동! 공격력 {finalDamage}로 적을 한 번 더 공격합니다.\n"); Thread.Sleep(1000);
+                        Console.WriteLine($"[{selectedSkill.SkillName}]의 효과 발동! 추가 공격을 가합니다.\n"); Thread.Sleep(1000);
+
+                        float bonusDamage = attackAndDefense.Attack(GenerateRandomAttackPower(selectedSkill.SkillPower));
+                        Console.WriteLine($"추가 공격 데미지 : [{bonusDamage}]\n"); Thread.Sleep(1000);
+
+                        finalDamage += bonusDamage;
                     }
 
                     return finalDamage;
@@ -143,7 +148,12 @@ namespace NotepadKnights
 
                     if (selectedSkill.SkillName == "수리검 투척")
                     {
-                        Console.WriteLine($"[{selectedSkill.SkillName}]의 효과 발동! 공격력 {finalDamage}로 적을 한 번 더 공격합니다.\n"); Thread.Sleep(1000);
+                        Console.WriteLine($"[{selectedSkill.SkillName}]의 효과 발동! 추가 공격을 가합니다.\n"); Thread.Sleep(1000);
+
+                        float bonusDamage = attackAndDefense.Attack(GenerateRandomAttackPower(selectedSkill.SkillPower));
+                        Console.WriteLine($"추가 공격 데미지 : [{bonusDamage}]\n"); Thread.Sleep(1000);
+
+                        finalDamage += bonusDamage;
                     }
 
                     return finalDamage;
@@ -173,7 +183,7 @@ namespace NotepadKnights
                     i++;
                 }
             }
-            
+
 
         }
         // 공격력의 범위를 조정하고, 랜덤 범위 내에서 공격력을 설정
