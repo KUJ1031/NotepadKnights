@@ -25,7 +25,6 @@ namespace NotepadKnights
                     Heal();
                     break;
                 case 0:
-                    Program.mainMenu.Village();
                     break;
                 default:
                     Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요."); Console.ReadLine();
@@ -35,7 +34,7 @@ namespace NotepadKnights
 
         public void Heal()
         {
-            
+
             if (Program.playerStatus.Hp == Program.playerStatus.MaxHp)
             {
                 Console.WriteLine("이미 체력이 전부 차있는 상태입니다.");
@@ -46,7 +45,7 @@ namespace NotepadKnights
                 Console.WriteLine("돈 없으면 회복 못 받아요.");
             }
 
-            else 
+            else
             {
                 int healedHp = 50;
                 int beforeHeal = Program.playerStatus.Hp;
@@ -72,14 +71,14 @@ namespace NotepadKnights
             Console.WriteLine("(0) 로비로 나가기");
 
             Console.Write("\n원하시는 행동을 선택해주세요. : ");
-            int action = int.Parse(Console.ReadLine());
+
+            int action = InputManager.ReadInt(0, 1);
             switch (action)
             {
                 case 1:
                     Heal();
                     break;
                 case 0:
-                    Program.mainMenu.Village();
                     break;
                 default:
                     Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요."); Console.ReadLine();
