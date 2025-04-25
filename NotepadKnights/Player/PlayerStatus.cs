@@ -25,6 +25,7 @@ namespace NotepadKnights
         public bool IsAttack { get; set; } // 공격할지 선택
         public bool IsSelectMonster { get; set; } // 공격할 몬스터를 골랐는지
         public int KilledMonsterCount { get; set; } // 죽인 몬스터 수
+        public bool UseSkill { get; set; } // 죽인 몬스터 수
         public void InitializePlayer(string name, string job)
         {
             Name = name;
@@ -39,7 +40,6 @@ namespace NotepadKnights
         // PlayerStatus의 정보를 한꺼번에 넘겨주는 메서드
         public void ShowStatus()
         {
-            Console.Clear();
             Console.WriteLine($"현재 [{Name}]의 스테이터스");
             Console.WriteLine($"--------------------------------------------------");
             Console.WriteLine($"이름 : {Name}");
@@ -51,10 +51,7 @@ namespace NotepadKnights
             Console.WriteLine($"Mp : {Mp}\n");
             Console.WriteLine($"경험치 : {Exp}/{MaxExp}");
             Console.WriteLine($"골드 : {Gold}");
-            Console.WriteLine($"--------------------------------------------------");
-
-            Console.WriteLine("아무 키나 눌러 스테이터스창 종료");
-            Console.ReadLine();
+            Console.WriteLine($"--------------------------------------------------\n");
         }
     }
 }
