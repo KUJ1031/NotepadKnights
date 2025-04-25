@@ -16,9 +16,11 @@ namespace NotepadKnights
         public int Mp { get; set; }
         public int Exp { get; set; } // 현재 경험치
         public int MaxExp { get; set; } // 최대 경험치
-        public int Gold { get; set; }
+        public int Gold { get; set; } = 100000;
         public float Attack { get; set; } // 공격력
         public int Defense { get; set; } // 방어력
+        public int ExtraAttack { get; set; } = 0;
+        public int ExtraDefense { get; set; } = 0;
         public bool IsDie { get; set; }
 
         public Monster Target = new Monster();// 현재 공격중인 적
@@ -44,6 +46,7 @@ namespace NotepadKnights
             Console.Clear();
             Console.WriteLine("확인하고 싶은 정보를 선택해주세요.");
             Console.WriteLine("1.현재 스테이터스 2. 스킬 정보");
+            
             int select = InputManager.ReadInt(1, 2);
             if (select == 1)
             {
@@ -53,8 +56,8 @@ namespace NotepadKnights
                 Console.WriteLine($"직업 : {Job}");
                 Console.WriteLine($"레벨 : {Level}\n");
                 Console.WriteLine($"체력 : {Hp}/{MaxHp}");
-                Console.WriteLine($"공격력 : {Attack}");
-                Console.WriteLine($"방어력 : {Defense}");
+                Console.WriteLine($"공격력 : {Attack} (+{ExtraAttack})");
+                Console.WriteLine($"방어력 : {Defense} (+{ExtraDefense})");
                 Console.WriteLine($"Mp : {Mp}\n");
                 Console.WriteLine($"경험치 : {Exp}/{MaxExp}");
                 Console.WriteLine($"골드 : {Gold}");

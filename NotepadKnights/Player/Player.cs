@@ -47,5 +47,25 @@ namespace NotepadKnights
             LevelManager levelManager = new LevelManager();
             levelManager.AddExp(k);
         }
+
+        public void Update()
+        {
+            Program.playerStatus.ExtraAttack = 0;
+            Program.playerStatus.ExtraDefense = 0;
+            foreach (var item in Inventory.EquippableItems)
+            {
+                if (!item.IsSelected) continue;
+
+                if (item.Type == ItemType.Weapon)
+                {
+                    Program.playerStatus.ExtraAttack = item.Point;
+                }
+
+                if (item.Type == ItemType.Armor)
+                {
+                    Program.playerStatus.ExtraDefense = item.Point;
+                }
+            }
+        }
     }
 }
