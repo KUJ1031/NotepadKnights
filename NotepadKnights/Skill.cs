@@ -31,7 +31,7 @@ namespace NotepadKnights
         public static readonly Skill skillWarrior04 = new Skill("갈(喝)", 32, 35, "MP를 크게 소모해 하나의 적에게 엄청난 피해를 입힙니다.");
 
 
-        public static readonly Skill skillThief01 = new Skill("간결한 베기", 11, 5, "바람처럼 적을 그어 피해를 입힙니다..");
+        public static readonly Skill skillThief01 = new Skill("간결한 베기", 11, 5, "바람처럼 적을 그어 피해를 입힙니다.");
         public static readonly Skill skillThief02 = new Skill("수리검 투척", 6, 11, "단도를 두 번 던져 2번 연속으로 공격합니다.");
         public static readonly Skill skillThief03 = new Skill("목 긋기", 26, 25, "상대의 급소를 노려 큰 피해를 입힙니다.");
         public static readonly Skill skillThief04 = new Skill("그림자 습격", 42, 50, "음속의 속도로 돌진하여 하나의 적에게 막대한 피해를 입힙니다.");
@@ -164,12 +164,12 @@ namespace NotepadKnights
         public static void SkillDescription()
         {
             int i = 1;
-
+            Console.WriteLine($"[{Program.playerStatus.Job} 스킬 정보]");
             if (Program.playerStatus.Job == "전사")
             {
                 foreach (Skill skill in Skill.WarriorSkills)
                 {
-                    Console.WriteLine($"({i}) {skill.SkillName} (Power: {skill.SkillPower}, MP: {skill.SkillMP})\n");
+                    Console.WriteLine($"({i}) {skill.SkillName} (Power: {skill.SkillPower}, MP: {skill.SkillMP})");
                     Console.WriteLine($"설명: {skill.Description}\n");
                     i++;
                 }
@@ -178,7 +178,7 @@ namespace NotepadKnights
             {
                 foreach (Skill skill in Skill.ThiefSkills)
                 {
-                    Console.WriteLine($"({i}) {skill.SkillName} (Power: {skill.SkillPower}, MP: {skill.SkillMP})\n");
+                    Console.WriteLine($"({i}) {skill.SkillName} (Power: {skill.SkillPower}, MP: {skill.SkillMP})");
                     Console.WriteLine($"설명: {skill.Description}\n");
                     i++;
                 }
