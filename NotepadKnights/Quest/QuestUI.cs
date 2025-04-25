@@ -56,10 +56,11 @@ namespace NotepadKnights
         public void ShowActiveQuest()
         {
             //현재 수주중인 퀘스트만 출력
-            Console.Clear();
 
             while(true)
             {
+                Console.Clear();
+
                 Console.WriteLine("진행중인 퀘스트 목록:");
                 if (questManager.activeQuestList.Count == 0)
                 {
@@ -86,9 +87,14 @@ namespace NotepadKnights
                         int answer2 = InputManager.ReadInt(0, 2);
                         if (answer2 == 1)
                         {
-                            if (true)//퀘스트 완료 로직으로 완료 여부 체크
+                            if (questManager.activeQuestList[answer-1].QuestClearAble)//퀘스트 완료 로직으로 완료 여부 체크
                             {
                                 questManager.CompleteQuest(answer - 1);
+                            }
+                            else
+                            {
+                                Console.WriteLine("퀘스트를 완료할 수 없습니다.");
+                                Console.ReadLine();
                             }
                             break;
                         }
