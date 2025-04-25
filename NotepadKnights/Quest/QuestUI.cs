@@ -28,7 +28,6 @@ namespace NotepadKnights
                 Console.WriteLine("3. 완료한 퀘스트");
                 Console.WriteLine("\n\n0. 나가기\n");
 
-
                 int answer = InputManager.ReadInt(0, 3);
 
                 if (answer == 1)
@@ -47,16 +46,15 @@ namespace NotepadKnights
                     break;
             }
         }
+
         public void Renew()
         {
             questManager.QuestRenew(playerStatus.Level);
         }
 
-
         public void ShowActiveQuest()
         {
             //현재 수주중인 퀘스트만 출력
-
             while(true)
             {
                 Console.Clear();
@@ -109,8 +107,6 @@ namespace NotepadKnights
                 }
             }
         }
-              
-
 
         public void ShowAbleQuest()
         {
@@ -165,7 +161,6 @@ namespace NotepadKnights
                 }
             }
         }
-
 
         public void ShowCompletedQuest()
         {

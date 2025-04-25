@@ -102,25 +102,6 @@ namespace NotepadKnights
         }
     }
 
-
-    //퀘스트를 더 추가할 수 있습니다
-    //QuestName = "전투를 해보자";
-    //QuestLevel = 1;
-    //QuestReward = "100";
-    //QuestTarget = "미니언";
-    //QuestCount = 3;
-    //CurrentCount = 0;
-    //QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
-    //GoldReward = 0;
-    //ExpReward = 100;
-    //QuestClearAble = false; 
-    //IsCompleted = false;
-    //IsActive = false;
-
-
-
-
-
     public class Quest1 : Quest
     {
         public Quest1()
@@ -156,6 +137,7 @@ namespace NotepadKnights
             IsActive = false;
         }
     }
+
     public class Quest3 : Quest
     {
         public Quest3()
@@ -191,6 +173,7 @@ namespace NotepadKnights
             IsActive = false;
         }
     }
+
     public class Quest5 : Quest
     {
         public Quest5()

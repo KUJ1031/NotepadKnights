@@ -22,7 +22,6 @@ namespace NotepadKnights
         private PlayerStatus _playerStatus = Program.playerStatus;
         private BattleRewardManager _battleRewardManager = new BattleRewardManager();
 
-
         public void Run()
         {
             _monsterFactory = new MonsterFactory();
@@ -135,6 +134,8 @@ namespace NotepadKnights
 
                 var monster = _monsterFactory.createMonsters[i];
                 string monsterHpTxt = monster.IsDead ? "Dead" : $"HP {monster.CurrentHp}";
+                if (monster.IsDead) Console.ForegroundColor = ConsoleColor.DarkGray;
+                else Console.ResetColor();
                 Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} {monsterHpTxt}");
             }
         }
@@ -146,7 +147,7 @@ namespace NotepadKnights
             while (!actionSelected)
             {
                 Console.WriteLine("\n\n\n- 플레이어 행동");
-                Console.WriteLine("①공격 ②스킬 ③아이템 ④스테이터스");
+                Console.WriteLine("① 공격  ② 스킬  ③ 아이템  ④ 스테이터스");
 
                 int choice = InputManager.ReadInt(1, 4);
 
@@ -177,10 +178,10 @@ namespace NotepadKnights
                 }
             }
         }
+
         private void DisplayNextSelectAction()
         {
             Console.WriteLine("0. 취소\n");
-            //Console.WriteLine(Program.player.msg + "????????\n");
         }
 
         private void ExecutePlayerPhase(Monster targetMonster)
@@ -189,7 +190,6 @@ namespace NotepadKnights
             Console.WriteLine($"[{Program.playerStatus.Name} 턴]\n");
             float playerDamage;
             playerDamage = _playerStatus.UseSkill ? Skill.SkillUse(Program.playerStatus.Mp) : atkAndDef.Attack(Program.playerStatus.Attack + Program.playerStatus.ExtraAttack);
-            //_playerStatus.Attack = playerDamage; // 여기 심각함
             
             targetMonster.CurrentHp = Math.Max(atkAndDef.EnemyDefense(playerDamage, targetMonster.CurrentHp), 0);
             DisplayAttackResult(playerDamage, Program.player.msg, targetMonster);
@@ -201,7 +201,6 @@ namespace NotepadKnights
 
             if (!atkAndDef.onDodge) Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name}에게 {playerDamage}만큼의 피해!\n"); Thread.Sleep(1000);
 
-            // 이 부분 IsDead로 관리해야 할 것 같은데 실시간 반영이 안 되어서 CurrentHP로 관리하겠습니다.
             if (playerTarget.CurrentHp == 0)
             {
                 OnMonsterKilled?.Invoke(playerTarget.Name);
@@ -218,6 +217,7 @@ namespace NotepadKnights
             Console.WriteLine(msg + "\n");
             Console.Write("0. 다음\n>>");
         }
+
         private void ExecuteEnemyPhase()
         {
             foreach (Monster monster in _monsterFactory.createMonsters)
@@ -230,8 +230,7 @@ namespace NotepadKnights
                 
                 int monsterAtk = monster.DealDamage();
                 int playerHpAfterDamaged = atkAndDef.PlayerDefense(monsterAtk, Program.playerStatus.Hp, Program.playerStatus.Defense + Program.playerStatus.ExtraDefense);
-                
-                // Console.WriteLine($"{Program.playerStatus.Name} 을(를) 맞췄습니다.   [데미지 : {monster.Atk - Program.playerStatus.Defense}]");
+
                 Console.WriteLine();
                 Console.WriteLine($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name}");
                 Console.WriteLine($"HP {Program.playerStatus.Hp} -> {playerHpAfterDamaged}");
@@ -245,6 +244,7 @@ namespace NotepadKnights
             Console.WriteLine("\n몬스터들의 공격 차례가 끝났습니다.");
             Thread.Sleep(1000);
         }
+
         private void ShowStatus()
         {
             Program.playerStatus.ShowStatus();

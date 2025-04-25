@@ -86,6 +86,5 @@ namespace NotepadKnights
             float value = (float)random.NextDouble();
             onDodge = value < dodgeProbability;
         }
-
     }
 }

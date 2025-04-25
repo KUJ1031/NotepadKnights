@@ -69,7 +69,6 @@ namespace NotepadKnights
 
             Console.WriteLine("(1) 체력 회복");
             Console.WriteLine("(0) 로비로 나가기");
-
             Console.Write("\n원하시는 행동을 선택해주세요. : ");
 
             int action = InputManager.ReadInt(0, 1);
@@ -84,8 +83,6 @@ namespace NotepadKnights
                     Console.WriteLine("잘못된 입력입니다. 다시 선택해주세요."); Console.ReadLine();
                     break;
             }
-
-
         }
 
     }

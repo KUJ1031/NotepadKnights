@@ -4,6 +4,7 @@ public class StoreManager
 {
     private Store _store = Program.player.store;
     private Inventory _inventory = Program.player.Inventory;
+
     private void DisplayPurchaseOptions()
     {
         Console.Clear();
@@ -80,7 +81,6 @@ public class StoreManager
     {
         DisplaySellOptions(equipMode);
         var itemList = equipMode ? _inventory.EquippableItems : _inventory.ConsumableItems;
-        //var itemDict = equipMode ? _inventory.EquippableItemCounts : _inventory.ConsumableItemCounts;
 
         while (true)
         {

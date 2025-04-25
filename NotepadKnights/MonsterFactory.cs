@@ -52,7 +52,7 @@ namespace NotepadKnights
         ////////////////// 아래는 난이도에 따라 몬스터를 생성하는 로직입니다. //////////////////
         /*
          * 난이도에 따라 몬스터 생성하는 로직
-         * 추후에 난이도 기능 생성하면 적용할 코드입니다!
+         * 추후에 난이도 기능 생성하면 적용할 코드입니다! (적용완료)
          */
         public void InitializeMonstersOnDifficulty(int difficultyLevel)
         {
