@@ -61,7 +61,8 @@ namespace NotepadKnights
                 Program.player.msg = ("그러나 적이 공격을 회피하였다!\n");
             }
             else
-            {
+            { 
+
                 EnemyHp -= PlayerAttack;
             }
             return EnemyHp;

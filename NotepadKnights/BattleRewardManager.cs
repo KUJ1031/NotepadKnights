@@ -8,20 +8,20 @@ public class BattleRewardManager
     private readonly float _rareWeaponProbability = 0.05f;
 
     private readonly Item _potion =
-        new Item($"{ "íšŒë³µ í¬ì…˜", -10 }\t", ItemType.Potion, 30, $"{ "ì²´ë ¥ì„ +30ë§Œí¼ íšŒë³µì‹œì¼œì£¼ëŠ” í¬ì…˜ì…ë‹ˆë‹¤.", -32 }\t", 1000);
+        new Item($"{"È¸º¹ Æ÷¼Ç",-10}\t", ItemType.Potion, 30, $"{"Ã¼·ÂÀ» +30¸¸Å­ È¸º¹½ÃÄÑÁÖ´Â Æ÷¼ÇÀÔ´Ï´Ù.",-32}\t", 1000);
 
     private readonly Item _normalWeapon =
-        new Item($"{ "ë‹¨ê²€", -10 }\t", ItemType.Weapon, 3, $"{ "ì‘ì€ ë‹¨ê²€ì…ë‹ˆë‹¤.", -32 }\t\t", 300);
+        new Item($"{"´Ü°Ë",-10}\t", ItemType.Weapon, 3, $"{"ÀÛÀº ´Ü°ËÀÔ´Ï´Ù.",-32}\t\t", 300);
 
     private readonly Item _rareWeapon =
-        new Item($"{ "ë¡± ì†Œë“œ", -10 }\t", ItemType.Weapon, 22, $"{ "ì•„ì£¼ ê°•ë ¥í•œ ë¡± ì†Œë“œì…ë‹ˆë‹¤.", -32 }\t\t", 3300);
+        new Item($"{"·Õ ¼Òµå",-10}\t", ItemType.Weapon, 22, $"{"¾ÆÁÖ °­·ÂÇÑ ·Õ ¼ÒµåÀÔ´Ï´Ù.",-32}\t\t", 3300);
     public int RewardGold { get; private set; }
     public int PotionCount { get; private set; }
     public int NormalWeaponCount { get; private set; }
     public int RareWeaponCount { get; private set; }
-    
-    
-    
+
+
+
     public void GetRewards(int monsterKillCount)
     {
         RewardGold = monsterKillCount * 100;
@@ -37,7 +37,7 @@ public class BattleRewardManager
         AddItemMultipleTimes(_normalWeapon, NormalWeaponCount);
         AddItemMultipleTimes(_rareWeapon, RareWeaponCount);
     }
-    
+
     private void AddItemMultipleTimes(Item item, int count)
     {
         for (int i = 0; i < count; i++)
@@ -53,14 +53,15 @@ public class BattleRewardManager
             PotionCount++;
         }
     }
-    
+
     private void TryDropWeapon()
     {
         double probability = rand.NextDouble();
         if (probability < _rareWeaponProbability)
         {
             RareWeaponCount++;
-        } else if (probability < _normalWeaponProbability)
+        }
+        else if (probability < _normalWeaponProbability)
         {
             NormalWeaponCount++;
         }
