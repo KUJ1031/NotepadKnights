@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace NotepadKnights
+﻿namespace NotepadKnights
 {
     internal class BattleManager
     {
@@ -135,8 +124,8 @@ namespace NotepadKnights
                 var monster = _monsterFactory.createMonsters[i];
                 string monsterHpTxt = monster.IsDead ? "Dead" : $"HP {monster.CurrentHp}";
                 if (monster.IsDead) Console.ForegroundColor = ConsoleColor.DarkGray;
-                else Console.ResetColor();
                 Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} {monsterHpTxt}");
+                Console.ResetColor();
             }
         }
 
