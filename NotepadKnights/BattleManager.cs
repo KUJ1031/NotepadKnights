@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Reflection.Emit;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -14,7 +15,7 @@ namespace NotepadKnights
     {
         private string monsterIndexDisplay = "";
         AttackAndDefense atkAndDef = new AttackAndDefense();
-
+        public static event Action<string> OnMonsterKilled;
         private MonsterFactory _monsterFactory;
         private PlayerStatus _playerStatus = Program.playerStatus;
         private BattleRewardManager _battleRewardManager = new BattleRewardManager();
@@ -189,6 +190,7 @@ namespace NotepadKnights
             // 이 부분 IsDead로 관리해야 할 것 같은데 실시간 반영이 안 되어서 CurrentHP로 관리하겠습니다.
             if (playerTarget.CurrentHp == 0)
             {
+                OnMonsterKilled?.Invoke(playerTarget.Name);
                 playerTarget.IsDead = true;
                 playerTarget = null;
                 Console.WriteLine("HP 0 ->Dead\n");
