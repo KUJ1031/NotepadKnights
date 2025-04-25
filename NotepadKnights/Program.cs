@@ -4,7 +4,7 @@
     internal class Program
     {
        // public static Player player;
-        public static PlayerStatus playerStatus;
+        public static PlayerStatus playerStatus = new PlayerStatus();
         //public static MonsterFactory monsterFactory;
         public static BattleManager battleManager = new BattleManager();
         public static Player player = new Player();
@@ -17,9 +17,6 @@
         
         static void Main(string[] args)
         {
-                player = new Player();
-                playerStatus = new PlayerStatus();
-
                 quest = new QuestUI(playerStatus);
                 mainMenu.Intro();
             while (true)
@@ -39,7 +36,7 @@
                         break;
                     case 4:
                         //전투
-                        battleManager.IntoBattle();
+                        battleManager.Run();
                         //battleManager.ShowBattleMenu();
                         break;
                     case 5:
