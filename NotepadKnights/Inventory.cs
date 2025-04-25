@@ -55,6 +55,7 @@ public class Inventory
             }
         }
         EquippableItems[index].IsSelected = !EquippableItems[index].IsSelected;
+        Program.player.Update();
     }
 
     // 판매 또는 아이템 사용
@@ -73,6 +74,7 @@ public class Inventory
             itemList.RemoveAt(index);
         }
 
+        Program.player.Update();
         return item;
     }
 

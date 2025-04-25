@@ -188,8 +188,8 @@ namespace NotepadKnights
             Console.Clear();
             Console.WriteLine($"[{Program.playerStatus.Name} 턴]\n");
             float playerDamage;
-            playerDamage = _playerStatus.UseSkill ? Skill.SkillUse(Program.playerStatus.Mp) : atkAndDef.Attack(Program.playerStatus.Attack);
-            _playerStatus.Attack = playerDamage;
+            playerDamage = _playerStatus.UseSkill ? Skill.SkillUse(Program.playerStatus.Mp) : atkAndDef.Attack(Program.playerStatus.Attack + Program.playerStatus.ExtraAttack);
+            //_playerStatus.Attack = playerDamage; // 여기 심각함
             
             targetMonster.CurrentHp = Math.Max(atkAndDef.EnemyDefense(playerDamage, targetMonster.CurrentHp), 0);
             DisplayAttackResult(playerDamage, Program.player.msg, targetMonster);
@@ -229,7 +229,7 @@ namespace NotepadKnights
                 Thread.Sleep(1000);
                 
                 int monsterAtk = monster.DealDamage();
-                int playerHpAfterDamaged = atkAndDef.PlayerDefense(monsterAtk, Program.playerStatus.Hp, Program.playerStatus.Defense);
+                int playerHpAfterDamaged = atkAndDef.PlayerDefense(monsterAtk, Program.playerStatus.Hp, Program.playerStatus.Defense + Program.playerStatus.ExtraDefense);
                 
                 // Console.WriteLine($"{Program.playerStatus.Name} 을(를) 맞췄습니다.   [데미지 : {monster.Atk - Program.playerStatus.Defense}]");
                 Console.WriteLine();
