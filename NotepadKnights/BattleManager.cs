@@ -166,12 +166,13 @@ namespace NotepadKnights
 
                     case 3:
                         Program.InventoryManager.Run();
-                        actionSelected = true;
+                        DisplayBattleScene();
                         break;
 
                     case 4:
                         // 스테이터스 출력
                         ShowStatus();
+                        DisplayBattleScene();
                         break;
                 }
             }
