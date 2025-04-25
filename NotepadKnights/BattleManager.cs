@@ -135,8 +135,8 @@ namespace NotepadKnights
                 var monster = _monsterFactory.createMonsters[i];
                 string monsterHpTxt = monster.IsDead ? "Dead" : $"HP {monster.CurrentHp}";
                 if (monster.IsDead) Console.ForegroundColor = ConsoleColor.DarkGray;
-                else Console.ResetColor();
                 Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} {monsterHpTxt}");
+                Console.ResetColor();
             }
         }
 
