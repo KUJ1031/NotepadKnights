@@ -70,7 +70,9 @@ public class InventoryManager
             int select = InputManager.ReadInt(0, _inventory.ConsumableItems.Count);
             if (select == 0) break;
                 
-            _inventory.SellOrRemoveItem(select - 1, false);
+            Item item = _inventory.SellOrRemoveItem(select - 1, false);
+            // 회복 포션 적용 로직
+            Program.playerStatus.Hp = Math.Min(Program.playerStatus.Hp + item.Point, 100);
         }
     }
 }
