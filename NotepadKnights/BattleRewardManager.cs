@@ -36,6 +36,21 @@ public class BattleRewardManager
         AddItemMultipleTimes(_potion, PotionCount);
         AddItemMultipleTimes(_normalWeapon, NormalWeaponCount);
         AddItemMultipleTimes(_rareWeapon, RareWeaponCount);
+        DisplayRewards();
+    }
+
+    private void DisplayRewards()
+    {
+        Console.Clear();
+        Console.WriteLine("[∫∏ªÛ ∏Ò∑œ]\n");
+        if (PotionCount > 0)
+            Console.WriteLine($"{_potion.Name} {PotionCount}∞≥ »πµÊ!");
+        if (NormalWeaponCount > 0)
+            Console.WriteLine($"{_normalWeapon.Name} {NormalWeaponCount}∞≥ »πµÊ!");
+        if (RareWeaponCount > 0)
+            Console.WriteLine($"{_rareWeapon.Name} {RareWeaponCount}∞≥ »πµÊ!");
+
+        InputManager.ReadInt(0, 0, "0. »Æ¿Œ");
     }
 
     private void AddItemMultipleTimes(Item item, int count)
