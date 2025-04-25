@@ -78,7 +78,7 @@ namespace NotepadKnights
                         Console.WriteLine("바람이 울부짖고 있습니다...\n"); Thread.Sleep(1500);
                     }
 
-                    Mp -= selectedSkill.SkillMP;
+                    Program.playerStatus.Mp -= selectedSkill.SkillMP;
 
                     Console.WriteLine($"MP를 {selectedSkill.SkillMP}만큼 소모하여 [{selectedSkill.SkillName}] 스킬을 사용하였습니다.\n"); Thread.Sleep(1000);
 
@@ -126,7 +126,7 @@ namespace NotepadKnights
                         Console.WriteLine("공기의 흐름이 달라지고 있습니다...\n"); Thread.Sleep(1500);
                     }
 
-                    Mp -= selectedSkill.SkillMP;
+                    Program.playerStatus.Mp -= selectedSkill.SkillMP;
 
                     Console.WriteLine($"MP를 {selectedSkill.SkillMP}만큼 소모하여 [{selectedSkill.SkillName}] 스킬을 사용하였습니다.\n"); Thread.Sleep(1000);
 

@@ -83,7 +83,7 @@ namespace NotepadKnights
                     {
                         //퀘스트 정보 출력
                         questManager.activeQuestList[answer - 1].ShowQuest();
-                        Console.WriteLine("\n1. 퀘스트 완료\n2. 퀘스트 포기\n\n0. 돌아가기");
+                        Console.WriteLine("\n1. 퀘스트 완료\n2. 퀘스트 포기\n\n0. 나가기");
                         int answer2 = InputManager.ReadInt(0, 2);
                         if (answer2 == 1)
                         {
@@ -108,8 +108,7 @@ namespace NotepadKnights
                 }
             }
         }
-
-        
+              
 
 
         public void ShowAbleQuest()
@@ -198,15 +197,5 @@ namespace NotepadKnights
                 ShowCompletedQuest();
             }
         }
-
-
-        public void ShowQuestDetail(int i)//퀘스트의 번호를 인자로 주면 그 퀘스트 정보를 출력
-        {
-            Console.WriteLine($"퀘스트 이름: {questManager.allQuestList[i].QuestName}");
-            Console.WriteLine($"퀘스트 설명: {questManager.allQuestList[i].QuestDescription}");
-            Console.WriteLine($"퀘스트 레벨: {questManager.allQuestList[i].QuestLevel}");
-            Console.WriteLine($"퀘스트 보상: {questManager.allQuestList[i].QuestReward}");
-        }
-
     }
 }

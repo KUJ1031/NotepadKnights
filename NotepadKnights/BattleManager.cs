@@ -21,7 +21,7 @@ namespace NotepadKnights
         // 플레이어 차례
         public void ExecutePlayerPhase()
         {
-            // 스킬 공격력을 가져온 뒤
+            // 스킬을 가져온 뒤
             float playerDamager = Skill.SkillUse(Program.playerStatus.Mp);
 
             // 변경된 값을 적용하고,
@@ -45,6 +45,10 @@ namespace NotepadKnights
 
                 // 몬스터 피격
                 playerTarget.CurrentHp = atkAndDef.EnemyDefense(playerDamager, playerTarget.CurrentHp);
+                if (playerTarget.CurrentHp <= 0)
+                {
+                    playerTarget.IsDead = true;
+                }
 
                 // 공격 이후 UI
                 DisplayAttackResult(playerDamager, Program.player.msg);
@@ -54,23 +58,18 @@ namespace NotepadKnights
             CheckVictory();
         }
 
-        public void IntoBattle()
-        {
-
-        }
-
         public void ExecuteEnemyPhase()
         {
             foreach (Monster monster in Program.monsterFactory.createMonsters)
             {
+                Console.Clear();
+                Console.WriteLine($"[적의 턴]\n");
                 if (monster.CurrentHp <= 0 || Program.playerStatus.Hp == 0) { continue; }
+                Console.WriteLine($"Lv.{monster.Level} {monster.Name}의 공격!"); Thread.Sleep(1000);
                 int monsterAtk = monster.DealDamage();
                 int playerHpAfterDamaged = atkAndDef.PlayerDefense(monsterAtk, Program.playerStatus.Hp, Program.playerStatus.Defense);
-
-                Console.Clear();
-                Console.WriteLine($"Lv.{monster.Level} {monster.Name} 의 공격!");
-                Thread.Sleep(1000);
-                Console.WriteLine($"{Program.playerStatus.Name} 을(를) 맞췄습니다.   [데미지 : {monster.Atk - Program.playerStatus.Defense}]");
+                
+               // Console.WriteLine($"{Program.playerStatus.Name} 을(를) 맞췄습니다.   [데미지 : {monster.Atk - Program.playerStatus.Defense}]");
                 Console.WriteLine();
                 Console.WriteLine($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name}");
                 Console.WriteLine($"HP {Program.playerStatus.Hp} -> {playerHpAfterDamaged}");
@@ -111,7 +110,7 @@ namespace NotepadKnights
                 Console.WriteLine("Victory\n");
                 Console.WriteLine($"던전에서 몬스터 {Program.playerStatus.KilledMonsterCount}마리를 잡았습니다.\n");
                 Console.WriteLine($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name}");
-                Console.WriteLine($"HP 100 -> {Program.playerStatus.Hp}\n");
+                Console.WriteLine($"현재 체력 : {Program.playerStatus.Hp}\n");
                 Console.WriteLine("0. 다음\n");
 
                 // 보상받기
@@ -187,6 +186,7 @@ namespace NotepadKnights
         public void ShowBattleMenu()
         {
             Console.Clear();
+            
 
             if (Program.playerStatus.Hp > 0)
             {
@@ -200,7 +200,8 @@ namespace NotepadKnights
                 // 적들이 죽지 않았다면 전투하기
                 else
                 {
-                    Console.WriteLine("Battle!!\n");
+                    Console.WriteLine("<전투!!>\n");
+                    Console.WriteLine($"[{Program.playerStatus.Name} 턴]\n");
 
                     for (int i = 0; i < Program.monsterFactory.createMonsters.Count; i++)
                     {
@@ -212,7 +213,7 @@ namespace NotepadKnights
                     }
 
                     Console.WriteLine("\n\n[내정보]");
-                    Console.Write($"Lv.{Program.playerStatus.Level} {Program.playerStatus.Name} ({Program.playerStatus.Job})\n");
+                    Console.Write($"Lv.{Program.playerStatus.Level}\n이름 : {Program.playerStatus.Name}\n직업 :{Program.playerStatus.Job}\nMp : {Program.playerStatus.Mp}\n");
                     Console.WriteLine($"HP {Program.playerStatus.Hp}/{Program.playerStatus.MaxHp}\n");
 
                     // 아직 공격하지 않았다면
@@ -313,15 +314,13 @@ namespace NotepadKnights
         // 공격의 결과를 보여주자
         public void DisplayAttackResult(float playerDamage, string msg)
         {
-            Console.Clear();
-
-            Console.WriteLine("Battle!!\n");
-            Console.WriteLine($"{Program.playerStatus.Name} 의 공격!");
 
             Monster playerTarget = Program.playerStatus.Target;
 
-            Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name} 을(를) 맞췄습니다. [데미지 : {playerDamage}]\n");
-            Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name}");
+            if (atkAndDef.onDodge == false)
+            {
+                Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name}에게 {playerDamage}만큼의 데미지!");
+            }                
 
             //  적이 죽었으면
             if (playerTarget.IsDead)
@@ -333,7 +332,7 @@ namespace NotepadKnights
             }
             else
             {
-                Console.WriteLine($"HP {playerTarget.CurrentHp}\n");
+                Console.WriteLine($"현재 [{playerTarget.Name}]의 HP : {playerTarget.CurrentHp}\n");
             }
 
             Console.WriteLine(msg + "\n");
