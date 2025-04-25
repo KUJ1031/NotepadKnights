@@ -123,17 +123,44 @@ namespace NotepadKnights
                 string monsterHpTxt = monster.IsDead ? "Dead" : $"HP {monster.CurrentHp}";
                 Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} {monsterHpTxt}");
             }
-
-            Console.WriteLine("\n\n[내정보]");
-            Console.Write($"Lv.{Program.playerStatus.Level}\n이름 : {Program.playerStatus.Name}\n직업 :{Program.playerStatus.Job}\nMp : {Program.playerStatus.Mp}\n");
-            Console.WriteLine($"HP {Program.playerStatus.Hp}/{Program.playerStatus.MaxHp}\n");
         }
 
         private void DisplaySelectAction()
         {
-            Console.WriteLine("1. 공격\n");
-            InputManager.ReadInt(1, 1);
-            _playerStatus.IsAttack = true;
+            bool actionSelected = false;
+
+            while (!actionSelected)
+            {
+                Console.WriteLine("\n\n\n- 플레이어 행동");
+                Console.WriteLine("①공격 ②스킬 ③아이템 ④스테이터스");
+
+                int choice = InputManager.ReadInt(1, 4);
+
+                switch (choice)
+                {
+                    case 1:
+                        _playerStatus.IsAttack = true;
+                        _playerStatus.UseSkill = false;
+                        actionSelected = true; // 공격 선택 시 루프 탈출
+                        break;
+
+                    case 2:
+                        _playerStatus.IsAttack = true;
+                        _playerStatus.UseSkill = true;
+                        actionSelected = true;
+                        break;
+
+                    case 3:
+                        Program.InventoryManager.Run();
+                        actionSelected = true;
+                        break;
+
+                    case 4:
+                        // 스테이터스 출력
+                        ShowStatus();
+                        break;
+                }
+            }
         }
         private void DisplayNextSelectAction()
         {
@@ -143,27 +170,26 @@ namespace NotepadKnights
 
         private void ExecutePlayerPhase(Monster targetMonster)
         {
-            float playerDamage = Skill.SkillUse(Program.playerStatus.Mp);
+            Console.Clear();
+            Console.WriteLine($"[{Program.playerStatus.Name} 턴]\n");
+            float playerDamage;
+            playerDamage = _playerStatus.UseSkill ? Skill.SkillUse(Program.playerStatus.Mp) : atkAndDef.Attack(Program.playerStatus.Attack);
             _playerStatus.Attack = playerDamage;
             
             targetMonster.CurrentHp = Math.Max(atkAndDef.EnemyDefense(playerDamage, targetMonster.CurrentHp), 0);
             DisplayAttackResult(playerDamage, Program.player.msg, targetMonster);
         }
-        
+
         private void DisplayAttackResult(float playerDamage, string msg, Monster targetMonster)
         {
-            Console.Clear();
-            Console.WriteLine("Battle!!\n");
-            Console.WriteLine($"{Program.playerStatus.Name} 의 공격!");
-
             Monster playerTarget = targetMonster;
 
-            Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name} 을(를) 맞췄습니다. [데미지 : {playerDamage}]\n");
-            Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name}");
+            if (!atkAndDef.onDodge) Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name}에게 {playerDamage}만큼의 피해!\n"); Thread.Sleep(1000);
 
             // 이 부분 IsDead로 관리해야 할 것 같은데 실시간 반영이 안 되어서 CurrentHP로 관리하겠습니다.
             if (playerTarget.CurrentHp == 0)
             {
+                playerTarget.IsDead = true;
                 playerTarget = null;
                 Console.WriteLine("HP 0 ->Dead\n");
                 Program.playerStatus.KilledMonsterCount++;
@@ -200,9 +226,12 @@ namespace NotepadKnights
 
                 InputManager.ReadInt(0, 0);
             }
-            Console.Clear();
-            Console.WriteLine("몬스터들의 공격 차례가 끝났습니다.");
+            Console.WriteLine("\n몬스터들의 공격 차례가 끝났습니다.");
             Thread.Sleep(1000);
+        }
+        private void ShowStatus()
+        {
+            Program.playerStatus.ShowStatus();
         }
     }
 }
