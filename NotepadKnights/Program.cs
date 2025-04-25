@@ -22,6 +22,7 @@
                 switch(mainMenu.Village())
                 {
                     case 1:
+                        Console.Clear();
                         playerStatus.ShowStatus();
                         break;
                     case 2:

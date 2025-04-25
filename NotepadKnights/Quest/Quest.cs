@@ -68,15 +68,26 @@ namespace NotepadKnights
 
             if (GoldReward == 0)
             {
-                Console.WriteLine($"퀘스트 보상: {ExpReward}EXP");
+                Console.Write($"퀘스트 보상: ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"{ExpReward}EXP");
+                Console.ResetColor();
             }
             else if (ExpReward == 0)
             {
-                Console.WriteLine($"퀘스트 보상: {GoldReward}G");
+                Console.Write($"퀘스트 보상: ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"{GoldReward}G");
+                Console.ResetColor();
             }
             else
             {
-                Console.WriteLine($"퀘스트 보상: {GoldReward}G, {ExpReward}EXP");
+                Console.Write($"퀘스트 보상: ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write($"{ExpReward}EXP, ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"{GoldReward}G");
+                Console.ResetColor();
             }
 
 
