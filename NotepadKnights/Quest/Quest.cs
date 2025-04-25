@@ -28,6 +28,12 @@ namespace NotepadKnights
                 CurrentCount = QuestCount;
             }
         }
+        
+        public void CountReset()
+        {
+            CurrentCount = 0;
+            QuestClearAble = false;
+        }
 
         public void AddQuestCount()
         {
