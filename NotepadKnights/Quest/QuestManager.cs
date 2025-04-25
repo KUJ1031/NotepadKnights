@@ -72,7 +72,7 @@ namespace NotepadKnights
             {
                 Console.WriteLine($"퀘스트 보상: {activeQuestList[k].GoldReward}G");
                 //보상 연결
-                Program.player.ExpUp(activeQuestList[k].GoldReward);
+                Program.player.AddGold(activeQuestList[k].GoldReward);
             }
             else
             {
@@ -81,8 +81,6 @@ namespace NotepadKnights
                 Program.player.ExpUp(activeQuestList[k].ExpReward);
                 Program.player.AddGold(activeQuestList[k].GoldReward);
             }
-            Program.player.AddGold(1000);
-            Program.player.ExpUp(1000);
 
             activeQuestList.RemoveAt(k);
             SortList();
