@@ -29,7 +29,26 @@ namespace NotepadKnights
 
 
             // 스킬을 사용하여 공격한다
-            ExecuteAttack(playerDamager);
+            // ExecuteAttack(playerDamager);
+
+            Monster playerTarget = Program.playerStatus.Target;
+
+            // 적이 죽었다면
+            if (playerTarget.CurrentHp == 0)
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+            }
+            // 적이 살아있다면
+            else
+            {
+                playerDamager = Program.playerStatus.Attack;
+
+                // 몬스터 피격
+                playerTarget.CurrentHp = atkAndDef.EnemyDefense(playerDamager, playerTarget.CurrentHp);
+
+                // 공격 이후 UI
+                DisplayAttackResult(playerDamager, Program.player.msg);
+            }
 
             // 플레이어 승리 확인
             CheckVictory();
@@ -120,15 +139,16 @@ namespace NotepadKnights
                 Console.WriteLine("0. 다음\n");
                 Console.WriteLine(">>");
 
+                // 죽인 적의 수 0으로 초기화
+                Program.playerStatus.KilledMonsterCount = 0;
                 EndGame();
             }
         }
         // 게임 종료시
         void EndGame()
         {
-            // 죽인 적의 수 0으로 초기화
-            Program.playerStatus.KilledMonsterCount = 0;
 
+            //  Program.playerStatus.IsAttack = false;
             // 다시 마을로 돌아간다.
             string input = Console.ReadLine();
             while (true)
@@ -199,7 +219,6 @@ namespace NotepadKnights
                     if (!Program.playerStatus.IsAttack)
                     {
                         Console.WriteLine("1. 공격\n");
-                        Console.Write("원하시는 행동을 입력해주세요.\n");
                     }
                     else
                     {
@@ -212,7 +231,7 @@ namespace NotepadKnights
             else
             {
                 // 패배 
-               CheckDefeat();
+                CheckDefeat();
             }
             //  키입력에 따른 화면 변화
             ScreenChanges();
@@ -221,52 +240,49 @@ namespace NotepadKnights
 
         public void ScreenChanges()
         {
-            // 사용자 키 입력 
-            Console.Write(">>");
-            string input = Console.ReadLine();
+            bool validInput = false;
 
-            // 공격 중이 아닐때
-            if (!Program.playerStatus.IsAttack)
+            while (!validInput)
             {
-                if (input == "1")
-                {
-                    // 공격 모드 진입
-                    Console.Clear();
-                    Program.playerStatus.IsAttack = true;
-                     ShowBattleMenu();
-
-                }
-                else
-                {
-                    Console.WriteLine("잘못된 입력입니다.");
-                    ScreenChanges();
-                }
-            }
-            else // 공격 중인 상태
-            {
+                Console.Write(">>");
                 int monsterCount = Program.monsterFactory.createMonsters.Count;
-                int choice = InputManager.ReadInt(0, monsterCount); // 0~monsterCount 사이의 입력만 허용
+                int choice = InputManager.ReadInt(0, monsterCount); // 입력은 여기서 관리
 
-                if (choice == 0)
+                if (!Program.playerStatus.IsAttack)
                 {
-                    Console.Clear();
-                    Program.playerStatus.IsAttack = false;
-                    ShowBattleMenu();
-                }
-                else
-                {
-                    Console.Clear();
-                    Program.playerStatus.Target = Program.monsterFactory.createMonsters[choice - 1]; // 유저는 1부터 보니까 -1 처리
-
-                    if (Program.playerStatus.Target != null && Program.playerStatus.Target.CurrentHp > 0)
+                    if (choice == 1)
                     {
-                        // 플레이어 공격턴 시작
-                        ExecutePlayerPhase();
+                        Program.playerStatus.IsAttack = true;
+                        ShowBattleMenu();
+                        validInput = true; // 루프 종료
                     }
                     else
                     {
                         Console.WriteLine("잘못된 입력입니다.");
-                        ScreenChanges();
+                    }
+                }
+                else
+                {
+                    if (choice == 0)
+                    {
+                        Program.playerStatus.IsAttack = false;
+                        ShowBattleMenu();
+                        validInput = true; // 루프 종료
+                    }
+                    else
+                    {
+                        var target = Program.monsterFactory.createMonsters[choice - 1];
+                        if (target != null && target.CurrentHp > 0)
+                        {
+                            Program.playerStatus.Target = target;
+                            // 플레이어 공격 턴
+                            ExecutePlayerPhase();
+                            validInput = true; // 루프 종료
+                        }
+                        else
+                        {
+                            Console.WriteLine("잘못된 입력입니다.");
+                        }
                     }
                 }
             }
@@ -293,29 +309,8 @@ namespace NotepadKnights
             }
         }
 
-        // 공격
-        public void ExecuteAttack(float attackPower)
-        {
-            Monster playerTarget = Program.playerStatus.Target;
 
-            // 적이 죽었다면
-            if (playerTarget.CurrentHp == 0)
-            {
-                Console.WriteLine("잘못된 입력입니다.");
-            }
-            // 적이 살아있다면
-            else
-            {
-                attackPower = Program.playerStatus.Attack;
-
-                // 몬스터 피격
-                playerTarget.CurrentHp = atkAndDef.EnemyDefense(attackPower, playerTarget.CurrentHp);
-
-                // 공격 이후 UI
-                DisplayAttackResult(attackPower, Program.player.msg);
-            }
-        }
-
+        // 공격의 결과를 보여주자
         public void DisplayAttackResult(float playerDamage, string msg)
         {
             Console.Clear();
@@ -327,7 +322,6 @@ namespace NotepadKnights
 
             Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name} 을(를) 맞췄습니다. [데미지 : {playerDamage}]\n");
             Console.WriteLine($"Lv.{playerTarget.Level} {playerTarget.Name}");
-            playerTarget.ApplyDamage(playerDamage);
 
             //  적이 죽었으면
             if (playerTarget.IsDead)
@@ -354,6 +348,7 @@ namespace NotepadKnights
             // 이 이후 적 공격 턴 실행
             ExecuteEnemyPhase();
         }
+        // 적이 죽었을 경우
         public void DieTarget()
         {
             Program.playerStatus.Target.CurrentHp = 0;

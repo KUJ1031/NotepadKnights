@@ -48,7 +48,7 @@ namespace NotepadKnights
                     };
             }
         }
-        // 몬스터 팩토리의 생성자를 만들드니까 적들의 수를 제대로 받아오네요. 이거 이렇게 수정해도 될까요??
+
         public MonsterFactory()
         {
             InitializeMonsters();
@@ -72,8 +72,8 @@ namespace NotepadKnights
         }
 
         /*
-		 * 세 종류의 몬스터를 랜덤하게 생성시켜줄 메서드
-		 */
+       * 세 종류의 몬스터를 랜덤하게 생성시켜줄 메서드
+       */
         public Monster CreateRandomMonster()
         {
             int type = random.Next(0, 3);   // 0: 미니언, 1 : 공허충, 2 : 대포미니언
