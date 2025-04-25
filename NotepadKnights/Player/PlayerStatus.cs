@@ -41,18 +41,31 @@ namespace NotepadKnights
         // PlayerStatus의 정보를 한꺼번에 넘겨주는 메서드
         public void ShowStatus()
         {
-            Console.WriteLine($"현재 [{Name}]의 스테이터스");
-            Console.WriteLine($"--------------------------------------------------");
-            Console.WriteLine($"이름 : {Name}");
-            Console.WriteLine($"직업 : {Job}");
-            Console.WriteLine($"레벨 : {Level}\n");
-            Console.WriteLine($"체력 : {Hp}/{MaxHp}");
-            Console.WriteLine($"공격력 : {Attack}");
-            Console.WriteLine($"방어력 : {Defense}");
-            Console.WriteLine($"Mp : {Mp}\n");
-            Console.WriteLine($"경험치 : {Exp}/{MaxExp}");
-            Console.WriteLine($"골드 : {Gold}");
-            Console.WriteLine($"--------------------------------------------------\n");
+            Console.WriteLine("확인하고 싶은 정보를 선택해주세요.");
+            Console.WriteLine("1.현재 스테이터스 2. 스킬 정보");
+            int select = InputManager.ReadInt(1, 2);
+            if (select == 1)
+            {
+                Console.WriteLine($"현재 [{Name}]의 스테이터스");
+                Console.WriteLine($"--------------------------------------------------");
+                Console.WriteLine($"이름 : {Name}");
+                Console.WriteLine($"직업 : {Job}");
+                Console.WriteLine($"레벨 : {Level}\n");
+                Console.WriteLine($"체력 : {Hp}/{MaxHp}");
+                Console.WriteLine($"공격력 : {Attack}");
+                Console.WriteLine($"방어력 : {Defense}");
+                Console.WriteLine($"Mp : {Mp}\n");
+                Console.WriteLine($"경험치 : {Exp}/{MaxExp}");
+                Console.WriteLine($"골드 : {Gold}");
+                Console.WriteLine($"--------------------------------------------------\n");
+                
+            }
+            else if (select == 2)
+            {
+                Skill.SkillDescription();
+            }
+            Console.WriteLine("아무 키나 눌러 종료.");
+            Console.ReadLine();
         }
     }
 }
