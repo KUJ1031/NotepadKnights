@@ -120,8 +120,8 @@ namespace NotepadKnights
             QuestCount = 3;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
-            GoldReward = 100;
-            ExpReward = 1;
+            GoldReward = 1000;
+            ExpReward = 10;
             QuestClearAble = false; 
             IsCompleted = false;
             IsActive = false;
@@ -138,8 +138,8 @@ namespace NotepadKnights
             QuestCount = 3;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
-            GoldReward = 0;
-            ExpReward = 100;
+            GoldReward = 1500;
+            ExpReward = 20;
             QuestClearAble = false;
             IsCompleted = false;
             IsActive = false;
@@ -155,8 +155,8 @@ namespace NotepadKnights
             QuestCount = 2;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
-            GoldReward = 0;
-            ExpReward = 100;
+            GoldReward = 1500;
+            ExpReward = 40;
             QuestClearAble = false;
             IsCompleted = false;
             IsActive = false;
@@ -173,8 +173,8 @@ namespace NotepadKnights
             QuestCount = 2;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
-            GoldReward = 0;
-            ExpReward = 100;
+            GoldReward = 3000;
+            ExpReward = 80;
             QuestClearAble = false;
             IsCompleted = false;
             IsActive = false;
@@ -190,8 +190,8 @@ namespace NotepadKnights
             QuestCount = 2;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
-            GoldReward = 0;
-            ExpReward = 100;
+            GoldReward = 2500;
+            ExpReward = 150;
             QuestClearAble = false;
             IsCompleted = false;
             IsActive = false;
