@@ -8,7 +8,6 @@ namespace NotepadKnights
 {
     public class QuestManager
     {
-        
         public List<Quest> allQuestList = new List<Quest>();
         public List<Quest> ableQuestList = new List<Quest>();
         public List<Quest> activeQuestList = new List<Quest>();
@@ -23,7 +22,6 @@ namespace NotepadKnights
             allQuestList.Add(new Quest3());
             allQuestList.Add(new Quest4());
             allQuestList.Add(new Quest5());
-
 
             allQuestList.Sort((a, b) => a.QuestLevel.CompareTo(b.QuestLevel));
             questCounter = new QuestCounter(activeQuestList);
@@ -66,7 +64,6 @@ namespace NotepadKnights
                 Console.WriteLine($"퀘스트 보상: {activeQuestList[k].ExpReward}EXP");
                 //보상 연결
                 Program.player.ExpUp(activeQuestList[k].ExpReward);
-
             }
             else if (activeQuestList[k].ExpReward == 0)
             {
@@ -111,9 +108,7 @@ namespace NotepadKnights
             Console.WriteLine($"퀘스트 '{activeQuestList[activeQuestList.Count - 1].QuestName}'이(가) 수주되었습니다!");
             SortList();
             Console.ReadLine();
-
         }
-               
 
         public void SortList()
         {
