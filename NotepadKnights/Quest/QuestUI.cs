@@ -82,6 +82,7 @@ namespace NotepadKnights
                     if (answer - 1 < questManager.activeQuestList.Count && answer > 0)
                     {
                         //퀘스트 정보 출력
+                        Console.Clear();
                         questManager.activeQuestList[answer - 1].ShowQuest();
                         Console.WriteLine("\n1. 퀘스트 완료\n2. 퀘스트 포기\n\n0. 나가기");
                         int answer2 = InputManager.ReadInt(0, 2);
