@@ -3,9 +3,9 @@ namespace NotepadKnights;
 public class BattleRewardManager
 {
     private Random rand = new Random();
-    private readonly float _potionProbability = 0.2f;
-    private readonly float _normalWeaponProbability = 0.2f;
-    private readonly float _rareWeaponProbability = 0.05f;
+    private readonly float _potionProbability = 0.8f;
+    private readonly float _normalWeaponProbability = 0.5f;
+    private readonly float _rareWeaponProbability = 0.1f;
 
     private readonly Item _potion =
         new Item($"{"회복 포션",-10}\t", ItemType.Potion, 30, $"{"체력을 +30만큼 회복시켜주는 포션입니다.",-32}\t", 1000);
