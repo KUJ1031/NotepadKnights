@@ -13,6 +13,8 @@ namespace NotepadKnights
 {
     internal class BattleManager
     {
+        private int battleLevel = 1;
+        private bool checkIntoBattleFirst;
         private string monsterIndexDisplay = "";
         AttackAndDefense atkAndDef = new AttackAndDefense();
         public static event Action<string> OnMonsterKilled;
@@ -24,6 +26,7 @@ namespace NotepadKnights
         public void Run()
         {
             _monsterFactory = new MonsterFactory();
+            _monsterFactory.InitializeMonstersOnDifficulty(battleLevel);
             IntoBattle();
         }
         
@@ -39,7 +42,6 @@ namespace NotepadKnights
                 }
                 else
                 {
-                    
                     Monster target;
                     while (true)
                     {
@@ -95,6 +97,8 @@ namespace NotepadKnights
 
         private void Victory()
         {
+            checkIntoBattleFirst = true;
+            battleLevel++;
             VictoryDisplay();
             _battleRewardManager.GetRewards(_playerStatus.KilledMonsterCount);
         }
@@ -112,8 +116,17 @@ namespace NotepadKnights
 
         private void DisplayBattleScene()
         {
+            if (checkIntoBattleFirst)
+            {
+                Console.Clear();
+                Console.WriteLine($"Level {battleLevel} 던전에 진입합니다.");
+                Thread.Sleep(1000);
+                checkIntoBattleFirst = false;
+            }
+
             Console.Clear();
             Console.WriteLine("<전투!!>\n");
+            Console.WriteLine($"(현재 던전의 레벨 : {battleLevel})");
             Console.WriteLine($"[{Program.playerStatus.Name} 턴]\n");
 
             for (int i = 0; i < _monsterFactory.createMonsters.Count; i++)
