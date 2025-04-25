@@ -28,6 +28,12 @@ namespace NotepadKnights
                 CurrentCount = QuestCount;
             }
         }
+        
+        public void CountReset()
+        {
+            CurrentCount = 0;
+            QuestClearAble = false;
+        }
 
         public void AddQuestCount()
         {
@@ -50,8 +56,12 @@ namespace NotepadKnights
         {
             Console.WriteLine($"퀘스트 이름: {QuestName}");
             Console.WriteLine($"퀘스트 설명: {QuestDescription}");
-            Console.WriteLine($"퀘스트 레벨: {QuestLevel}");
-            Console.WriteLine($"퀘스트 보상: {QuestReward}");
+            Console.Write($"퀘스트 난이도: ");
+            for (int j = 0; j < QuestLevel; j++)
+            {
+                Console.Write("★");
+            }
+            Console.WriteLine($"\n퀘스트 보상: {QuestReward}");
             if(IsActive)
             {
                 Console.WriteLine($"진행도:{CurrentCount} / {QuestCount}");
@@ -136,7 +146,7 @@ namespace NotepadKnights
         public Quest5()
         {
             QuestName = "빨간망토 이야기";
-            QuestLevel = 2;
+            QuestLevel = 5;
             QuestReward = "200";
             QuestTarget = "어스름 늑대";
             QuestCount = 2;

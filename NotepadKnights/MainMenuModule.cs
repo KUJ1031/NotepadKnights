@@ -43,8 +43,8 @@ namespace NotepadKnights
 
                 if (answer == 1)
                 {
-                    Console.WriteLine("\n");
-                    //Program.playerStatus.SetName(name);
+                    Console.WriteLine("\n");               
+                    Program.playerStatus.Name = name;
                     break;
                 }
                 else if (answer == 2)
@@ -93,6 +93,7 @@ namespace NotepadKnights
                         job = "전사";
                         Console.WriteLine("전사로 시작합니다.");
                         Program.playerStatus.InitializePlayer(name, job);
+
                         break;
                     }
                     else
@@ -119,6 +120,7 @@ namespace NotepadKnights
                         job = "도적";
                         Console.WriteLine("도적으로 시작합니다.");
                         Program.playerStatus.InitializePlayer(name, job);
+
                         break;
                     }
                     else

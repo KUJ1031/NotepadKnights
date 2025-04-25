@@ -72,7 +72,9 @@ namespace NotepadKnights
             //완료된 퀘스트를 completedQuestList에 추가, 활성화된 퀘스트 리스트에서 삭제
             ableQuestList.Add(activeQuestList[k]);
             activeQuestList[k].ToggleActive();
+            activeQuestList[k].CountReset();
             activeQuestList.RemoveAt(k);
+            
             SortList();
             Console.ReadLine();
 

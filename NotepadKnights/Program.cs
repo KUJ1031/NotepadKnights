@@ -14,7 +14,6 @@
 
         public static InventoryManager InventoryManager = new InventoryManager();
         public static StoreManager StoreManager = new StoreManager();
-        public static MonsterFactory monsterFactory = new MonsterFactory();
         
         static void Main(string[] args)
         {
@@ -40,7 +39,8 @@
                         break;
                     case 4:
                         //전투
-                        battleManager.ShowBattleMenu();
+                        battleManager.IntoBattle();
+                        //battleManager.ShowBattleMenu();
                         break;
                     case 5:
                         healing.IntoHealing();
