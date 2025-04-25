@@ -115,7 +115,6 @@ namespace NotepadKnights
         {
             QuestName = "전투를 해보자";
             QuestLevel = 1;
-            QuestReward = "100";
             QuestTarget = "미니언";
             QuestCount = 3;
             CurrentCount = 0;
@@ -134,11 +133,12 @@ namespace NotepadKnights
         {
             QuestName = "곤충채집 소년";
             QuestLevel = 2;
-            QuestReward = "200";
             QuestTarget = "공허충";
             QuestCount = 3;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
+            GoldReward = 0;
+            ExpReward = 100;
             QuestClearAble = false;
             IsCompleted = false;
             IsActive = false;
@@ -150,11 +150,12 @@ namespace NotepadKnights
         {
             QuestName = "어떻게 부리가...";
             QuestLevel = 3;
-            QuestReward = "200";
             QuestTarget = "칼날부리";
             QuestCount = 2;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
+            GoldReward = 0;
+            ExpReward = 100;
             QuestClearAble = false;
             IsCompleted = false;
             IsActive = false;
@@ -167,11 +168,12 @@ namespace NotepadKnights
         {
             QuestName = "돈을 벌어야해";
             QuestLevel = 4;
-            QuestReward = "200";
             QuestTarget = "대포미니언";
             QuestCount = 2;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
+            GoldReward = 0;
+            ExpReward = 100;
             QuestClearAble = false;
             IsCompleted = false;
             IsActive = false;
@@ -183,11 +185,12 @@ namespace NotepadKnights
         {
             QuestName = "빨간망토 이야기";
             QuestLevel = 5;
-            QuestReward = "200";
             QuestTarget = "어스름 늑대";
             QuestCount = 2;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
+            GoldReward = 0;
+            ExpReward = 100;
             QuestClearAble = false;
             IsCompleted = false;
             IsActive = false;
