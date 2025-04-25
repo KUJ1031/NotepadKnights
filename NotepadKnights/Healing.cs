@@ -8,7 +8,6 @@ namespace NotepadKnights
 {
     public class Healing
     {
-        MainMenuModule mainMenuModule;
         public void IntoHealing()
         {
             Console.Clear();
@@ -19,8 +18,7 @@ namespace NotepadKnights
             Console.WriteLine("(1) 체력 회복");
             Console.WriteLine("(0) 로비로 나가기");
 
-            Console.Write("\n원하시는 행동을 선택해주세요. : ");
-            int action = int.Parse(Console.ReadLine());
+            int action = InputManager.ReadInt(0, 1);
             switch (action)
             {
                 case 1:
