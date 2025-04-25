@@ -21,8 +21,6 @@ public class BattleRewardManager
     public int NormalWeaponCount { get; private set; } = 0;
     public int RareWeaponCount { get; private set; } = 0;
 
-
-
     public void GetRewards(int monsterKillCount)
     {
         RewardGold = monsterKillCount * 100;

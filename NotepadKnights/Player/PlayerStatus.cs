@@ -40,6 +40,7 @@ namespace NotepadKnights
             Attack = 10;
             Defense = 5;
         }     
+
         // PlayerStatus의 정보를 한꺼번에 넘겨주는 메서드
         public void ShowStatus()
         {

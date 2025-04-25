@@ -40,7 +40,6 @@ namespace NotepadKnights
             Inventory.AddItem(item);
         }
 
-
         // 경험치 업
         public void ExpUp(int k)
         {
