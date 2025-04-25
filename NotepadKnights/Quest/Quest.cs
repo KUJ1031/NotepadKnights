@@ -50,8 +50,12 @@ namespace NotepadKnights
         {
             Console.WriteLine($"퀘스트 이름: {QuestName}");
             Console.WriteLine($"퀘스트 설명: {QuestDescription}");
-            Console.WriteLine($"퀘스트 레벨: {QuestLevel}");
-            Console.WriteLine($"퀘스트 보상: {QuestReward}");
+            Console.Write($"퀘스트 난이도: ");
+            for (int j = 0; j < QuestLevel; j++)
+            {
+                Console.Write("★");
+            }
+            Console.WriteLine($"\n퀘스트 보상: {QuestReward}");
             if(IsActive)
             {
                 Console.WriteLine($"진행도:{CurrentCount} / {QuestCount}");
