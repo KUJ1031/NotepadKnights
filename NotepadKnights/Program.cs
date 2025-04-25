@@ -3,9 +3,7 @@
     //18조 TextRPG [Notepad Knights] 협업 공간입니다.
     internal class Program
     {
-       // public static Player player;
         public static PlayerStatus playerStatus = new PlayerStatus();
-        //public static MonsterFactory monsterFactory;
         public static BattleManager battleManager = new BattleManager();
         public static Player player = new Player();
         public static MainMenuModule mainMenu = new MainMenuModule(player);
@@ -37,7 +35,6 @@
                     case 4:
                         //전투
                         battleManager.Run();
-                        //battleManager.ShowBattleMenu();
                         break;
                     case 5:
                         healing.IntoHealing();
