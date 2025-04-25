@@ -30,7 +30,9 @@ namespace NotepadKnights
             {
                 finalDamage *= 1.6f;
                 finalDamage = MathF.Ceiling(finalDamage);
-                Console.WriteLine("Critical!\n"); Thread.Sleep(1000);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Critical!\n"); Console.ResetColor(); Thread.Sleep(1000);
+                Console.WriteLine("이번 공격의 데미지가 1.6배 상승합니다.\n"); Thread.Sleep(1000);
                 onCritical = false;
             }
             return finalDamage;
@@ -40,7 +42,8 @@ namespace NotepadKnights
             CalcDodge();
             if (onDodge)
             {
-                Console.WriteLine($"그러나 {Program.playerStatus.Name}이(가) 공격을 회피하였다!\n"); Thread.Sleep(1000);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"그러나 {Program.playerStatus.Name}이(가) 공격을 회피하였다!\n"); Console.ResetColor(); Thread.Sleep(1000);
                 onDodge = false;
             }
             else
@@ -62,7 +65,8 @@ namespace NotepadKnights
             CalcDodge();
             if (onDodge)
             {
-                Console.WriteLine("그러나 적이 공격을 회피하였다!\n"); Thread.Sleep(1000);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("그러나 적이 공격을 회피하였다!\n"); Console.ResetColor(); Thread.Sleep(1000);
             }
             else
             {
