@@ -34,6 +34,7 @@ namespace NotepadKnights
             Hp = 100;
             MaxHp = 100;
             Mp = 100;
+            MaxExp = 10;
             Attack = 10;
             Defense = 5;
         }     

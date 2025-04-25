@@ -13,13 +13,13 @@ public class LevelManager
 
     public void AddExp(int expGained)
     {
-        PlayerExp += expGained;
-
-        while (CanLevelUp(Program.playerStatus.Level, PlayerExp))
+        Program.playerStatus.Exp += expGained;
+        while (CanLevelUp(Program.playerStatus.Level, Program.playerStatus.Exp))
         {
             Program.player.LevelUp();
-            PlayerExp -= _requireExp[Program.playerStatus.Level];
+            Program.playerStatus.Exp -= _requireExp[Program.playerStatus.Level];
         }
+        Program.playerStatus.MaxExp = _requireExp[Program.playerStatus.Level];
     }
     
     private bool CanLevelUp(int level, int exp)
