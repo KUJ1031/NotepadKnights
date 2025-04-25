@@ -49,6 +49,15 @@ namespace NotepadKnights
             }
         }
 
+        public MonsterFactory()
+        {
+            InitializeMonsters();
+        }
+
+        public int GetMonsterCount()
+        {
+            return createMonsters.Count;
+        }
         public void InitializeMonsters()
         {
             createMonsters.Clear();     // 이전 데이터 삭제
@@ -63,8 +72,8 @@ namespace NotepadKnights
         }
 
         /*
-		 * 세 종류의 몬스터를 랜덤하게 생성시켜줄 메서드
-		 */
+       * 세 종류의 몬스터를 랜덤하게 생성시켜줄 메서드
+       */
         public Monster CreateRandomMonster()
         {
             int type = random.Next(0, 3);   // 0: 미니언, 1 : 공허충, 2 : 대포미니언
