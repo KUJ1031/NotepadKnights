@@ -25,10 +25,10 @@ namespace NotepadKnights
         public bool IsAttack { get; set; } // 공격할지 선택
         public bool IsSelectMonster { get; set; } // 공격할 몬스터를 골랐는지
         public int KilledMonsterCount { get; set; } // 죽인 몬스터 수
-        public void InitializePlayer()
+        public void InitializePlayer(string name, string job)
         {
-            Name = "Chad";
-            Job = "전사";
+            Name = name;
+            Job = job;
             Level = 1;
             Hp = 100;
             MaxHp = 100;
@@ -37,9 +37,24 @@ namespace NotepadKnights
             Defense = 5;
         }     
         // PlayerStatus의 정보를 한꺼번에 넘겨주는 메서드
-        public (string Name, string Job, int Level, int Hp, int MaxHp, int Mp, int Exp, int MaxExp, int Gold, float Attack, int Defense) GetPlayerInfo()
+        public void ShowStatus()
         {
-            return (Name, Job, Level, Hp, MaxHp, Mp, Exp, MaxExp, Gold, Attack, Defense);
+            Console.Clear();
+            Console.WriteLine($"현재 [{Name}]의 스테이터스");
+            Console.WriteLine($"--------------------------------------------------");
+            Console.WriteLine($"이름 : {Name}");
+            Console.WriteLine($"직업 : {Job}");
+            Console.WriteLine($"레벨 : {Level}\n");
+            Console.WriteLine($"체력 : {Hp}/{MaxHp}");
+            Console.WriteLine($"공격력 : {Attack}");
+            Console.WriteLine($"방어력 : {Defense}");
+            Console.WriteLine($"Mp : {Mp}\n");
+            Console.WriteLine($"경험치 : {Exp}/{MaxExp}");
+            Console.WriteLine($"골드 : {Gold}");
+            Console.WriteLine($"--------------------------------------------------");
+
+            Console.WriteLine("아무 키나 눌러 스테이터스창 종료");
+            Console.ReadLine();
         }
     }
 }

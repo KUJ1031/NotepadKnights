@@ -28,7 +28,7 @@
                 switch(mainMenu.Village())
                 {
                     case 1:
-                        //상태보기
+                        playerStatus.ShowStatus();
                         break;
                     case 2:
                         InventoryManager.Run();

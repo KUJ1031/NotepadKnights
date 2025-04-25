@@ -10,6 +10,8 @@ namespace NotepadKnights
     public class MainMenuModule
     {
         Player player;
+        public static string name;
+        public static string job;
         public MainMenuModule(Player playerInstance)
         {
             player = playerInstance;
@@ -25,7 +27,7 @@ namespace NotepadKnights
                 Console.Write("당신의 이름을 입력하세요 : ");
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.ResetColor();
-                string name = Console.ReadLine();
+                name = Console.ReadLine();
 
 
                 Console.WriteLine($"[{name}] ← 이 이름이 맞나요?\n");
@@ -88,8 +90,9 @@ namespace NotepadKnights
 
                     if (answer == 1)
                     {
+                        job = "전사";
                         Console.WriteLine("전사로 시작합니다.");
-                        Program.playerStatus.InitializePlayer();
+                        Program.playerStatus.InitializePlayer(name, job);
                         break;
                     }
                     else
@@ -113,8 +116,9 @@ namespace NotepadKnights
 
                     if (answer == 1)
                     {
+                        job = "도적";
                         Console.WriteLine("도적으로 시작합니다.");
-                        Program.playerStatus.InitializePlayer();
+                        Program.playerStatus.InitializePlayer(name, job);
                         break;
                     }
                     else
