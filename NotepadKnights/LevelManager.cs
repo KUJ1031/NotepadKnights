@@ -17,7 +17,7 @@ public class LevelManager
         while (CanLevelUp(Program.playerStatus.Level, Program.playerStatus.Exp))
         {
             Program.player.LevelUp();
-            Program.playerStatus.Exp -= _requireExp[Program.playerStatus.Level];
+            Program.playerStatus.Exp -= _requireExp[Program.playerStatus.Level - 1];
         }
         Program.playerStatus.MaxExp = _requireExp[Program.playerStatus.Level];
     }

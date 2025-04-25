@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace NotepadKnights
 {
-    //몬스터 죽는데다가 선언
-    //public static event Action<string> OnMonsterKilled;
-    //OnMonsterKilled?.Invoke(monster Name); 죽을때 신호 보내기
+    
 
     
     class QuestCounter
@@ -17,7 +15,7 @@ namespace NotepadKnights
 
         public QuestCounter(List<Quest> activequests)
         {
-            Program.OnMonsterKilled += HandleMonsterKilled;
+            BattleManager.OnMonsterKilled += HandleMonsterKilled;
             questCount = activequests;
         }
         public void HandleMonsterKilled(string monsterName)
