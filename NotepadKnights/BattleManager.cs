@@ -164,6 +164,7 @@ namespace NotepadKnights
             // 이 부분 IsDead로 관리해야 할 것 같은데 실시간 반영이 안 되어서 CurrentHP로 관리하겠습니다.
             if (playerTarget.CurrentHp == 0)
             {
+                playerTarget.IsDead = true;
                 playerTarget = null;
                 Console.WriteLine("HP 0 ->Dead\n");
                 Program.playerStatus.KilledMonsterCount++;
