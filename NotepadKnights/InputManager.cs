@@ -15,4 +15,18 @@ public static class InputManager
             Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
         }
     }
+    
+    public static int ReadInt(int start, int end, string text)
+    {
+        Console.WriteLine($"\n{text}");
+        while (true)
+        {
+            string? input = Console.ReadLine();
+            if (int.TryParse(input, out int command) && command >= start && command <= end)
+            {
+                return command;
+            }
+            Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+        }
+    }
 }
