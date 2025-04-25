@@ -64,17 +64,20 @@ namespace NotepadKnights
             if (activeQuestList[k].GoldReward == 0)
             {
                 Console.WriteLine($"퀘스트 보상: {activeQuestList[k].ExpReward}EXP");
+                //보상 연결
                 Program.player.ExpUp(activeQuestList[k].ExpReward);
 
             }
             else if (activeQuestList[k].ExpReward == 0)
             {
                 Console.WriteLine($"퀘스트 보상: {activeQuestList[k].GoldReward}G");
+                //보상 연결
                 Program.player.ExpUp(activeQuestList[k].GoldReward);
             }
             else
             {
                 Console.WriteLine($"퀘스트 보상: {activeQuestList[k].GoldReward}G, {activeQuestList[k].ExpReward}EXP");
+                //보상 연결
                 Program.player.ExpUp(activeQuestList[k].ExpReward);
                 Program.player.AddGold(activeQuestList[k].GoldReward);
             }

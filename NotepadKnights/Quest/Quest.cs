@@ -64,6 +64,7 @@ namespace NotepadKnights
             {
                 Console.Write("★");
             }
+            Console.WriteLine("");
 
             if (GoldReward == 0)
             {
@@ -119,8 +120,8 @@ namespace NotepadKnights
             QuestCount = 3;
             CurrentCount = 0;
             QuestDescription = $"{QuestTarget} {QuestCount}마리 쓰러뜨리기.";
-            GoldReward = 0;
-            ExpReward = 100;
+            GoldReward = 100;
+            ExpReward = 1;
             QuestClearAble = false; 
             IsCompleted = false;
             IsActive = false;
