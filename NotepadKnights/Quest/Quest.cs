@@ -136,7 +136,7 @@ namespace NotepadKnights
         public Quest5()
         {
             QuestName = "빨간망토 이야기";
-            QuestLevel = 2;
+            QuestLevel = 5;
             QuestReward = "200";
             QuestTarget = "어스름 늑대";
             QuestCount = 2;
