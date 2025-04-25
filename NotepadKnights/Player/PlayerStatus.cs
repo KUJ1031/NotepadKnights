@@ -41,6 +41,7 @@ namespace NotepadKnights
         // PlayerStatus의 정보를 한꺼번에 넘겨주는 메서드
         public void ShowStatus()
         {
+            Console.Clear();
             Console.WriteLine("확인하고 싶은 정보를 선택해주세요.");
             Console.WriteLine("1.현재 스테이터스 2. 스킬 정보");
             int select = InputManager.ReadInt(1, 2);
