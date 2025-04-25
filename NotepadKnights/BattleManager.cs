@@ -19,6 +19,13 @@ namespace NotepadKnights
         private string monsterIndexDisplay = "";
         AttackAndDefense atkAndDef = new AttackAndDefense();
         // 플레이어 차례
+        MonsterFactory monsterFactory;
+
+        public void IntoBattle()
+        {
+            monsterFactory = new MonsterFactory();
+            ShowBattleMenu();
+        }
         public void ExecutePlayerPhase()
         {
             // 스킬을 가져온 뒤
@@ -60,7 +67,7 @@ namespace NotepadKnights
 
         public void ExecuteEnemyPhase()
         {
-            foreach (Monster monster in Program.monsterFactory.createMonsters)
+            foreach (Monster monster in monsterFactory.createMonsters)
             {
                 Console.Clear();
                 Console.WriteLine($"[적의 턴]\n");
@@ -102,7 +109,7 @@ namespace NotepadKnights
         public void CheckVictory()
         {
             // 적들이 다 죽었다면
-            if (Program.playerStatus.KilledMonsterCount >= Program.monsterFactory.createMonsters.Count)
+            if (Program.playerStatus.KilledMonsterCount >= monsterFactory.createMonsters.Count)
             {
                 Console.Clear();
 
@@ -167,7 +174,8 @@ namespace NotepadKnights
                         break;
                     case 4:
                         //전투
-                        Program.battleManager.ShowBattleMenu();
+                        Program.battleManager.IntoBattle();
+                        //Program.battleManager.ShowBattleMenu();
                         break;
                     case 5:
                         Program.healing.IntoHealing();
@@ -191,7 +199,7 @@ namespace NotepadKnights
             if (Program.playerStatus.Hp > 0)
             {
                 // 모든 적들이 죽었다면
-                if (Program.playerStatus.KilledMonsterCount >= Program.monsterFactory.createMonsters.Count)
+                if (Program.playerStatus.KilledMonsterCount >= monsterFactory.createMonsters.Count)
                 {
                     // 승리 화면 띄우기
                     CheckVictory();
@@ -203,11 +211,11 @@ namespace NotepadKnights
                     Console.WriteLine("<전투!!>\n");
                     Console.WriteLine($"[{Program.playerStatus.Name} 턴]\n");
 
-                    for (int i = 0; i < Program.monsterFactory.createMonsters.Count; i++)
+                    for (int i = 0; i < monsterFactory.createMonsters.Count; i++)
                     {
                         monsterIndexDisplay = Program.playerStatus.IsAttack ? (i + 1).ToString() : "";
 
-                        var monster = Program.monsterFactory.createMonsters[i];
+                        var monster = monsterFactory.createMonsters[i];
                         string monsterHpTxt = monster.IsDead ? $"Dead" : $"HP {monster.CurrentHp}";
                         Console.WriteLine($"{monsterIndexDisplay} Lv.{monster.Level} {monster.Name} {monsterHpTxt}");
                     }
@@ -246,7 +254,7 @@ namespace NotepadKnights
             while (!validInput)
             {
                 Console.Write(">>");
-                int monsterCount = Program.monsterFactory.createMonsters.Count;
+                int monsterCount = monsterFactory.createMonsters.Count;
                 int choice = InputManager.ReadInt(0, monsterCount); // 입력은 여기서 관리
 
                 if (!Program.playerStatus.IsAttack)
@@ -272,7 +280,7 @@ namespace NotepadKnights
                     }
                     else
                     {
-                        var target = Program.monsterFactory.createMonsters[choice - 1];
+                        var target = monsterFactory.createMonsters[choice - 1];
                         if (target != null && target.CurrentHp > 0)
                         {
                             Program.playerStatus.Target = target;
@@ -292,9 +300,9 @@ namespace NotepadKnights
         // 현재 공격중인 적 찾기   
         public void SelectTarget(int num)
         {
-            if (num >= 1 && num <= Program.monsterFactory.createMonsters.Count)
+            if (num >= 1 && num <= monsterFactory.createMonsters.Count)
             {
-                var selectedMonster = Program.monsterFactory.createMonsters[num - 1];
+                var selectedMonster = monsterFactory.createMonsters[num - 1];
                 // 몬스터가 살아있다면
                 if (selectedMonster.CurrentHp > 0)
                 {
