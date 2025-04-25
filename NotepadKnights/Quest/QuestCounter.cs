@@ -17,7 +17,7 @@ namespace NotepadKnights
 
         public QuestCounter(List<Quest> activequests)
         {
-            //Program.OnMonsterKilled += HandleMonsterKilled;
+            Program.OnMonsterKilled += HandleMonsterKilled;
             questCount = activequests;
         }
         public void HandleMonsterKilled(string monsterName)
