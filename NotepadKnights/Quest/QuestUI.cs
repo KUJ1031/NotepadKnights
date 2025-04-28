@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NotepadKnights
+﻿namespace NotepadKnights
 {
     public class QuestUI
     {
@@ -28,7 +21,6 @@ namespace NotepadKnights
                 Console.WriteLine("3. 완료한 퀘스트");
                 Console.WriteLine("\n\n0. 나가기\n");
 
-
                 int answer = InputManager.ReadInt(0, 3);
 
                 if (answer == 1)
@@ -47,19 +39,19 @@ namespace NotepadKnights
                     break;
             }
         }
+
         public void Renew()
         {
             questManager.QuestRenew(playerStatus.Level);
         }
 
-
         public void ShowActiveQuest()
         {
             //현재 수주중인 퀘스트만 출력
-            Console.Clear();
-
             while(true)
             {
+                Console.Clear();
+
                 Console.WriteLine("진행중인 퀘스트 목록:");
                 if (questManager.activeQuestList.Count == 0)
                 {
@@ -81,14 +73,20 @@ namespace NotepadKnights
                     if (answer - 1 < questManager.activeQuestList.Count && answer > 0)
                     {
                         //퀘스트 정보 출력
+                        Console.Clear();
                         questManager.activeQuestList[answer - 1].ShowQuest();
-                        Console.WriteLine("\n1. 퀘스트 완료\n2. 퀘스트 포기\n\n0. 돌아가기");
+                        Console.WriteLine("\n1. 퀘스트 완료\n2. 퀘스트 포기\n\n0. 나가기");
                         int answer2 = InputManager.ReadInt(0, 2);
                         if (answer2 == 1)
                         {
-                            if (true)//퀘스트 완료 로직으로 완료 여부 체크
+                            if (questManager.activeQuestList[answer-1].QuestClearAble)//퀘스트 완료 로직으로 완료 여부 체크
                             {
                                 questManager.CompleteQuest(answer - 1);
+                            }
+                            else
+                            {
+                                Console.WriteLine("퀘스트를 완료할 수 없습니다.");
+                                Console.ReadLine();
                             }
                             break;
                         }
@@ -102,9 +100,6 @@ namespace NotepadKnights
                 }
             }
         }
-
-        
-
 
         public void ShowAbleQuest()
         {
@@ -160,7 +155,6 @@ namespace NotepadKnights
             }
         }
 
-
         public void ShowCompletedQuest()
         {
             //완료된 퀘스트만 출력
@@ -192,15 +186,5 @@ namespace NotepadKnights
                 ShowCompletedQuest();
             }
         }
-
-
-        public void ShowQuestDetail(int i)//퀘스트의 번호를 인자로 주면 그 퀘스트 정보를 출력
-        {
-            Console.WriteLine($"퀘스트 이름: {questManager.allQuestList[i].QuestName}");
-            Console.WriteLine($"퀘스트 설명: {questManager.allQuestList[i].QuestDescription}");
-            Console.WriteLine($"퀘스트 레벨: {questManager.allQuestList[i].QuestLevel}");
-            Console.WriteLine($"퀘스트 보상: {questManager.allQuestList[i].QuestReward}");
-        }
-
     }
 }

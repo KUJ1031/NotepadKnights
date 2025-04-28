@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NotepadKnights
+﻿namespace NotepadKnights
 {
     internal class MonsterFactory
     {
@@ -49,43 +43,10 @@ namespace NotepadKnights
             }
         }
 
-        public void InitializeMonsters()
-        {
-            createMonsters.Clear();     // 이전 데이터 삭제
-
-            int monsterCount = random.Next(1, 5);   // 1 ~ 4마리 사이 생성
-
-            for (int i = 0; i < monsterCount; i++)
-            {
-                Monster monster = CreateRandomMonster();
-                createMonsters.Add(monster);
-            }
-        }
-
-        /*
-		 * 세 종류의 몬스터를 랜덤하게 생성시켜줄 메서드
-		 */
-        public Monster CreateRandomMonster()
-        {
-            int type = random.Next(0, 3);   // 0: 미니언, 1 : 공허충, 2 : 대포미니언
-
-            switch (type)
-            {
-                default:
-                case 0:
-                    return new Monsters.Minion();   // Monsters 폴더 내부 클래스 호출
-                case 1:
-                    return new Monsters.Voiling();
-                case 2:
-                    return new Monsters.CannonMinion();
-            }
-        }
-
-
         ////////////////// 아래는 난이도에 따라 몬스터를 생성하는 로직입니다. //////////////////
         /*
          * 난이도에 따라 몬스터 생성하는 로직
-         * 추후에 난이도 기능 생성하면 적용할 코드입니다!
+         * 추후에 난이도 기능 생성하면 적용할 코드입니다! (적용완료)
          */
         public void InitializeMonstersOnDifficulty(int difficultyLevel)
         {
@@ -103,7 +64,7 @@ namespace NotepadKnights
 
                 for (int i = 0; i < monsterCount; i++)
                 {
-                    Monster monster = CreateRandomMonster();
+                    Monster monster = CreateRandomMonsterOnDifficulty(difficultyLevel);
                     createMonsters.Add(monster);
                 }
             }
@@ -113,7 +74,7 @@ namespace NotepadKnights
 
                 for (int i = 0; i < monsterCount; i++)
                 {
-                    Monster monster = CreateRandomMonster();
+                    Monster monster = CreateRandomMonsterOnDifficulty(difficultyLevel);
                     createMonsters.Add(monster);
                 }
             }

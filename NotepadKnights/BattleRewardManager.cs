@@ -3,25 +3,24 @@ namespace NotepadKnights;
 public class BattleRewardManager
 {
     private Random rand = new Random();
-    private readonly float _potionProbability = 0.2f;
-    private readonly float _normalWeaponProbability = 0.2f;
+    private readonly float _potionProbability = 0.8f;
+    private readonly float _normalWeaponProbability = 0.5f;
     private readonly float _rareWeaponProbability = 0.05f;
 
     private readonly Item _potion =
-        new Item($"{ "ÌöåÎ≥µ Ìè¨ÏÖò", -10 }\t", ItemType.Potion, 30, $"{ "Ï≤¥Î†•ÏùÑ +30ÎßåÌÅº ÌöåÎ≥µÏãúÏºúÏ£ºÎäî Ìè¨ÏÖòÏûÖÎãàÎã§.", -32 }\t", 1000);
+        new Item($"{"»∏∫π ∆˜º«",-10}\t", ItemType.Potion, 30, $"{"√º∑¬¿ª +30∏∏≈≠ »∏∫πΩ√ƒ—¡÷¥¬ ∆˜º«¿‘¥œ¥Ÿ.",-32}\t", 1000);
 
     private readonly Item _normalWeapon =
-        new Item($"{ "Îã®Í≤Ä", -10 }\t", ItemType.Weapon, 3, $"{ "ÏûëÏùÄ Îã®Í≤ÄÏûÖÎãàÎã§.", -32 }\t\t", 300);
+        new Item($"{"¥‹∞À",-10}\t", ItemType.Weapon, 3, $"{"¿€¿∫ ¥‹∞À¿‘¥œ¥Ÿ.",-32}\t\t", 300);
 
     private readonly Item _rareWeapon =
-        new Item($"{ "Î°± ÏÜåÎìú", -10 }\t", ItemType.Weapon, 22, $"{ "ÏïÑÏ£º Í∞ïÎ†•Ìïú Î°± ÏÜåÎìúÏûÖÎãàÎã§.", -32 }\t\t", 3300);
-    public int RewardGold { get; private set; }
-    public int PotionCount { get; private set; }
-    public int NormalWeaponCount { get; private set; }
-    public int RareWeaponCount { get; private set; }
-    
-    
-    
+        new Item($"{"∑’ º“µÂ",-10}\t", ItemType.Weapon, 22, $"{"æ∆¡÷ ∞≠∑¬«— ∑’ º“µÂ¿‘¥œ¥Ÿ.",-32}\t\t", 3300);
+
+    public int RewardGold { get; private set; } = 0;
+    public int PotionCount { get; private set; } = 0;
+    public int NormalWeaponCount { get; private set; } = 0;
+    public int RareWeaponCount { get; private set; } = 0;
+
     public void GetRewards(int monsterKillCount)
     {
         RewardGold = monsterKillCount * 100;
@@ -36,8 +35,28 @@ public class BattleRewardManager
         AddItemMultipleTimes(_potion, PotionCount);
         AddItemMultipleTimes(_normalWeapon, NormalWeaponCount);
         AddItemMultipleTimes(_rareWeapon, RareWeaponCount);
+        DisplayRewards();
+        RewardGold = 0;
+        PotionCount = 0;
+        NormalWeaponCount = 0;
+        RareWeaponCount = 0;
     }
-    
+
+    private void DisplayRewards()
+    {
+        Console.Clear();
+        Console.WriteLine("[∫∏ªÛ ∏Ò∑œ]\n");
+        Console.WriteLine($"{RewardGold}G »πµÊ!");
+        if (PotionCount > 0)
+            Console.WriteLine($"{_potion.Name} {PotionCount}∞≥ »πµÊ!");
+        if (NormalWeaponCount > 0)
+            Console.WriteLine($"{_normalWeapon.Name} {NormalWeaponCount}∞≥ »πµÊ!");
+        if (RareWeaponCount > 0)
+            Console.WriteLine($"{_rareWeapon.Name} {RareWeaponCount}∞≥ »πµÊ!");
+
+        InputManager.ReadInt(0, 0, "0. »Æ¿Œ");
+    }
+
     private void AddItemMultipleTimes(Item item, int count)
     {
         for (int i = 0; i < count; i++)
@@ -53,14 +72,15 @@ public class BattleRewardManager
             PotionCount++;
         }
     }
-    
+
     private void TryDropWeapon()
     {
         double probability = rand.NextDouble();
         if (probability < _rareWeaponProbability)
         {
             RareWeaponCount++;
-        } else if (probability < _normalWeaponProbability)
+        }
+        else if (probability < _normalWeaponProbability)
         {
             NormalWeaponCount++;
         }

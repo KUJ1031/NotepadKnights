@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NotepadKnights
+﻿namespace NotepadKnights
 {
     public class QuestManager
     {
@@ -12,6 +6,7 @@ namespace NotepadKnights
         public List<Quest> ableQuestList = new List<Quest>();
         public List<Quest> activeQuestList = new List<Quest>();
         public List<Quest> completedQuestList = new List<Quest>();
+        QuestCounter questCounter;
 
         public QuestManager()
         {
@@ -19,8 +14,11 @@ namespace NotepadKnights
             allQuestList.Add(new Quest1());
             allQuestList.Add(new Quest2()); 
             allQuestList.Add(new Quest3());
-            //allQuestList.Add(new Quest4());
-            //allQuestList.Add(new Quest5());
+            allQuestList.Add(new Quest4());
+            allQuestList.Add(new Quest5());
+
+            allQuestList.Sort((a, b) => a.QuestLevel.CompareTo(b.QuestLevel));
+            questCounter = new QuestCounter(activeQuestList);
         }
 
         public void QuestRenew(int characterLevel)
@@ -37,10 +35,12 @@ namespace NotepadKnights
                         && quest.IsActive == false)
                     {
                         ableQuestList.Add(quest);
+
                     }
                 }
                 //퀘스트를 레벨순으로 정렬
                 SortList();
+                //퀘스트 카운터에 퀘스트 리스트를 넘겨줌
             }
         }
        
@@ -52,6 +52,27 @@ namespace NotepadKnights
             //완료된 퀘스트를 completedQuestList에 추가, 활성화된 퀘스트 리스트에서 삭제
             completedQuestList.Add(activeQuestList[k]);
             activeQuestList[k].ToggleActive();
+            //보상 로직
+            if (activeQuestList[k].GoldReward == 0)
+            {
+                Console.WriteLine($"퀘스트 보상: {activeQuestList[k].ExpReward}EXP");
+                //보상 연결
+                Program.player.ExpUp(activeQuestList[k].ExpReward);
+            }
+            else if (activeQuestList[k].ExpReward == 0)
+            {
+                Console.WriteLine($"퀘스트 보상: {activeQuestList[k].GoldReward}G");
+                //보상 연결
+                Program.player.AddGold(activeQuestList[k].GoldReward);
+            }
+            else
+            {
+                Console.WriteLine($"퀘스트 보상: {activeQuestList[k].GoldReward}G, {activeQuestList[k].ExpReward}EXP");
+                //보상 연결
+                Program.player.ExpUp(activeQuestList[k].ExpReward);
+                Program.player.AddGold(activeQuestList[k].GoldReward);
+            }
+
             activeQuestList.RemoveAt(k);
             SortList();
             Console.ReadLine();
@@ -64,7 +85,9 @@ namespace NotepadKnights
             //완료된 퀘스트를 completedQuestList에 추가, 활성화된 퀘스트 리스트에서 삭제
             ableQuestList.Add(activeQuestList[k]);
             activeQuestList[k].ToggleActive();
+            activeQuestList[k].CountReset();
             activeQuestList.RemoveAt(k);
+            
             SortList();
             Console.ReadLine();
 
@@ -79,20 +102,14 @@ namespace NotepadKnights
             Console.WriteLine($"퀘스트 '{activeQuestList[activeQuestList.Count - 1].QuestName}'이(가) 수주되었습니다!");
             SortList();
             Console.ReadLine();
-
-        }
-
-        public void QuestCount()
-        {
-            //퀘스트 진행사항 어케하죠?
         }
 
         public void SortList()
         {
             //퀘스트 리스트를 레벨순으로 정렬
-            ableQuestList = ableQuestList.OrderBy(q => q.QuestLevel).ToList();
-            activeQuestList = activeQuestList.OrderBy(q => q.QuestLevel).ToList();
-            completedQuestList = completedQuestList.OrderBy(q => q.QuestLevel).ToList();
+            ableQuestList.Sort(( a , b ) => a.QuestLevel.CompareTo(b.QuestLevel));
+            activeQuestList.Sort(( a , b )=> a.QuestLevel.CompareTo(b.QuestLevel));
+            completedQuestList.Sort((a, b) => a.QuestLevel.CompareTo(b.QuestLevel));
         }
     }
 }

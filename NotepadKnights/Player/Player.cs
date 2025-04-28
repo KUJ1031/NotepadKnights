@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace NotepadKnights
+﻿namespace NotepadKnights
 {
     public class Player
     {
         public Inventory Inventory { get; private set; }
         public Store store { get; private set; }
-
-        AttackAndDefense attackAndDefense = new AttackAndDefense();
         public string msg;
   
-
         public Player()
         {
             Inventory = new Inventory();
@@ -25,27 +15,49 @@ namespace NotepadKnights
         public void LevelUp()
         {
             // Level += 1, 공격력 += 0.5, 방어력 += 1
-          //  Program.playerStatus.SetLevel(Program.playerStatus.Level+1);
-          //  Program.playerStatus.SetAttack(Program.playerStatus.Attack + 0.5f);
-          //  Program.playerStatus.SetDefense(Program.playerStatus.Defense +1);
+
+            Program.playerStatus.Level++;
+            Program.playerStatus.Attack += 0.5f;
+            Program.playerStatus.Defense += 1;
+
         }
         // 골드 추가
         public void AddGold(int RewardGold)
         {
-           // Program.playerStatus.SetGold(Program.playerStatus.Gold + RewardGold);
+            Program.playerStatus.Gold += RewardGold;
+         
         }
         // 인벤토리 아이템 추가
         public void Additem(Item item)
         {
             Inventory.AddItem(item);
         }
-        // 타겟인 적이 죽었다면
 
         // 경험치 업
-        public void ExpUp()
+        public void ExpUp(int k)
         {
             LevelManager levelManager = new LevelManager();
-            levelManager.AddExp(5);
+            levelManager.AddExp(k);
+        }
+
+        public void Update()
+        {
+            Program.playerStatus.ExtraAttack = 0;
+            Program.playerStatus.ExtraDefense = 0;
+            foreach (var item in Inventory.EquippableItems)
+            {
+                if (!item.IsSelected) continue;
+
+                if (item.Type == ItemType.Weapon)
+                {
+                    Program.playerStatus.ExtraAttack = item.Point;
+                }
+
+                if (item.Type == ItemType.Armor)
+                {
+                    Program.playerStatus.ExtraDefense = item.Point;
+                }
+            }
         }
     }
 }

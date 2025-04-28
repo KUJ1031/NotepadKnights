@@ -4,7 +4,7 @@ public static class InputManager
 {
     public static int ReadInt(int start, int end)
     {
-        Console.WriteLine("\nì›í•˜ì‹œëŠ” í–‰ë™ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+        Console.WriteLine("\n¿øÇÏ½Ã´Â Çàµ¿À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
         while (true)
         {
             string? input = Console.ReadLine();
@@ -12,7 +12,21 @@ public static class InputManager
             {
                 return command;
             }
-            Console.WriteLine("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+            Console.WriteLine("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+        }
+    }
+    
+    public static int ReadInt(int start, int end, string text)
+    {
+        Console.WriteLine($"\n{text}");
+        while (true)
+        {
+            string? input = Console.ReadLine();
+            if (int.TryParse(input, out int command) && command >= start && command <= end)
+            {
+                return command;
+            }
+            Console.WriteLine("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
         }
     }
 }
